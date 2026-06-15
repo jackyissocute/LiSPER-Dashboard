@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var path = location.pathname;
+      if (!path.endsWith("/")) {
+        var last = path.split("/").pop() || "";
+        path = last.indexOf(".") >= 0 ? path.slice(0, path.lastIndexOf("/") + 1) : path + "/";
+      }
+      var base = document.createElement("base");
+      base.href = path;
+      document.head.appendChild(base);
+    })();
+  </script>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta name="description" content="LiSPER progress reporting dashboard — computational discovery pipeline status.">
   <title>LiSPER — Progress Dashboard</title>
@@ -210,6 +222,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="js/solution-field.js"></script>
+  <script src="data/dashboard.bundle.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/main.js"></script>

@@ -26,8 +26,23 @@ const QUEUE_LABELS = {
 let dashboardData = null;
 const charts = new Map();
 
+function dashboardBaseUrl() {
+  const base = document.querySelector("base[href]");
+  if (base) {
+    return document.baseURI;
+  }
+
+  const { origin, pathname } = window.location;
+  let basePath = pathname;
+  if (!basePath.endsWith("/")) {
+    const last = basePath.split("/").pop() || "";
+    basePath = last.includes(".") ? basePath.slice(0, basePath.lastIndexOf("/") + 1) : `${basePath}/`;
+  }
+  return `${origin}${basePath}`;
+}
+
 function assetUrl(relativePath) {
-  return new URL(relativePath, window.location.href).href;
+  return new URL(relativePath, dashboardBaseUrl()).href;
 }
 
 function statusColor(status) {
@@ -35,12 +50,38 @@ function statusColor(status) {
 }
 
 async function loadDashboardData() {
-  const response = await fetch(assetUrl("data/dashboard.json"), { cache: "no-cache" });
-  if (!response.ok) {
-    throw new Error(`Failed to load dashboard data (${response.status})`);
+  if (window.__DASHBOARD_DATA__) {
+    dashboardData = window.__DASHBOARD_DATA__;
+    return dashboardData;
   }
-  dashboardData = await response.json();
-  return dashboardData;
+
+  const urls = [
+    assetUrl("data/dashboard.json"),
+    new URL("data/dashboard.json", document.baseURI).href,
+  ];
+
+  let lastError = null;
+  for (const url of [...new Set(urls)]) {
+    try {
+      const response = await fetch(url, { cache: "no-cache" });
+      if (!response.ok) {
+        lastError = new Error(`Failed to load dashboard data (${response.status}) from ${url}`);
+        continue;
+      }
+      dashboardData = await response.json();
+      return dashboardData;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  if (window.location.protocol === "file:") {
+    throw new Error(
+      "Cannot fetch JSON from a local file URL. Open via a local server (python3 -m http.server) or use the deployed GitHub Pages site."
+    );
+  }
+
+  throw lastError || new Error("Failed to load dashboard data");
 }
 
 function destroyChart(id) {

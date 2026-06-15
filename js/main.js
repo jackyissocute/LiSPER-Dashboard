@@ -62,8 +62,9 @@ async function boot() {
     await loadAndRenderDashboard();
   } catch (error) {
     console.error(error);
+    const detail = error?.message ? ` ${error.message}` : "";
     showBootError(
-      "Could not load dashboard data. Ensure data/dashboard.json is deployed, then refresh."
+      `Could not load dashboard data.${detail} Ensure data/dashboard.json is deployed, then refresh.`
     );
   }
 }

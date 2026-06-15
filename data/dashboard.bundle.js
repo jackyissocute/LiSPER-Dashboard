@@ -1,4 +1,4 @@
-{
+window.__DASHBOARD_DATA__ = {
   "generated_at": "2026-06-15T15:43:30.199682+00:00",
   "lisper_root": "/Users/jackylin/Documents/GitHub/LiSPER",
   "project": {
@@ -661,4 +661,4 @@
     "concept": "#64748b",
     "equilibrated": "#38bdf8"
   }
-}
+};

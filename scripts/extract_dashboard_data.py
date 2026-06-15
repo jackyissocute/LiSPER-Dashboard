@@ -403,7 +403,13 @@ def main() -> None:
     payload = build_payload(args.lisper_root.resolve())
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    bundle_path = args.out.with_name("dashboard.bundle.js")
+    bundle_path.write_text(
+        "window.__DASHBOARD_DATA__ = " + json.dumps(payload, indent=2) + ";\n",
+        encoding="utf-8",
+    )
     print(f"Wrote {args.out} ({payload['summary']['total_candidates']} candidates)")
+    print(f"Wrote {bundle_path}")
 
 
 if __name__ == "__main__":

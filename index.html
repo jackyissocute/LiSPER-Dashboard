@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LiSPER progress reporting dashboard — computational discovery pipeline status.">
+  <title>LiSPER — Progress Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="solution-layer" aria-hidden="true">
+    <canvas id="solution-canvas"></canvas>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="cursor-light" aria-hidden="true"></div>
+
+  <div class="dashboard-shell">
+    <header class="dashboard-header">
+      <div class="brand">
+        <span class="brand-mark">Li⁺</span>
+        <div>
+          <h1 class="brand-title">LiSPER Dashboard</h1>
+          <p class="brand-sub">Progress reporting · single-page view</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span id="section-label">Overview</span>
+        <span id="section-counter">1 / 5</span>
+      </div>
+    </header>
+
+    <main class="dashboard-main" aria-live="polite">
+      <div class="dashboard-panels" id="dashboard-panels">
+        <!-- Overview -->
+        <section class="panel is-active" id="panel-overview" aria-label="Overview">
+          <div class="panel-inner">
+            <div class="panel-grid panel-grid--overview">
+              <div class="glass-card panel-animate panel-animate--hero">
+                <p class="eyebrow">Program status</p>
+                <h2 id="overview-title">LiSPER</h2>
+                <p class="lead" id="overview-tagline"></p>
+                <p class="muted" id="overview-focus"></p>
+                <p class="timestamp">Data refreshed <span id="overview-updated">—</span></p>
+              </div>
+              <div class="glass-card panel-animate">
+                <p class="eyebrow">Snapshot</p>
+                <div class="stat-grid" id="overview-stats"></div>
+              </div>
+              <div class="glass-card panel-animate panel-span-2">
+                <p class="eyebrow">Three-phase roadmap</p>
+                <div id="phase-progress-list" class="progress-list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Workstreams -->
+        <section class="panel" id="panel-workstreams" aria-label="Workstreams">
+          <div class="panel-inner">
+            <div class="panel-grid panel-grid--split">
+              <div class="glass-card panel-animate">
+                <p class="eyebrow">Repository workstreams</p>
+                <div id="workstream-list" class="workstream-list"></div>
+              </div>
+              <div class="glass-card panel-animate chart-card">
+                <p class="eyebrow">Progress comparison</p>
+                <canvas id="workstream-chart" aria-label="Workstream progress chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Production -->
+        <section class="panel" id="panel-production" aria-label="LiCl production">
+          <div class="panel-inner">
+            <div class="panel-grid panel-grid--production">
+              <div class="glass-card panel-animate">
+                <p class="eyebrow">Equilibration complete</p>
+                <div class="equil-pair">
+                  <div><span class="equil-value" id="equil-li">—</span><span class="equil-label">LiCl systems</span></div>
+                  <div><span class="equil-value" id="equil-na">—</span><span class="equil-label">NaCl systems</span></div>
+                </div>
+                <div id="active-run-card" class="active-run" hidden></div>
+              </div>
+              <div class="glass-card panel-animate chart-card chart-card--wide">
+                <p class="eyebrow">LiCl production &amp; clustering by candidate</p>
+                <canvas id="production-chart" aria-label="Production progress chart"></canvas>
+              </div>
+              <div class="glass-card panel-animate panel-span-2">
+                <p class="eyebrow">Candidate pipeline</p>
+                <div id="candidate-grid" class="candidate-grid"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Remote -->
+        <section class="panel" id="panel-remote" aria-label="Remote operations">
+          <div class="panel-inner">
+            <div class="panel-grid panel-grid--remote">
+              <div class="glass-card panel-animate">
+                <p class="eyebrow">Remote monitor</p>
+                <p class="muted">Last checked: <span id="remote-checked">—</span></p>
+                <h3 class="list-heading">Running</h3>
+                <ul class="status-list" id="remote-running"></ul>
+                <h3 class="list-heading list-heading--warn">Blockers</h3>
+                <ul class="status-list status-list--warn" id="remote-blockers"></ul>
+              </div>
+              <div class="glass-card panel-animate chart-card">
+                <p class="eyebrow">LiCl queue distribution</p>
+                <canvas id="pipeline-chart" aria-label="Pipeline status chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Library -->
+        <section class="panel" id="panel-library" aria-label="Candidate library">
+          <div class="panel-inner">
+            <div class="glass-card panel-animate panel-fill">
+              <p class="eyebrow">First-round candidate library</p>
+              <div class="table-scroll">
+                <table class="library-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>ID</th>
+                      <th>Sequence</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Overall</th>
+                    </tr>
+                  </thead>
+                  <tbody id="library-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="dashboard-footer">
+      <button type="button" class="nav-arrow" id="nav-prev" aria-label="Previous section">←</button>
+      <nav class="section-nav" id="section-nav" aria-label="Dashboard sections"></nav>
+      <button type="button" class="nav-arrow" id="nav-next" aria-label="Next section">→</button>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/solution-field.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

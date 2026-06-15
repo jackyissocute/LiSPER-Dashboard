@@ -1,0 +1,317 @@
+{
+  "generated_at": "2026-06-15T14:46:45.856723+00:00",
+  "lisper_root": "/Users/jackylin/Documents/GitHub/LiSPER",
+  "project": {
+    "name": "LiSPER",
+    "tagline": "Lithium-Selective Peptide Engineering and Recovery",
+    "phase_focus": "Active computational discovery \u2014 LiCl production MD and clustering"
+  },
+  "phases": [
+    {
+      "id": "discovery",
+      "label": "Computational discovery",
+      "progress": 80,
+      "status": "active"
+    },
+    {
+      "id": "validation",
+      "label": "Experimental validation",
+      "progress": 20,
+      "status": "preparing"
+    },
+    {
+      "id": "translation",
+      "label": "Industrial translation",
+      "progress": 10,
+      "status": "concept"
+    }
+  ],
+  "workstreams": [
+    {
+      "id": "design",
+      "label": "Candidate design",
+      "status": "complete",
+      "progress": 100
+    },
+    {
+      "id": "esmfold",
+      "label": "ESMFold structures",
+      "status": "complete",
+      "progress": 100
+    },
+    {
+      "id": "charmm",
+      "label": "CHARMM-GUI systems",
+      "status": "complete",
+      "progress": 100
+    },
+    {
+      "id": "equil",
+      "label": "GROMACS equilibration",
+      "status": "complete",
+      "progress": 100
+    },
+    {
+      "id": "prod",
+      "label": "Production MD + clustering",
+      "status": "active",
+      "progress": 21
+    },
+    {
+      "id": "pmf",
+      "label": "Umbrella sampling + PMF",
+      "status": "planned",
+      "progress": 0
+    },
+    {
+      "id": "wetlab",
+      "label": "Wet-lab validation",
+      "status": "preparing",
+      "progress": 20
+    },
+    {
+      "id": "biodle",
+      "label": "Bio-DLE translation",
+      "status": "concept",
+      "progress": 10
+    }
+  ],
+  "equilibration": {
+    "li_cl": 10,
+    "na_cl": 10
+  },
+  "candidates": [
+    {
+      "candidate_id": "LiD3-1",
+      "production_status": "produced",
+      "cluster_status": "trjconv_failed",
+      "state": "complete",
+      "production_progress": 100.0,
+      "cluster_progress": 100.0,
+      "overall_progress": 100.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": 19.18,
+      "finished_at": "Mon Jun 15 04:48:55 2026",
+      "repaired": true,
+      "rank": "1",
+      "sequence": "GPGDPGSGPGDPGSGPGDP",
+      "role": "primary_candidate",
+      "main_design_logic": "Uses the best literature motif GPGDP, repeated 3x, with Gly/Ser flexibility.",
+      "recommended_start": "yes"
+    },
+    {
+      "candidate_id": "LiND-1",
+      "production_status": "grompp_failed",
+      "cluster_status": "blocked",
+      "state": "blocked",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "2",
+      "sequence": "GPGNPGSGPGDPGSGPGNP",
+      "role": "primary_candidate",
+      "main_design_logic": "Combines original LBP GPGNP with improved GPGDP.",
+      "recommended_start": "yes"
+    },
+    {
+      "candidate_id": "IDP-Li-1",
+      "production_status": "produced",
+      "cluster_status": "trjconv_failed",
+      "state": "complete",
+      "production_progress": 100.0,
+      "cluster_progress": 100.0,
+      "overall_progress": 100.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": 34.784,
+      "finished_at": "Mon Jun 15 18:36:57 2026",
+      "repaired": true,
+      "rank": "3",
+      "sequence": "SGDSGPGDPGDSG",
+      "role": "primary_candidate",
+      "main_design_logic": "IDP-like flexible acidic shell around GPGDP.",
+      "recommended_start": "yes"
+    },
+    {
+      "candidate_id": "IDP-Li-2",
+      "production_status": "grompp_failed",
+      "cluster_status": "blocked",
+      "state": "blocked",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "4",
+      "sequence": "GDSGSGPGDPGSGDS",
+      "role": "primary_candidate",
+      "main_design_logic": "More symmetric disordered binding pocket.",
+      "recommended_start": "no"
+    },
+    {
+      "candidate_id": "LowCharge-Li",
+      "production_status": "grompp_failed",
+      "cluster_status": "blocked",
+      "state": "blocked",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "5",
+      "sequence": "GPGDPGSGNPGSGDP",
+      "role": "primary_candidate",
+      "main_design_logic": "Lower negative charge to avoid nonspecific Na+/Ca2+ binding.",
+      "recommended_start": "yes"
+    },
+    {
+      "candidate_id": "LiD2-IDP",
+      "production_status": "grompp_failed",
+      "cluster_status": "blocked",
+      "state": "blocked",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "6",
+      "sequence": "GPGDPGSDGSGPGDP",
+      "role": "primary_candidate",
+      "main_design_logic": "Two GPGDP motifs plus IDP acidic spacer.",
+      "recommended_start": "no"
+    },
+    {
+      "candidate_id": "StrongBind-Li",
+      "production_status": "running",
+      "cluster_status": "pending",
+      "state": "running",
+      "production_progress": 9.1,
+      "cluster_progress": 0.0,
+      "overall_progress": 6.4,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "7",
+      "sequence": "GPGDPGSDGPGDPGSD",
+      "role": "primary_candidate",
+      "main_design_logic": "Higher Asp density for stronger Li+ capture.",
+      "recommended_start": "no"
+    },
+    {
+      "candidate_id": "SoftCage-Li",
+      "production_status": "not_started",
+      "cluster_status": "pending",
+      "state": "queued",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "8",
+      "sequence": "GSGDPGNGDPGSG",
+      "role": "primary_candidate",
+      "main_design_logic": "Short flexible oxygen-rich Li+ cage.",
+      "recommended_start": "no"
+    },
+    {
+      "candidate_id": "IDP-Rich-Li",
+      "production_status": "not_started",
+      "cluster_status": "pending",
+      "state": "queued",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "9",
+      "sequence": "DSGDSGPGDPGDSGS",
+      "role": "primary_candidate",
+      "main_design_logic": "More IDP-like, many carboxylate/Ser donors.",
+      "recommended_start": "no"
+    },
+    {
+      "candidate_id": "Control-Negative",
+      "production_status": "not_started",
+      "cluster_status": "pending",
+      "state": "queued",
+      "production_progress": 0.0,
+      "cluster_progress": 0.0,
+      "overall_progress": 0.0,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false,
+      "rank": "10",
+      "sequence": "GPGAPGSGPGAPGSGPGAP",
+      "role": "negative_control",
+      "main_design_logic": "Literature-related weak/neutral control.",
+      "recommended_start": "yes"
+    }
+  ],
+  "summary": {
+    "total_candidates": 10,
+    "production_complete": 2,
+    "clustering_complete": 2,
+    "blocked": 4,
+    "running_count": 1,
+    "active_run": {
+      "candidate_id": "StrongBind-Li",
+      "production_status": "running",
+      "cluster_status": "pending",
+      "state": "running",
+      "production_progress": 9.1,
+      "cluster_progress": 0.0,
+      "overall_progress": 6.4,
+      "top_cluster_population_percent": null,
+      "ns_per_day": null,
+      "finished_at": "",
+      "repaired": false
+    }
+  },
+  "remote": {
+    "last_checked": "2026-06-15 20:26 CST",
+    "running": [
+      "LiCl production/clustering queue is active.",
+      "Python driver PID: 3883.",
+      "Active GROMACS job: `StrongBind-Li` 20 ns production MD.",
+      "Latest observed `gmx mdrun` PID: 67257.",
+      "Latest synced `StrongBind-Li` production progress: 910,000 / 10,000,000 steps, 1.82 ns / 20 ns, 9.10%.",
+      "Latest synced `StrongBind-Li` health markers: temperature about 299 K, pressure fluctuating as expected for a small NPT system, constraint RMSD about 3.3e-6, no fatal markers found."
+    ],
+    "blockers": [
+      "Original full-system clustering failed for `LiD3-1` and `IDP-Li-1` at `gmx trjconv`.",
+      "The `trjconv` failure pattern is an index/trajectory mismatch caused by selecting full `SYSTEM` output when the trajectory has one fewer atom than the original index.",
+      "Repaired peptide-only clustering completed for `LiD3-1` and `IDP-Li-1`; both now have `cluster_20ns_repair/representative_top_cluster.pdb`.",
+      "`LiND-1` production setup failed at `gmx grompp` because `toppar/forcefield.itp` was not found.",
+      "`IDP-Li-2`, `LowCharge-Li`, and `LiD2-IDP` also failed production setup at `gmx grompp` because `toppar/forcefield.itp` was not found.",
+      "`LiD3-1` and `IDP-Li-1` top-cluster populations are low, so umbrella sampling should use these representatives carefully and may benefit from additional-cluster comparison."
+    ]
+  },
+  "status_colors": {
+    "complete": "#16a34a",
+    "clustered": "#16a34a",
+    "running": "#22d3ee",
+    "produced": "#f59e0b",
+    "blocked": "#ef4444",
+    "failed": "#ef4444",
+    "waiting": "#94a3b8",
+    "planned": "#64748b",
+    "preparing": "#a855f7",
+    "concept": "#64748b",
+    "equilibrated": "#38bdf8"
+  }
+}

@@ -12,8 +12,15 @@ const STATUS_LABELS = {
   pending: "Pending",
   queued: "Queued",
   planned: "Planned",
+  waiting: "Waiting",
   preparing: "Preparing",
   concept: "Concept",
+};
+
+const QUEUE_LABELS = {
+  active: "Active",
+  waiting_for_licl: "Waiting for LiCl",
+  preparing: "Preparing",
 };
 
 let dashboardData = null;
@@ -64,7 +71,8 @@ function renderOverview() {
   document.getElementById("overview-tagline").textContent = project.tagline;
   document.getElementById("overview-focus").textContent = project.phase_focus;
   document.getElementById("overview-updated").textContent = formatTimestamp(generated_at);
-  document.getElementById("remote-checked").textContent = remote.last_checked || "—";
+  const remoteLi = remote?.li_cl || remote || {};
+  document.getElementById("remote-checked").textContent = remoteLi.last_checked || "—";
 
   const stats = [
     { label: "Candidates", value: summary.total_candidates, accent: "#22d3ee" },
@@ -155,28 +163,10 @@ function renderWorkstreamChart() {
   );
 }
 
-function renderProduction() {
-  const { candidates, equilibration, summary } = dashboardData;
-
-  document.getElementById("equil-li").textContent = `${equilibration.li_cl}/10`;
-  document.getElementById("equil-na").textContent = `${equilibration.na_cl}/10`;
-
-  const active = summary.active_run;
-  const activeEl = document.getElementById("active-run-card");
-  if (active) {
-    activeEl.hidden = false;
-    activeEl.innerHTML = `
-      <div class="active-run-label">Active LiCl production</div>
-      <div class="active-run-name">${active.candidate_id}</div>
-      <div class="progress-track progress-track--lg">
-        <div class="progress-fill" style="width:${active.production_progress}%; background:#22d3ee"></div>
-      </div>
-      <div class="active-run-detail">${active.production_progress.toFixed(1)}% · ${active.production_status}</div>`;
-  } else {
-    activeEl.hidden = true;
-  }
-
-  document.getElementById("candidate-grid").innerHTML = candidates
+function renderCandidateGrid(containerId, candidates) {
+  const grid = document.getElementById(containerId);
+  if (!grid) return;
+  grid.innerHTML = candidates
     .map((c) => {
       const color = statusColor(c.state);
       const clusterNote =
@@ -207,32 +197,32 @@ function renderProduction() {
     .join("");
 }
 
-function renderProductionChart() {
+function renderBranchChart(canvasId, chartKey, candidates, prodColor) {
   if (typeof Chart === "undefined") return;
 
-  const canvas = document.getElementById("production-chart");
+  const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
-  destroyChart("production");
+  destroyChart(chartKey);
 
   charts.set(
-    "production",
+    chartKey,
     new Chart(canvas, {
       type: "bar",
       data: {
-        labels: dashboardData.candidates.map((c) => c.candidate_id),
+        labels: candidates.map((c) => c.candidate_id),
         datasets: [
           {
             label: "Production %",
-            data: dashboardData.candidates.map((c) => c.production_progress),
-            backgroundColor: "rgba(34,211,238,0.65)",
-            borderColor: "#22d3ee",
+            data: candidates.map((c) => c.production_progress),
+            backgroundColor: prodColor + "a6",
+            borderColor: prodColor,
             borderWidth: 1,
             borderRadius: 4,
           },
           {
             label: "Clustering %",
-            data: dashboardData.candidates.map((c) => c.cluster_progress),
+            data: candidates.map((c) => c.cluster_progress),
             backgroundColor: "rgba(22,163,74,0.55)",
             borderColor: "#16a34a",
             borderWidth: 1,
@@ -242,7 +232,7 @@ function renderProductionChart() {
       },
       options: chartDefaults({
         scales: {
-          x: { ticks: { color: "#cbd5e1", maxRotation: 45 }, grid: { display: false } },
+          x: { ticks: { color: "#cbd5e1", maxRotation: 45, autoSkip: true, maxTicksLimit: 10 }, grid: { display: false } },
           y: { max: 100, ticks: { color: "#94a3b8" }, grid: { color: "rgba(148,163,184,0.12)" } },
         },
       }),
@@ -250,17 +240,112 @@ function renderProductionChart() {
   );
 }
 
+function renderBranchPanel(branch, prefix, prodColor, queueBadgeId, statsId, activeId, gridId, chartId, chartKey) {
+  const queueStatus = branch.queue_status || "preparing";
+  const badgeEl = document.getElementById(queueBadgeId);
+  if (badgeEl) {
+    badgeEl.textContent = QUEUE_LABELS[queueStatus] || queueStatus.replace(/_/g, " ");
+    badgeEl.style.setProperty("--badge-color", statusColor(queueStatus === "active" ? "running" : "waiting"));
+  }
+
+  const statsEl = document.getElementById(statsId);
+  if (statsEl) {
+    statsEl.innerHTML = `
+      <div class="stat-grid stat-grid--branch">
+        <div class="stat-card"><span class="stat-value" style="color:${prodColor}">${branch.equilibrated ?? "—"}/10</span><span class="stat-label">Equilibrated</span></div>
+        <div class="stat-card"><span class="stat-value" style="color:#16a34a">${branch.production_complete}</span><span class="stat-label">Production done</span></div>
+        <div class="stat-card"><span class="stat-value" style="color:#38bdf8">${branch.clustering_complete}</span><span class="stat-label">Clustered</span></div>
+        <div class="stat-card"><span class="stat-value" style="color:#ef4444">${branch.blocked}</span><span class="stat-label">Blocked</span></div>
+      </div>`;
+  }
+
+  const activeEl = document.getElementById(activeId);
+  if (activeEl) {
+    const active = branch.active_run;
+    if (active) {
+      activeEl.hidden = false;
+      activeEl.innerHTML = `
+        <div class="active-run-label">Active production</div>
+        <div class="active-run-name">${active.candidate_id}</div>
+        <div class="progress-track progress-track--lg">
+          <div class="progress-fill" style="width:${active.production_progress}%; background:${prodColor}"></div>
+        </div>
+        <div class="active-run-detail">${active.production_progress.toFixed(1)}% · ${active.production_status}</div>`;
+    } else {
+      activeEl.hidden = true;
+      activeEl.innerHTML = "";
+    }
+  }
+
+  renderCandidateGrid(gridId, branch.candidates || []);
+  renderBranchChart(chartId, chartKey, branch.candidates || [], prodColor);
+}
+
+function renderProduction() {
+  const { md_branches, md_pipeline } = dashboardData;
+  const licl = md_branches?.li_cl;
+  const nacl = md_branches?.na_cl;
+
+  if (md_pipeline) {
+    document.getElementById("md-pipeline-summary").textContent = md_pipeline.summary;
+    document.getElementById("licl-branch-pct").textContent = `${md_pipeline.licl_progress}%`;
+    document.getElementById("nacl-branch-pct").textContent = `${md_pipeline.nacl_progress}%`;
+    document.getElementById("licl-branch-bar").style.width = `${md_pipeline.licl_progress}%`;
+    document.getElementById("nacl-branch-bar").style.width = `${md_pipeline.nacl_progress}%`;
+  }
+
+  if (licl) {
+    renderBranchPanel(
+      licl,
+      "licl",
+      "#22d3ee",
+      "licl-queue-badge",
+      "licl-branch-stats",
+      "licl-active-run",
+      "licl-candidate-grid",
+      "licl-production-chart",
+      "licl-production"
+    );
+  }
+
+  if (nacl) {
+    renderBranchPanel(
+      nacl,
+      "nacl",
+      "#94a3b8",
+      "nacl-queue-badge",
+      "nacl-branch-stats",
+      "nacl-active-run",
+      "nacl-candidate-grid",
+      "nacl-production-chart",
+      "nacl-production"
+    );
+    const noteEl = document.getElementById("nacl-branch-note");
+    if (noteEl) noteEl.textContent = nacl.note || "";
+  }
+}
+
 function renderRemote() {
-  const { remote } = dashboardData;
+  const remoteLi = dashboardData.remote?.li_cl || dashboardData.remote || {};
+  const remoteNa = dashboardData.remote?.na_cl || {};
+
+  const runningItems = [
+    ...(remoteLi.running || []).map((item) => `[LiCl] ${item}`),
+    ...(remoteNa.running || []).map((item) => `[NaCl] ${item}`),
+  ];
+  const blockerItems = [
+    ...(remoteLi.blockers || []).map((item) => `[LiCl] ${item}`),
+    ...(remoteNa.blockers || []).map((item) => `[NaCl] ${item}`),
+  ];
 
   document.getElementById("remote-running").innerHTML =
-    remote.running?.length > 0
-      ? remote.running.map((item) => `<li>${item}</li>`).join("")
+    runningItems.length > 0
+      ? runningItems.map((item) => `<li>${item}</li>`).join("")
       : "<li>No active jobs reported</li>";
 
   document.getElementById("remote-blockers").innerHTML =
-    remote.blockers?.length > 0
-      ? remote.blockers.map((item) => `<li>${item}</li>`).join("")
+    blockerItems.length > 0
+      ? blockerItems.map((item) => `<li>${item}</li>`).join("")
       : "<li>No blockers reported</li>";
 }
 
@@ -272,8 +357,9 @@ function renderPipelineChart() {
 
   destroyChart("pipeline");
 
+  const liclCandidates = dashboardData.md_branches?.li_cl?.candidates || dashboardData.candidates || [];
   const states = ["complete", "running", "blocked", "queued"];
-  const counts = states.map((state) => dashboardData.candidates.filter((c) => c.state === state).length);
+  const counts = states.map((state) => liclCandidates.filter((c) => c.state === state).length);
 
   charts.set(
     "pipeline",
@@ -333,7 +419,18 @@ const PANEL_CHART_RENDERERS = {
     renderWorkstreamChart();
   },
   production: () => {
-    renderProductionChart();
+    renderBranchChart(
+      "licl-production-chart",
+      "licl-production",
+      dashboardData.md_branches?.li_cl?.candidates || [],
+      "#22d3ee"
+    );
+    renderBranchChart(
+      "nacl-production-chart",
+      "nacl-production",
+      dashboardData.md_branches?.na_cl?.candidates || [],
+      "#94a3b8"
+    );
   },
   remote: () => {
     renderPipelineChart();

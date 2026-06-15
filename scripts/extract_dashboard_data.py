@@ -199,28 +199,122 @@ def compute_production_workstream(candidates: list[dict]) -> int:
     return round(sum(c["overall_progress"] for c in candidates) / len(candidates))
 
 
+def parse_nacl_queue_summary(remote_text: str) -> str:
+    if "waiting for LiCl" in remote_text or "has not started production" in remote_text:
+        return "waiting_for_licl"
+    if "production/clustering queue is active" in remote_text.lower():
+        return "active"
+    return "preparing"
+
+
+def build_branch_candidates(
+    candidate_rows: list[dict[str, str]],
+    prod_by_id: dict[str, str],
+    repair_by_id: dict[str, str],
+    snapshot_rows: dict[str, dict],
+    *,
+    default_state: str = "queued",
+) -> list[dict]:
+    metrics = [
+        classify_candidate(row["candidate_id"], prod_by_id, repair_by_id, snapshot_rows)
+        for row in candidate_rows
+        if row.get("candidate_id")
+    ]
+    if not prod_by_id and default_state == "waiting":
+        metrics = []
+        for row in candidate_rows:
+            if not row.get("candidate_id"):
+                continue
+            metrics.append(
+                {
+                    "candidate_id": row["candidate_id"],
+                    "production_status": "not_started",
+                    "cluster_status": "pending",
+                    "state": "waiting",
+                    "production_progress": 0.0,
+                    "cluster_progress": 0.0,
+                    "overall_progress": 0.0,
+                    "top_cluster_population_percent": None,
+                    "ns_per_day": None,
+                    "finished_at": "",
+                    "repaired": False,
+                }
+            )
+    return metrics
+
+
+def build_branch_summary(branch_id: str, label: str, ion: str, candidates: list[dict], **extra) -> dict:
+    running = [c for c in candidates if c["state"] == "running"]
+    return {
+        "id": branch_id,
+        "label": label,
+        "ion": ion,
+        "total_candidates": len(candidates),
+        "production_complete": sum(1 for c in candidates if c["production_progress"] >= 100),
+        "clustering_complete": sum(1 for c in candidates if c["cluster_progress"] >= 100),
+        "blocked": sum(1 for c in candidates if c["state"] == "blocked"),
+        "running_count": len(running),
+        "active_run": running[0] if running else None,
+        "branch_progress": round(
+            sum(c["overall_progress"] for c in candidates) / len(candidates), 1
+        )
+        if candidates
+        else 0,
+        "candidates": candidates,
+        **extra,
+    }
+
+
 def build_payload(lisper_root: Path) -> dict:
     md_root = lisper_root / "01_computational_discovery" / "md"
     li_runs = md_root / "li_cl" / "remote_runs"
+    na_runs = md_root / "na_cl" / "remote_runs"
 
     candidates = read_tsv(lisper_root / "01_computational_discovery" / "sequences" / "candidates.tsv")
     prod_tsv = read_tsv(li_runs / "production_clustering_summary.tsv")
     repair_tsv = read_tsv(li_runs / "clustering_repair_summary.tsv")
     eq_li = read_tsv(li_runs / "equilibration_summary.tsv")
-    eq_na = read_tsv(md_root / "na_cl" / "remote_runs" / "equilibration_summary.tsv")
+    eq_na = read_tsv(na_runs / "equilibration_summary.tsv")
 
     prod_by_id = {row["candidate_id"]: row for row in prod_tsv if row.get("candidate_id")}
     repair_by_id = {row["candidate_id"]: row for row in repair_tsv if row.get("candidate_id")}
     snapshot_rows = parse_production_snapshot_md(li_runs / "current_production_snapshot.md")
-    remote = parse_remote_status(li_runs / "remote_status.md")
+    remote_li = parse_remote_status(li_runs / "remote_status.md")
 
-    candidate_metrics = [
-        classify_candidate(row["candidate_id"], prod_by_id, repair_by_id, snapshot_rows)
-        for row in candidates
-        if row.get("candidate_id")
-    ]
+    na_remote_path = na_runs / "remote_status.md"
+    na_remote_text = na_remote_path.read_text(encoding="utf-8") if na_remote_path.exists() else ""
+    remote_na = parse_remote_status(na_remote_path)
 
-    prod_ws_progress = compute_production_workstream(candidate_metrics)
+    licl_candidates = build_branch_candidates(candidates, prod_by_id, repair_by_id, snapshot_rows)
+    nacl_candidates = build_branch_candidates(
+        candidates, {}, {}, {}, default_state="waiting"
+    )
+
+    licl_branch = build_branch_summary(
+        "li_cl",
+        "LiCl branch (Li⁺)",
+        "Li⁺",
+        licl_candidates,
+        equilibrated=sum(1 for r in eq_li if r.get("status") == "equilibrated"),
+        queue_status="active",
+        last_checked=remote_li.get("last_checked", ""),
+        note="20 ns production MD + GROMOS clustering per candidate.",
+    )
+    nacl_branch = build_branch_summary(
+        "na_cl",
+        "NaCl branch (Na⁺)",
+        "Na⁺",
+        nacl_candidates,
+        equilibrated=sum(1 for r in eq_na if r.get("status") == "equilibrated"),
+        queue_status=parse_nacl_queue_summary(na_remote_text),
+        last_checked=remote_na.get("last_checked", ""),
+        note="Queued after LiCl; shared production/clustering script with NaCl workdir.",
+    )
+
+    candidate_metrics = licl_candidates
+    prod_ws_progress = round(
+        (licl_branch["branch_progress"] + nacl_branch["branch_progress"]) / 2
+    )
     workstreams = []
     for ws in WORKSTREAMS:
         item = dict(ws)
@@ -244,11 +338,24 @@ def build_payload(lisper_root: Path) -> dict:
         "project": {
             "name": "LiSPER",
             "tagline": "Lithium-Selective Peptide Engineering and Recovery",
-            "phase_focus": "Active computational discovery — LiCl production MD and clustering",
+            "phase_focus": "Active computational discovery — parallel LiCl and NaCl production MD, then PMF",
         },
         "phases": PHASES,
         "workstreams": workstreams,
         "equilibration": equil_counts,
+        "md_branches": {
+            "li_cl": licl_branch,
+            "na_cl": nacl_branch,
+        },
+        "md_pipeline": {
+            "summary": (
+                f"LiCl {licl_branch['production_complete']}/{licl_branch['total_candidates']} production complete · "
+                f"NaCl {nacl_branch['equilibrated']}/{nacl_branch['total_candidates']} equilibrated, "
+                f"production {nacl_branch['queue_status'].replace('_', ' ')}"
+            ),
+            "licl_progress": licl_branch["branch_progress"],
+            "nacl_progress": nacl_branch["branch_progress"],
+        },
         "candidates": [
             {
                 **metric,
@@ -267,7 +374,10 @@ def build_payload(lisper_root: Path) -> dict:
             "running_count": len(running),
             "active_run": running[0] if running else None,
         },
-        "remote": remote,
+        "remote": {
+            "li_cl": remote_li,
+            "na_cl": remote_na,
+        },
         "status_colors": STATUS_COLORS,
     }
 

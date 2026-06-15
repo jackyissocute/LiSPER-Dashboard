@@ -32,6 +32,8 @@ body {
   margin: 0;
   width: 100%;
   min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: var(--font-sans);
   color: var(--text);
   font-size: clamp(0.8rem, 0.75rem + 0.25vw, 0.95rem);
@@ -123,167 +125,28 @@ body.has-pointer .cursor-light {
   opacity: 1;
 }
 
-/* ── Desktop: fixed viewport, internal card scroll only ── */
-body.layout-desktop {
-  height: 100%;
-  overflow: hidden;
-}
-
-body.layout-desktop .dashboard-shell {
-  position: fixed;
-  inset: 0;
-  height: 100dvh;
-  overflow: hidden;
-}
-
-body.layout-desktop .dashboard-main {
-  overflow: hidden;
-}
-
-body.layout-desktop .dashboard-panels {
-  height: 100%;
-}
-
-body.layout-desktop .panel {
-  position: absolute;
-  inset: 0;
-}
-
-body.layout-desktop .panel-inner {
-  height: 100%;
-  overflow: hidden;
-}
-
-body.layout-desktop .panel-grid {
-  height: 100%;
-  overflow: hidden;
-}
-
-body.layout-desktop .glass-card {
-  max-height: 100%;
-  overflow: hidden;
-}
-
-body.layout-desktop .card-scroll {
-  overflow: auto;
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-body.layout-desktop .panel-fill {
-  height: 100%;
-}
-
-/* ── Compact: page scroll, stacked cards, no absolute overlap ── */
-body.layout-compact {
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-body.layout-compact .dashboard-shell {
-  position: relative;
-  inset: auto;
-  min-height: 100dvh;
-  height: auto;
-  overflow: visible;
-}
-
-body.layout-compact .dashboard-main {
-  overflow: visible;
-  flex: 1 0 auto;
-}
-
-body.layout-compact .dashboard-panels {
-  position: relative;
-  height: auto;
-  min-height: 0;
-}
-
-body.layout-compact .panel {
-  position: relative;
-  inset: auto;
-  height: auto;
-  min-height: 0;
-  opacity: 1;
-  visibility: visible;
-  will-change: auto;
-}
-
-body.layout-compact .panel:not(.is-active) {
-  display: none;
-}
-
-body.layout-compact .panel.is-active {
-  display: block;
-  pointer-events: auto;
-}
-
-body.layout-compact .panel-inner {
-  height: auto;
-  min-height: 0;
-  overflow: visible;
-  padding-bottom: 1.25rem;
-}
-
-body.layout-compact .panel-grid {
-  height: auto;
-  overflow: visible;
-  grid-template-rows: none !important;
-}
-
-body.layout-compact .panel-grid--overview,
-body.layout-compact .panel-grid--split,
-body.layout-compact .panel-grid--remote,
-body.layout-compact .panel-grid--production {
-  grid-template-columns: minmax(0, 1fr);
-}
-
-body.layout-compact .panel-grid--production {
-  grid-template-areas:
-    "sidebar"
-    "chart"
-    "pipeline";
-}
-
-body.layout-compact .glass-card {
-  max-height: none;
-  min-height: 0;
-  overflow: visible;
-}
-
-body.layout-compact .card-scroll {
-  overflow: visible;
-  flex: none;
-  min-height: 0;
-  max-height: none;
-}
-
-body.layout-compact .card-scroll--chart {
-  min-height: 14rem;
-}
-
-body.layout-compact .card-scroll--chart canvas {
-  min-height: 14rem;
-  max-height: none;
-}
-
-body.layout-compact .panel-fill {
-  height: auto;
-}
-
-body.layout-compact .panel-span-2 {
-  grid-column: auto;
-}
-
-/* Dashboard shell — fixed above background canvas */
+/* ── Always scrollable: no overlap, sticky chrome ── */
 .dashboard-shell {
+  position: relative;
   z-index: 100;
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 100dvh;
   pointer-events: auto;
   isolation: isolate;
+}
+
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.dashboard-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
 }
 
 .dashboard-header,
@@ -295,10 +158,8 @@ body.layout-compact .panel-span-2 {
   padding: 0 1.25rem;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: rgba(3, 10, 20, 0.82);
+  background: rgba(3, 10, 20, 0.92);
   border-color: var(--glass-border);
-  position: relative;
-  z-index: 2;
 }
 
 .dashboard-header {
@@ -310,6 +171,130 @@ body.layout-compact .panel-span-2 {
   height: var(--footer-h);
   border-top: 1px solid var(--glass-border);
   gap: 0.75rem;
+}
+
+.dashboard-main {
+  flex: 1 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-panels {
+  position: relative;
+  width: 100%;
+}
+
+.panel {
+  display: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.panel.is-active {
+  display: block;
+  pointer-events: auto;
+}
+
+.panel-inner {
+  padding: var(--panel-pad) var(--panel-pad) 1.5rem;
+  box-sizing: border-box;
+}
+
+.panel-grid {
+  display: grid;
+  gap: var(--card-gap);
+}
+
+.panel-grid--overview {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.panel-grid--split,
+.panel-grid--remote {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.panel-span-2 {
+  grid-column: 1 / -1;
+}
+
+/* MD pipeline page (LiCl + NaCl) */
+.md-pipeline-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+}
+
+.md-pipeline-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.md-branch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--card-gap);
+  align-items: start;
+}
+
+.md-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  overflow: hidden;
+}
+
+.md-branch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.md-branch-title {
+  margin: 0.15rem 0 0;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.md-branch-stats {
+  width: 100%;
+}
+
+.stat-grid--branch {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.branch-note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Chart containment — never bleed outside card border */
+.chart-box {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(200px, 28vw, 320px);
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: rgba(15, 35, 60, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.chart-box canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .brand {
@@ -360,32 +345,6 @@ body.layout-compact .panel-span-2 {
   font-weight: 600;
 }
 
-.dashboard-main {
-  flex: 1 1 auto;
-  min-height: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.dashboard-panels {
-  position: relative;
-  width: 100%;
-}
-
-.panel {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-
-.panel.is-active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  z-index: 1;
-}
-
 .panel-animate {
   opacity: 1;
   transform: none;
@@ -395,74 +354,10 @@ body.dashboard-ready .dashboard-shell {
   opacity: 1;
 }
 
-.panel-inner {
-  padding: var(--panel-pad) var(--panel-pad) calc(var(--panel-pad) * 0.5);
-  box-sizing: border-box;
-}
-
-.panel-grid {
-  display: grid;
-  gap: var(--card-gap);
-  min-height: 0;
-}
-
-body.layout-desktop .panel-grid--overview {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: minmax(0, 1fr) minmax(0, 1.15fr);
-}
-
-body.layout-desktop .panel-grid--split,
-body.layout-desktop .panel-grid--remote {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  grid-template-rows: minmax(0, 1fr);
-}
-
-body.layout-desktop .panel-grid--production {
-  grid-template-columns: minmax(9.5rem, 13rem) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 38%) minmax(0, 1fr);
-  grid-template-areas:
-    "sidebar chart"
-    "pipeline pipeline";
-}
-
-.production-sidebar {
-  grid-area: sidebar;
-  min-height: 0;
-}
-
-.production-chart {
-  grid-area: chart;
-  min-height: 0;
-}
-
-.production-pipeline {
-  grid-area: pipeline;
-  min-height: 0;
-}
-
-.panel-span-2 {
-  grid-column: 1 / -1;
-}
-
-body.layout-compact .panel-span-2 {
-  grid-column: auto;
-}
-
-body.layout-compact .glass-card + .glass-card {
-  margin-top: 0;
-}
-
-body.layout-compact .candidate-grid {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
-}
-
-body.layout-compact .library-table {
-  min-width: 28rem;
-}
-
 .glass-card {
   display: flex;
   flex-direction: column;
+  gap: 0.35rem;
   background: var(--glass);
   border: 1px solid var(--glass-border);
   border-radius: 0.85rem;
@@ -472,36 +367,27 @@ body.layout-compact .library-table {
   box-shadow:
     inset 0 1px 0 var(--glass-highlight),
     0 8px 32px rgba(0, 0, 0, 0.25);
-  min-height: 0;
+  overflow: hidden;
   color: var(--text);
 }
 
 .glass-card > .eyebrow {
   flex-shrink: 0;
+  margin-bottom: 0;
 }
 
 .card-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  padding-right: 0.15rem;
-  margin-top: 0.15rem;
-}
-
-.card-scroll--chart {
-  display: flex;
-  flex-direction: column;
-  min-height: 8rem;
-}
-
-.card-scroll--chart canvas {
-  flex: 1 1 auto;
-  width: 100% !important;
-  min-height: 8rem;
-  max-height: 100%;
 }
 
 .card-scroll--table {
   overflow: auto;
+  max-width: 100%;
 }
 
 .card-scroll::-webkit-scrollbar {
@@ -514,14 +400,10 @@ body.layout-compact .library-table {
   border-radius: 999px;
 }
 
-.card-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
 .panel-fill {
-  height: 100%;
   display: flex;
   flex-direction: column;
+  gap: 0.35rem;
 }
 
 .eyebrow {
@@ -699,7 +581,37 @@ body.layout-compact .library-table {
 }
 
 .chart-card {
-  min-height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .panel-grid--overview,
+  .panel-grid--split,
+  .panel-grid--remote,
+  .md-branch-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .nav-dot span {
+    display: none;
+  }
+
+  .dashboard-header,
+  .dashboard-footer {
+    padding-inline: 0.75rem;
+  }
+
+  .section-nav {
+    max-width: 60vw;
+  }
+
+  .chart-box {
+    height: clamp(180px, 45vw, 260px);
+  }
 }
 
 .equil-pair {
@@ -949,24 +861,6 @@ body.layout-compact .library-table {
   font-size: 0.78rem;
 }
 
-@media (max-width: 900px), (max-height: 580px) {
-  .brand-sub {
-    display: none;
-  }
-
-  .nav-dot span {
-    display: none;
-  }
-
-  .dashboard-header,
-  .dashboard-footer {
-    padding-inline: 0.75rem;
-  }
-
-  .section-nav {
-    max-width: 60vw;
-  }
-}
 
 @media (max-width: 520px) {
   .brand-mark {

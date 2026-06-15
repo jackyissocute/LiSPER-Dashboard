@@ -5,20 +5,15 @@
 const SECTIONS = [
   { id: "overview", label: "Overview", panelId: "overview" },
   { id: "workstreams", label: "Workstreams", panelId: "workstreams" },
-  { id: "production", label: "LiCl MD", panelId: "production" },
+  { id: "production", label: "MD pipeline", panelId: "production" },
   { id: "remote", label: "Remote ops", panelId: "remote" },
   { id: "library", label: "Library", panelId: "library" },
 ];
 
 let currentIndex = 0;
-let isAnimating = false;
 
 function hasGsap() {
   return typeof gsap !== "undefined";
-}
-
-function getPanelWidth() {
-  return document.getElementById("dashboard-panels")?.offsetWidth || window.innerWidth;
 }
 
 function buildNav() {
@@ -56,14 +51,13 @@ function setActivePanel(index) {
   });
 }
 
-function goToPanel(index, direction = index > currentIndex ? 1 : -1) {
-  if (isAnimating || index === currentIndex || index < 0 || index >= SECTIONS.length) return;
+function goToPanel(index) {
+  if (index === currentIndex || index < 0 || index >= SECTIONS.length) return;
 
   const panels = document.getElementById("dashboard-panels");
   const outgoing = panels.children[currentIndex];
   const incoming = panels.children[index];
   const section = SECTIONS[index];
-  const compact = document.body.classList.contains("layout-compact");
 
   currentIndex = index;
   updateNav(index);
@@ -78,26 +72,7 @@ function goToPanel(index, direction = index > currentIndex ? 1 : -1) {
     setTimeout(window.resizeAllCharts, 100);
   }
 
-  if (compact || !hasGsap()) {
-    isAnimating = false;
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return;
-  }
-
-  isAnimating = true;
-  const width = getPanelWidth();
-
-  gsap.set(incoming, { x: direction * width * 0.25, opacity: 0.85 });
-
-  gsap
-    .timeline({
-      onComplete: () => {
-        gsap.set(outgoing, { clearProps: "transform,opacity" });
-        isAnimating = false;
-      },
-    })
-    .to(outgoing, { x: -direction * width * 0.15, opacity: 0, duration: 0.35, ease: "power2.in" }, 0)
-    .to(incoming, { x: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function bindKeys() {

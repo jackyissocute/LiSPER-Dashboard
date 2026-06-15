@@ -25,15 +25,15 @@
 
 html {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
   margin: 0;
   width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100%;
+  overflow: hidden;
   font-family: var(--font-sans);
   color: var(--text);
   font-size: clamp(0.8rem, 0.75rem + 0.25vw, 0.95rem);
@@ -125,33 +125,33 @@ body.has-pointer .cursor-light {
   opacity: 1;
 }
 
-/* ── Always scrollable: no overlap, sticky chrome ── */
+/* ── Fixed chrome + scrollable main body only ── */
 .dashboard-shell {
-  position: relative;
+  position: fixed;
+  inset: 0;
   z-index: 100;
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
   pointer-events: auto;
   isolation: isolate;
 }
 
 .dashboard-header {
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 20;
 }
 
 .dashboard-footer {
-  position: sticky;
-  bottom: 0;
+  flex-shrink: 0;
   z-index: 20;
 }
 
 .dashboard-header,
 .dashboard-footer {
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -174,9 +174,23 @@ body.has-pointer .cursor-light {
 }
 
 .dashboard-main {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  min-height: 0;
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-main::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
 }
 
 .dashboard-panels {

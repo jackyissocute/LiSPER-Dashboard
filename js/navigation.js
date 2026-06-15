@@ -72,7 +72,7 @@ function goToPanel(index) {
     setTimeout(window.resizeAllCharts, 100);
   }
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.querySelector(".dashboard-main")?.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function bindKeys() {

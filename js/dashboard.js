@@ -17,22 +17,36 @@ const STATUS_LABELS = {
 };
 
 let dashboardData = null;
-let charts = [];
+const charts = new Map();
+
+function assetUrl(relativePath) {
+  return new URL(relativePath, window.location.href).href;
+}
 
 function statusColor(status) {
   return dashboardData?.status_colors?.[status] || "#94a3b8";
 }
 
 async function loadDashboardData() {
-  const response = await fetch("data/dashboard.json");
-  if (!response.ok) throw new Error(`Failed to load dashboard data (${response.status})`);
+  const response = await fetch(assetUrl("data/dashboard.json"), { cache: "no-cache" });
+  if (!response.ok) {
+    throw new Error(`Failed to load dashboard data (${response.status})`);
+  }
   dashboardData = await response.json();
   return dashboardData;
 }
 
+function destroyChart(id) {
+  const chart = charts.get(id);
+  if (chart) {
+    chart.destroy();
+    charts.delete(id);
+  }
+}
+
 function destroyCharts() {
   charts.forEach((chart) => chart.destroy());
-  charts = [];
+  charts.clear();
 }
 
 function formatTimestamp(iso) {
@@ -59,8 +73,7 @@ function renderOverview() {
     { label: "Blocked", value: summary.blocked, accent: "#ef4444" },
   ];
 
-  const statsEl = document.getElementById("overview-stats");
-  statsEl.innerHTML = stats
+  document.getElementById("overview-stats").innerHTML = stats
     .map(
       (s) => `
       <div class="stat-card">
@@ -70,8 +83,7 @@ function renderOverview() {
     )
     .join("");
 
-  const phasesEl = document.getElementById("phase-progress-list");
-  phasesEl.innerHTML = dashboardData.phases
+  document.getElementById("phase-progress-list").innerHTML = dashboardData.phases
     .map((phase) => {
       const color = statusColor(phase.status);
       return `
@@ -89,8 +101,7 @@ function renderOverview() {
 }
 
 function renderWorkstreams() {
-  const list = document.getElementById("workstream-list");
-  list.innerHTML = dashboardData.workstreams
+  document.getElementById("workstream-list").innerHTML = dashboardData.workstreams
     .map((ws) => {
       const color = statusColor(ws.status);
       return `
@@ -106,10 +117,19 @@ function renderWorkstreams() {
         </div>`;
     })
     .join("");
+}
 
-  const ctx = document.getElementById("workstream-chart");
-  charts.push(
-    new Chart(ctx, {
+function renderWorkstreamChart() {
+  if (typeof Chart === "undefined") return;
+
+  const canvas = document.getElementById("workstream-chart");
+  if (!canvas) return;
+
+  destroyChart("workstream");
+
+  charts.set(
+    "workstream",
+    new Chart(canvas, {
       type: "bar",
       data: {
         labels: dashboardData.workstreams.map((w) => w.label.replace(/ /g, "\n")),
@@ -156,8 +176,7 @@ function renderProduction() {
     activeEl.hidden = true;
   }
 
-  const grid = document.getElementById("candidate-grid");
-  grid.innerHTML = candidates
+  document.getElementById("candidate-grid").innerHTML = candidates
     .map((c) => {
       const color = statusColor(c.state);
       const clusterNote =
@@ -186,17 +205,26 @@ function renderProduction() {
         </article>`;
     })
     .join("");
+}
 
-  const ctx = document.getElementById("production-chart");
-  charts.push(
-    new Chart(ctx, {
+function renderProductionChart() {
+  if (typeof Chart === "undefined") return;
+
+  const canvas = document.getElementById("production-chart");
+  if (!canvas) return;
+
+  destroyChart("production");
+
+  charts.set(
+    "production",
+    new Chart(canvas, {
       type: "bar",
       data: {
-        labels: candidates.map((c) => c.candidate_id),
+        labels: dashboardData.candidates.map((c) => c.candidate_id),
         datasets: [
           {
             label: "Production %",
-            data: candidates.map((c) => c.production_progress),
+            data: dashboardData.candidates.map((c) => c.production_progress),
             backgroundColor: "rgba(34,211,238,0.65)",
             borderColor: "#22d3ee",
             borderWidth: 1,
@@ -204,7 +232,7 @@ function renderProduction() {
           },
           {
             label: "Clustering %",
-            data: candidates.map((c) => c.cluster_progress),
+            data: dashboardData.candidates.map((c) => c.cluster_progress),
             backgroundColor: "rgba(22,163,74,0.55)",
             borderColor: "#16a34a",
             borderWidth: 1,
@@ -225,24 +253,31 @@ function renderProduction() {
 function renderRemote() {
   const { remote } = dashboardData;
 
-  const runningEl = document.getElementById("remote-running");
-  runningEl.innerHTML =
+  document.getElementById("remote-running").innerHTML =
     remote.running?.length > 0
       ? remote.running.map((item) => `<li>${item}</li>`).join("")
       : "<li>No active jobs reported</li>";
 
-  const blockersEl = document.getElementById("remote-blockers");
-  blockersEl.innerHTML =
+  document.getElementById("remote-blockers").innerHTML =
     remote.blockers?.length > 0
       ? remote.blockers.map((item) => `<li>${item}</li>`).join("")
       : "<li>No blockers reported</li>";
+}
 
-  const ctx = document.getElementById("pipeline-chart");
+function renderPipelineChart() {
+  if (typeof Chart === "undefined") return;
+
+  const canvas = document.getElementById("pipeline-chart");
+  if (!canvas) return;
+
+  destroyChart("pipeline");
+
   const states = ["complete", "running", "blocked", "queued"];
   const counts = states.map((state) => dashboardData.candidates.filter((c) => c.state === state).length);
 
-  charts.push(
-    new Chart(ctx, {
+  charts.set(
+    "pipeline",
+    new Chart(canvas, {
       type: "doughnut",
       data: {
         labels: states.map((s) => STATUS_LABELS[s] || s),
@@ -267,8 +302,7 @@ function renderRemote() {
 }
 
 function renderLibrary() {
-  const tbody = document.getElementById("library-body");
-  tbody.innerHTML = dashboardData.candidates
+  document.getElementById("library-body").innerHTML = dashboardData.candidates
     .map(
       (c) => `
       <tr>
@@ -294,8 +328,19 @@ function chartDefaults(extra = {}) {
   };
 }
 
-function renderDashboard() {
-  destroyCharts();
+const PANEL_CHART_RENDERERS = {
+  workstreams: () => {
+    renderWorkstreamChart();
+  },
+  production: () => {
+    renderProductionChart();
+  },
+  remote: () => {
+    renderPipelineChart();
+  },
+};
+
+function renderDashboardText() {
   renderOverview();
   renderWorkstreams();
   renderProduction();
@@ -303,8 +348,26 @@ function renderDashboard() {
   renderLibrary();
 }
 
+function renderPanelCharts(panelId) {
+  const renderer = PANEL_CHART_RENDERERS[panelId];
+  if (renderer) {
+    requestAnimationFrame(() => {
+      renderer();
+      charts.forEach((chart) => chart.resize());
+    });
+  }
+}
+
+function renderDashboard() {
+  destroyCharts();
+  renderDashboardText();
+}
+
 window.loadAndRenderDashboard = async function loadAndRenderDashboard() {
   await loadDashboardData();
   renderDashboard();
   return dashboardData;
 };
+
+window.renderPanelCharts = renderPanelCharts;
+window.assetUrl = assetUrl;

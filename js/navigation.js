@@ -1,20 +1,24 @@
 /**
- * LiSPER Dashboard — horizontal full-viewport panel navigation (GSAP)
+ * LiSPER Dashboard — horizontal full-viewport panel navigation
  */
 
 const SECTIONS = [
-  { id: "overview", label: "Overview" },
-  { id: "workstreams", label: "Workstreams" },
-  { id: "production", label: "LiCl MD" },
-  { id: "remote", label: "Remote ops" },
-  { id: "library", label: "Library" },
+  { id: "overview", label: "Overview", panelId: "overview" },
+  { id: "workstreams", label: "Workstreams", panelId: "workstreams" },
+  { id: "production", label: "LiCl MD", panelId: "production" },
+  { id: "remote", label: "Remote ops", panelId: "remote" },
+  { id: "library", label: "Library", panelId: "library" },
 ];
 
 let currentIndex = 0;
 let isAnimating = false;
 
+function hasGsap() {
+  return typeof gsap !== "undefined";
+}
+
 function getPanelWidth() {
-  return document.querySelector(".dashboard-panels")?.offsetWidth || window.innerWidth;
+  return document.getElementById("dashboard-panels")?.offsetWidth || window.innerWidth;
 }
 
 function buildNav() {
@@ -39,36 +43,54 @@ function updateNav(index) {
   document.getElementById("section-counter").textContent = `${index + 1} / ${SECTIONS.length}`;
 }
 
+function setActivePanel(index) {
+  const panels = document.getElementById("dashboard-panels");
+  Array.from(panels.children).forEach((panel, i) => {
+    panel.classList.toggle("is-active", i === index);
+    if (hasGsap()) {
+      gsap.set(panel, { clearProps: "transform,opacity" });
+    } else {
+      panel.style.transform = "";
+      panel.style.opacity = "";
+    }
+  });
+}
+
 function goToPanel(index, direction = index > currentIndex ? 1 : -1) {
   if (isAnimating || index === currentIndex || index < 0 || index >= SECTIONS.length) return;
 
-  isAnimating = true;
   const panels = document.getElementById("dashboard-panels");
   const outgoing = panels.children[currentIndex];
   const incoming = panels.children[index];
-  const width = getPanelWidth();
+  const section = SECTIONS[index];
 
-  gsap.set(incoming, { x: direction * width, opacity: 0.4 });
+  currentIndex = index;
+  updateNav(index);
   incoming.classList.add("is-active");
   outgoing.classList.remove("is-active");
 
-  const tl = gsap.timeline({
-    onComplete: () => {
-      gsap.set(outgoing, { clearProps: "all" });
-      currentIndex = index;
-      updateNav(index);
-      isAnimating = false;
-    },
-  });
+  if (typeof window.renderPanelCharts === "function" && section.panelId !== "overview") {
+    window.renderPanelCharts(section.panelId);
+  }
 
-  tl.to(outgoing, { x: -direction * width * 0.35, opacity: 0, duration: 0.45, ease: "power2.in" }, 0)
-    .to(incoming, { x: 0, opacity: 1, duration: 0.55, ease: "power2.out" }, 0)
-    .fromTo(
-      incoming.querySelectorAll(".panel-animate"),
-      { y: 18, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: "power2.out" },
-      0.12
-    );
+  if (!hasGsap()) {
+    return;
+  }
+
+  isAnimating = true;
+  const width = getPanelWidth();
+
+  gsap.set(incoming, { x: direction * width * 0.25, opacity: 0.85 });
+
+  gsap
+    .timeline({
+      onComplete: () => {
+        gsap.set(outgoing, { clearProps: "transform,opacity" });
+        isAnimating = false;
+      },
+    })
+    .to(outgoing, { x: -direction * width * 0.15, opacity: 0, duration: 0.35, ease: "power2.in" }, 0)
+    .to(incoming, { x: 0, opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
 }
 
 function bindKeys() {
@@ -115,21 +137,27 @@ function bindSwipe() {
 
 function initNavigation() {
   buildNav();
+  setActivePanel(0);
   updateNav(0);
   bindKeys();
   bindArrows();
   bindSwipe();
+  document.body.classList.add("dashboard-ready");
 
-  gsap.from(".dashboard-header", { y: -20, opacity: 0, duration: 0.6, ease: "power2.out" });
-  gsap.from(".dashboard-footer", { y: 20, opacity: 0, duration: 0.6, delay: 0.1, ease: "power2.out" });
-  gsap.from(".panel.is-active .panel-animate", {
-    y: 24,
-    opacity: 0,
-    duration: 0.55,
-    stagger: 0.06,
-    ease: "power2.out",
-    delay: 0.15,
-  });
+  if (!hasGsap()) {
+    return;
+  }
+
+  gsap.fromTo(
+    ".dashboard-header",
+    { y: -12, opacity: 0.6 },
+    { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }
+  );
+  gsap.fromTo(
+    ".dashboard-footer",
+    { y: 12, opacity: 0.6 },
+    { y: 0, opacity: 1, duration: 0.45, delay: 0.05, ease: "power2.out" }
+  );
 }
 
 window.initNavigation = initNavigation;

@@ -15,13 +15,35 @@ python3 -m http.server 8080
 
 ## Refresh data
 
-Re-run the extractor whenever LiSPER remote runs or summaries change:
+### Automatic (recommended — no local server)
+
+The dashboard is static files on GitHub Pages. Data refresh runs **in the cloud** via GitHub Actions:
+
+1. Check out this repo and your **LiSPER** repo
+2. Run `scripts/extract_dashboard_data.py`
+3. Commit `data/dashboard.json` if it changed
+4. GitHub Pages serves the updated site automatically
+
+**One-time setup** (LiSPER-Dashboard repo → Settings → Secrets → Actions):
+
+| Secret | Value |
+|---|---|
+| `LISPER_ACCESS_TOKEN` | Fine-grained PAT with **read** access to `jackyissocute/LiSPER` |
+
+Create a token at GitHub → Settings → Developer settings → Fine-grained tokens. Scope it to the LiSPER repo, contents: read-only.
+
+The workflow runs **every hour** (`cron: 0 * * * *` UTC) and can also be triggered manually from the Actions tab.
+
+If you make LiSPER **public**, you can remove the `token:` line from the checkout step in `refresh-dashboard-data.yml` — no secret needed for read access.
+
+### Manual (local)
 
 ```bash
 python3 scripts/extract_dashboard_data.py
-# Optional custom paths:
-python3 scripts/extract_dashboard_data.py --lisper-root /path/to/LiSPER --out data/dashboard.json
+git add data/dashboard.json && git commit -m "chore: refresh dashboard data" && git push
 ```
+
+You do **not** need a local web server to inspect changes — push and check https://jackyissocute.github.io/LiSPER-Dashboard/
 
 ## Navigation
 

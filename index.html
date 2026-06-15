@@ -42,18 +42,24 @@
             <div class="panel-grid panel-grid--overview">
               <div class="glass-card panel-animate panel-animate--hero">
                 <p class="eyebrow">Program status</p>
-                <h2 id="overview-title">LiSPER</h2>
-                <p class="lead" id="overview-tagline"></p>
-                <p class="muted" id="overview-focus"></p>
-                <p class="timestamp">Data refreshed <span id="overview-updated">—</span></p>
+                <div class="card-scroll">
+                  <h2 id="overview-title">LiSPER</h2>
+                  <p class="lead" id="overview-tagline"></p>
+                  <p class="muted" id="overview-focus"></p>
+                  <p class="timestamp">Data refreshed <span id="overview-updated">—</span></p>
+                </div>
               </div>
               <div class="glass-card panel-animate">
                 <p class="eyebrow">Snapshot</p>
-                <div class="stat-grid" id="overview-stats"></div>
+                <div class="card-scroll">
+                  <div class="stat-grid" id="overview-stats"></div>
+                </div>
               </div>
               <div class="glass-card panel-animate panel-span-2">
                 <p class="eyebrow">Three-phase roadmap</p>
-                <div id="phase-progress-list" class="progress-list"></div>
+                <div class="card-scroll">
+                  <div id="phase-progress-list" class="progress-list"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -65,11 +71,15 @@
             <div class="panel-grid panel-grid--split">
               <div class="glass-card panel-animate">
                 <p class="eyebrow">Repository workstreams</p>
-                <div id="workstream-list" class="workstream-list"></div>
+                <div class="card-scroll">
+                  <div id="workstream-list" class="workstream-list"></div>
+                </div>
               </div>
               <div class="glass-card panel-animate chart-card">
                 <p class="eyebrow">Progress comparison</p>
-                <canvas id="workstream-chart" aria-label="Workstream progress chart"></canvas>
+                <div class="card-scroll card-scroll--chart">
+                  <canvas id="workstream-chart" aria-label="Workstream progress chart"></canvas>
+                </div>
               </div>
             </div>
           </div>
@@ -79,21 +89,27 @@
         <section class="panel" id="panel-production" aria-label="LiCl production">
           <div class="panel-inner">
             <div class="panel-grid panel-grid--production">
-              <div class="glass-card panel-animate">
+              <div class="glass-card panel-animate production-sidebar">
                 <p class="eyebrow">Equilibration complete</p>
-                <div class="equil-pair">
-                  <div><span class="equil-value" id="equil-li">—</span><span class="equil-label">LiCl systems</span></div>
-                  <div><span class="equil-value" id="equil-na">—</span><span class="equil-label">NaCl systems</span></div>
+                <div class="card-scroll">
+                  <div class="equil-pair">
+                    <div><span class="equil-value" id="equil-li">—</span><span class="equil-label">LiCl systems</span></div>
+                    <div><span class="equil-value" id="equil-na">—</span><span class="equil-label">NaCl systems</span></div>
+                  </div>
+                  <div id="active-run-card" class="active-run" hidden></div>
                 </div>
-                <div id="active-run-card" class="active-run" hidden></div>
               </div>
-              <div class="glass-card panel-animate chart-card chart-card--wide">
+              <div class="glass-card panel-animate chart-card production-chart">
                 <p class="eyebrow">LiCl production &amp; clustering by candidate</p>
-                <canvas id="production-chart" aria-label="Production progress chart"></canvas>
+                <div class="card-scroll card-scroll--chart">
+                  <canvas id="production-chart" aria-label="Production progress chart"></canvas>
+                </div>
               </div>
-              <div class="glass-card panel-animate panel-span-2">
+              <div class="glass-card panel-animate panel-span-2 production-pipeline">
                 <p class="eyebrow">Candidate pipeline</p>
-                <div id="candidate-grid" class="candidate-grid"></div>
+                <div class="card-scroll">
+                  <div id="candidate-grid" class="candidate-grid"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -105,15 +121,19 @@
             <div class="panel-grid panel-grid--remote">
               <div class="glass-card panel-animate">
                 <p class="eyebrow">Remote monitor</p>
-                <p class="muted">Last checked: <span id="remote-checked">—</span></p>
-                <h3 class="list-heading">Running</h3>
-                <ul class="status-list" id="remote-running"></ul>
-                <h3 class="list-heading list-heading--warn">Blockers</h3>
-                <ul class="status-list status-list--warn" id="remote-blockers"></ul>
+                <div class="card-scroll">
+                  <p class="muted">Last checked: <span id="remote-checked">—</span></p>
+                  <h3 class="list-heading">Running</h3>
+                  <ul class="status-list" id="remote-running"></ul>
+                  <h3 class="list-heading list-heading--warn">Blockers</h3>
+                  <ul class="status-list status-list--warn" id="remote-blockers"></ul>
+                </div>
               </div>
               <div class="glass-card panel-animate chart-card">
                 <p class="eyebrow">LiCl queue distribution</p>
-                <canvas id="pipeline-chart" aria-label="Pipeline status chart"></canvas>
+                <div class="card-scroll card-scroll--chart">
+                  <canvas id="pipeline-chart" aria-label="Pipeline status chart"></canvas>
+                </div>
               </div>
             </div>
           </div>
@@ -124,7 +144,7 @@
           <div class="panel-inner">
             <div class="glass-card panel-animate panel-fill">
               <p class="eyebrow">First-round candidate library</p>
-              <div class="table-scroll">
+              <div class="card-scroll card-scroll--table">
                 <table class="library-table">
                   <thead>
                     <tr>

@@ -73,6 +73,10 @@ function goToPanel(index, direction = index > currentIndex ? 1 : -1) {
     window.renderPanelCharts(section.panelId);
   }
 
+  if (typeof window.resizeAllCharts === "function") {
+    setTimeout(window.resizeAllCharts, 100);
+  }
+
   if (!hasGsap()) {
     return;
   }

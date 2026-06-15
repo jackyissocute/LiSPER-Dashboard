@@ -371,3 +371,15 @@ window.loadAndRenderDashboard = async function loadAndRenderDashboard() {
 
 window.renderPanelCharts = renderPanelCharts;
 window.assetUrl = assetUrl;
+
+function resizeAllCharts() {
+  charts.forEach((chart) => chart.resize());
+}
+
+window.resizeAllCharts = resizeAllCharts;
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(resizeAllCharts, 120);
+});

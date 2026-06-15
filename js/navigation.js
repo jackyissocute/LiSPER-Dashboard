@@ -63,6 +63,7 @@ function goToPanel(index, direction = index > currentIndex ? 1 : -1) {
   const outgoing = panels.children[currentIndex];
   const incoming = panels.children[index];
   const section = SECTIONS[index];
+  const compact = document.body.classList.contains("layout-compact");
 
   currentIndex = index;
   updateNav(index);
@@ -77,7 +78,9 @@ function goToPanel(index, direction = index > currentIndex ? 1 : -1) {
     setTimeout(window.resizeAllCharts, 100);
   }
 
-  if (!hasGsap()) {
+  if (compact || !hasGsap()) {
+    isAnimating = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
 

@@ -23,15 +23,15 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  min-height: 100%;
   font-family: var(--font-sans);
   color: var(--text);
   font-size: clamp(0.8rem, 0.75rem + 0.25vw, 0.95rem);
@@ -123,16 +123,165 @@ body.has-pointer .cursor-light {
   opacity: 1;
 }
 
-/* Dashboard shell — fixed above background canvas */
-.dashboard-shell {
+/* ── Desktop: fixed viewport, internal card scroll only ── */
+body.layout-desktop {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.layout-desktop .dashboard-shell {
   position: fixed;
   inset: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body.layout-desktop .dashboard-main {
+  overflow: hidden;
+}
+
+body.layout-desktop .dashboard-panels {
+  height: 100%;
+}
+
+body.layout-desktop .panel {
+  position: absolute;
+  inset: 0;
+}
+
+body.layout-desktop .panel-inner {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.layout-desktop .panel-grid {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.layout-desktop .glass-card {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+body.layout-desktop .card-scroll {
+  overflow: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+body.layout-desktop .panel-fill {
+  height: 100%;
+}
+
+/* ── Compact: page scroll, stacked cards, no absolute overlap ── */
+body.layout-compact {
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.layout-compact .dashboard-shell {
+  position: relative;
+  inset: auto;
+  min-height: 100dvh;
+  height: auto;
+  overflow: visible;
+}
+
+body.layout-compact .dashboard-main {
+  overflow: visible;
+  flex: 1 0 auto;
+}
+
+body.layout-compact .dashboard-panels {
+  position: relative;
+  height: auto;
+  min-height: 0;
+}
+
+body.layout-compact .panel {
+  position: relative;
+  inset: auto;
+  height: auto;
+  min-height: 0;
+  opacity: 1;
+  visibility: visible;
+  will-change: auto;
+}
+
+body.layout-compact .panel:not(.is-active) {
+  display: none;
+}
+
+body.layout-compact .panel.is-active {
+  display: block;
+  pointer-events: auto;
+}
+
+body.layout-compact .panel-inner {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding-bottom: 1.25rem;
+}
+
+body.layout-compact .panel-grid {
+  height: auto;
+  overflow: visible;
+  grid-template-rows: none !important;
+}
+
+body.layout-compact .panel-grid--overview,
+body.layout-compact .panel-grid--split,
+body.layout-compact .panel-grid--remote,
+body.layout-compact .panel-grid--production {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+body.layout-compact .panel-grid--production {
+  grid-template-areas:
+    "sidebar"
+    "chart"
+    "pipeline";
+}
+
+body.layout-compact .glass-card {
+  max-height: none;
+  min-height: 0;
+  overflow: visible;
+}
+
+body.layout-compact .card-scroll {
+  overflow: visible;
+  flex: none;
+  min-height: 0;
+  max-height: none;
+}
+
+body.layout-compact .card-scroll--chart {
+  min-height: 14rem;
+}
+
+body.layout-compact .card-scroll--chart canvas {
+  min-height: 14rem;
+  max-height: none;
+}
+
+body.layout-compact .panel-fill {
+  height: auto;
+}
+
+body.layout-compact .panel-span-2 {
+  grid-column: auto;
+}
+
+/* Dashboard shell — fixed above background canvas */
+.dashboard-shell {
   z-index: 100;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  height: 100dvh;
   pointer-events: auto;
   isolation: isolate;
 }
@@ -214,7 +363,6 @@ body.has-pointer .cursor-light {
 .dashboard-main {
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
   position: relative;
   z-index: 1;
 }
@@ -222,12 +370,9 @@ body.has-pointer .cursor-light {
 .dashboard-panels {
   position: relative;
   width: 100%;
-  height: 100%;
 }
 
 .panel {
-  position: absolute;
-  inset: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -251,34 +396,30 @@ body.dashboard-ready .dashboard-shell {
 }
 
 .panel-inner {
-  height: 100%;
   padding: var(--panel-pad) var(--panel-pad) calc(var(--panel-pad) * 0.5);
-  overflow: hidden;
   box-sizing: border-box;
 }
 
 .panel-grid {
   display: grid;
   gap: var(--card-gap);
-  height: 100%;
   min-height: 0;
-  overflow: hidden;
 }
 
-.panel-grid--overview {
+body.layout-desktop .panel-grid--overview {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: minmax(0, 1fr) minmax(0, 1.15fr);
 }
 
-.panel-grid--split,
-.panel-grid--remote {
+body.layout-desktop .panel-grid--split,
+body.layout-desktop .panel-grid--remote {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   grid-template-rows: minmax(0, 1fr);
 }
 
-.panel-grid--production {
+body.layout-desktop .panel-grid--production {
   grid-template-columns: minmax(9.5rem, 13rem) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 42%) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 38%) minmax(0, 1fr);
   grid-template-areas:
     "sidebar chart"
     "pipeline pipeline";
@@ -303,6 +444,22 @@ body.dashboard-ready .dashboard-shell {
   grid-column: 1 / -1;
 }
 
+body.layout-compact .panel-span-2 {
+  grid-column: auto;
+}
+
+body.layout-compact .glass-card + .glass-card {
+  margin-top: 0;
+}
+
+body.layout-compact .candidate-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
+}
+
+body.layout-compact .library-table {
+  min-width: 28rem;
+}
+
 .glass-card {
   display: flex;
   flex-direction: column;
@@ -316,8 +473,6 @@ body.dashboard-ready .dashboard-shell {
     inset 0 1px 0 var(--glass-highlight),
     0 8px 32px rgba(0, 0, 0, 0.25);
   min-height: 0;
-  max-height: 100%;
-  overflow: hidden;
   color: var(--text);
 }
 
@@ -326,9 +481,6 @@ body.dashboard-ready .dashboard-shell {
 }
 
 .card-scroll {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   padding-right: 0.15rem;
@@ -797,27 +949,7 @@ body.dashboard-ready .dashboard-shell {
   font-size: 0.78rem;
 }
 
-@media (max-width: 900px) {
-  .panel-grid--overview {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, auto) minmax(0, auto) minmax(0, 1fr);
-  }
-
-  .panel-grid--split,
-  .panel-grid--remote {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .panel-grid--production {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, 1.2fr);
-    grid-template-areas:
-      "sidebar"
-      "chart"
-      "pipeline";
-  }
-
+@media (max-width: 900px), (max-height: 580px) {
   .brand-sub {
     display: none;
   }
@@ -829,6 +961,10 @@ body.dashboard-ready .dashboard-shell {
   .dashboard-header,
   .dashboard-footer {
     padding-inline: 0.75rem;
+  }
+
+  .section-nav {
+    max-width: 60vw;
   }
 }
 

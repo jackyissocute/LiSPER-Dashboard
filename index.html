@@ -15,216 +15,342 @@
       document.head.appendChild(base);
     })();
   </script>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta name="description" content="LiSPER progress reporting dashboard — computational discovery pipeline status.">
-  <title>LiSPER — Progress Dashboard</title>
+  <meta name="description" content="LiSPER investor-facing progress monitor for computational lithium-selective peptide discovery.">
+  <title>LiSPER Progress Monitor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="solution-layer" aria-hidden="true">
     <canvas id="solution-canvas"></canvas>
   </div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor-glow" aria-hidden="true"></div>
-  <div class="cursor-light" aria-hidden="true"></div>
+  <div class="surface-glow" aria-hidden="true"></div>
 
-  <div class="dashboard-shell">
-    <header class="dashboard-header">
-      <div class="brand">
-        <span class="brand-mark">Li⁺</span>
-        <div>
-          <h1 class="brand-title">LiSPER Dashboard</h1>
-          <p class="brand-sub">Progress reporting · single-page view</p>
+  <header class="topbar">
+    <a class="brand" href="#process" aria-label="LiSPER progress monitor home">
+      <img src="assets/logo-dark-full.png" alt="LiSPER" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+      <span class="brand-fallback">LiSPER</span>
+    </a>
+
+    <nav class="page-tabs" aria-label="Dashboard pages">
+      <button class="tab-button is-active" type="button" data-target="process">Process metrics</button>
+      <button class="tab-button" type="button" data-target="proteins">Protein metrics</button>
+      <button class="tab-button" type="button" data-target="time">Time horizon</button>
+    </nav>
+
+    <div class="topbar-meta">
+      <span id="page-count">1 / 3</span>
+      <span>Static report</span>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <section class="dashboard-page is-active" id="process" aria-labelledby="process-title">
+      <div class="page-header">
+        <p class="eyebrow">Task-focused dashboard</p>
+        <h1 id="process-title">Process metrics</h1>
+        <p>One view of the LiSPER pipeline, from candidate design to the first ΔΔG selectivity table.</p>
+      </div>
+
+      <div class="kpi-strip" aria-label="Current computational snapshot">
+        <article class="kpi-card">
+          <span class="kpi-label">Prepared systems</span>
+          <strong>20 / 20</strong>
+          <small>LiCl + NaCl CHARMM-GUI inputs</small>
+        </article>
+        <article class="kpi-card kpi-card--cyan">
+          <span class="kpi-label">LiCl production</span>
+          <strong>2 complete</strong>
+          <small>1 active, 7 queued or rerun queued</small>
+        </article>
+        <article class="kpi-card kpi-card--green">
+          <span class="kpi-label">Representative structures</span>
+          <strong>2 / 10</strong>
+          <small>Largest-cluster structures available</small>
+        </article>
+        <article class="kpi-card kpi-card--amber">
+          <span class="kpi-label">Selectivity table</span>
+          <strong>Pending</strong>
+          <small>Requires Li⁺ and Na⁺ ΔG values</small>
+        </article>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">Integrated milestone matrix</p>
+            <h2>Computational discovery workflow</h2>
+          </div>
+          <span class="status-pill status-pill--active">Phase I active</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="metric-table process-table">
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Milestone</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Output target</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th rowspan="3">Program roadmap</th>
+                <td>Phase I · Computational discovery</td>
+                <td><span class="progress-bar"><span style="--value:70%"></span></span><b>70%</b></td>
+                <td><span class="status-pill status-pill--active">Active</span></td>
+                <td>Ranked ΔΔG selectivity candidates</td>
+              </tr>
+              <tr>
+                <td>Phase II · Wet-lab validation</td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:20%"></span></span><b>20%</b></td>
+                <td><span class="status-pill status-pill--preparing">Preparing</span></td>
+                <td>Expression, purification, binding assays</td>
+              </tr>
+              <tr>
+                <td>Phase III · Bio-DLE translation</td>
+                <td><span class="progress-bar progress-bar--violet"><span style="--value:10%"></span></span><b>10%</b></td>
+                <td><span class="status-pill status-pill--planned">Concept</span></td>
+                <td>Immobilized peptide prototype</td>
+              </tr>
+              <tr>
+                <th rowspan="4">System preparation</th>
+                <td>Candidate peptide library</td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>10 / 10</b></td>
+                <td><span class="status-pill status-pill--complete">Complete</span></td>
+                <td>First-round LiSPER library</td>
+              </tr>
+              <tr>
+                <td>ESMFold structures</td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>10 / 10</b></td>
+                <td><span class="status-pill status-pill--complete">Complete</span></td>
+                <td>Initial peptide PDBs</td>
+              </tr>
+              <tr>
+                <td>CHARMM-GUI systems</td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>20 / 20</b></td>
+                <td><span class="status-pill status-pill--complete">Complete</span></td>
+                <td>LiCl and NaCl solvated systems</td>
+              </tr>
+              <tr>
+                <td>Minimization + equilibration</td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>20 / 20</b></td>
+                <td><span class="status-pill status-pill--complete">Complete</span></td>
+                <td>Production-ready states</td>
+              </tr>
+              <tr>
+                <th rowspan="2">LiCl branch</th>
+                <td>20 ns production MD</td>
+                <td><span class="progress-bar"><span style="--value:25%"></span></span><b>2 done + 1 active</b></td>
+                <td><span class="status-pill status-pill--active">Running</span></td>
+                <td>Li⁺ ensemble trajectories</td>
+              </tr>
+              <tr>
+                <td>Structural clustering</td>
+                <td><span class="progress-bar"><span style="--value:20%"></span></span><b>2 / 10 reps</b></td>
+                <td><span class="status-pill status-pill--active">Active</span></td>
+                <td>Representative Li⁺ structures</td>
+              </tr>
+              <tr>
+                <th>NaCl branch</th>
+                <td>Na⁺ production + clustering</td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:5%"></span></span><b>Queued</b></td>
+                <td><span class="status-pill status-pill--queued">Queued</span></td>
+                <td>Na⁺ comparison ensembles</td>
+              </tr>
+              <tr>
+                <th>Free energy</th>
+                <td>Umbrella sampling, PMF, ΔG, ΔΔG</td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:0%"></span></span><b>0 / 10</b></td>
+                <td><span class="status-pill status-pill--planned">Planned</span></td>
+                <td>First Li⁺/Na⁺ selectivity ranking</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="header-meta">
-        <span id="section-label">Overview</span>
-        <span id="section-counter">1 / 5</span>
+    </section>
+
+    <section class="dashboard-page" id="proteins" aria-labelledby="proteins-title">
+      <div class="page-header">
+        <p class="eyebrow">Candidate-focused dashboard</p>
+        <h1 id="proteins-title">Protein-focused metrics</h1>
+        <p>Each peptide is tracked across the same computational gates so progress can be read candidate by candidate.</p>
       </div>
-    </header>
 
-    <main class="dashboard-main" aria-live="polite">
-      <div class="dashboard-panels" id="dashboard-panels">
-        <!-- Overview -->
-        <section class="panel is-active" id="panel-overview" aria-label="Overview">
-          <div class="panel-inner">
-            <div class="panel-grid panel-grid--overview">
-              <div class="glass-card panel-animate panel-animate--hero">
-                <p class="eyebrow">Program status</p>
-                <div class="card-scroll">
-                  <h2 id="overview-title">LiSPER</h2>
-                  <p class="lead" id="overview-tagline"></p>
-                  <p class="muted" id="overview-focus"></p>
-                  <p class="timestamp">Data refreshed <span id="overview-updated">—</span></p>
-                </div>
-              </div>
-              <div class="glass-card panel-animate">
-                <p class="eyebrow">Snapshot</p>
-                <div class="card-scroll">
-                  <div class="stat-grid" id="overview-stats"></div>
-                </div>
-              </div>
-              <div class="glass-card panel-animate panel-span-2">
-                <p class="eyebrow">Three-phase roadmap</p>
-                <div class="card-scroll">
-                  <div id="phase-progress-list" class="progress-list"></div>
-                </div>
-              </div>
-            </div>
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">10-sequence library</p>
+            <h2>Candidate progress matrix</h2>
           </div>
-        </section>
-
-        <!-- Workstreams -->
-        <section class="panel" id="panel-workstreams" aria-label="Workstreams">
-          <div class="panel-inner">
-            <div class="panel-grid panel-grid--split">
-              <div class="glass-card panel-animate">
-                <p class="eyebrow">Repository workstreams</p>
-                <div class="card-scroll">
-                  <div id="workstream-list" class="workstream-list"></div>
-                </div>
-              </div>
-              <div class="glass-card panel-animate chart-card">
-                <p class="eyebrow">Progress comparison</p>
-                <div class="chart-box">
-                  <canvas id="workstream-chart" aria-label="Workstream progress chart"></canvas>
-                </div>
-              </div>
-            </div>
+          <div class="legend">
+            <span><i class="dot dot--complete"></i>Complete</span>
+            <span><i class="dot dot--active"></i>Running</span>
+            <span><i class="dot dot--queued"></i>Queued</span>
+            <span><i class="dot dot--planned"></i>Planned</span>
           </div>
-        </section>
+        </div>
 
-        <!-- MD pipeline: LiCl + NaCl parallel branches -->
-        <section class="panel" id="panel-production" aria-label="MD production pipeline">
-          <div class="panel-inner">
-            <div class="md-pipeline-page">
-              <div class="glass-card panel-animate">
-                <p class="eyebrow">Parallel production MD</p>
-                <p class="lead" id="md-pipeline-summary"></p>
-                <div class="md-pipeline-progress">
-                  <div class="progress-row">
-                    <div class="progress-meta"><span>LiCl branch (Li⁺)</span><span class="progress-pct" id="licl-branch-pct">—</span></div>
-                    <div class="progress-track"><div class="progress-fill" id="licl-branch-bar" style="width:0;background:#22d3ee"></div></div>
-                  </div>
-                  <div class="progress-row">
-                    <div class="progress-meta"><span>NaCl branch (Na⁺)</span><span class="progress-pct" id="nacl-branch-pct">—</span></div>
-                    <div class="progress-track"><div class="progress-fill" id="nacl-branch-bar" style="width:0;background:#94a3b8"></div></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="md-branch-grid">
-                <article class="glass-card panel-animate md-branch md-branch--licl">
-                  <header class="md-branch-header">
-                    <div>
-                      <p class="eyebrow">Branch A</p>
-                      <h3 class="md-branch-title">LiCl · Li⁺</h3>
-                    </div>
-                    <span class="badge" id="licl-queue-badge">—</span>
-                  </header>
-                  <div class="md-branch-stats" id="licl-branch-stats"></div>
-                  <div id="licl-active-run" class="active-run" hidden></div>
-                  <p class="eyebrow">Production &amp; clustering</p>
-                  <div class="chart-box">
-                    <canvas id="licl-production-chart" aria-label="LiCl production chart"></canvas>
-                  </div>
-                  <p class="eyebrow">Candidates</p>
-                  <div class="card-scroll">
-                    <div id="licl-candidate-grid" class="candidate-grid"></div>
-                  </div>
-                </article>
-
-                <article class="glass-card panel-animate md-branch md-branch--nacl">
-                  <header class="md-branch-header">
-                    <div>
-                      <p class="eyebrow">Branch B</p>
-                      <h3 class="md-branch-title">NaCl · Na⁺</h3>
-                    </div>
-                    <span class="badge" id="nacl-queue-badge">—</span>
-                  </header>
-                  <div class="md-branch-stats" id="nacl-branch-stats"></div>
-                  <div id="nacl-active-run" class="active-run" hidden></div>
-                  <p class="branch-note" id="nacl-branch-note"></p>
-                  <p class="eyebrow">Production &amp; clustering</p>
-                  <div class="chart-box">
-                    <canvas id="nacl-production-chart" aria-label="NaCl production chart"></canvas>
-                  </div>
-                  <p class="eyebrow">Candidates</p>
-                  <div class="card-scroll">
-                    <div id="nacl-candidate-grid" class="candidate-grid"></div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Remote -->
-        <section class="panel" id="panel-remote" aria-label="Remote operations">
-          <div class="panel-inner">
-            <div class="panel-grid panel-grid--remote">
-              <div class="glass-card panel-animate">
-                <p class="eyebrow">Remote monitor</p>
-                <div class="card-scroll">
-                  <p class="muted">Last checked: <span id="remote-checked">—</span></p>
-                  <h3 class="list-heading">Running</h3>
-                  <ul class="status-list" id="remote-running"></ul>
-                  <h3 class="list-heading list-heading--warn">Blockers</h3>
-                  <ul class="status-list status-list--warn" id="remote-blockers"></ul>
-                </div>
-              </div>
-              <div class="glass-card panel-animate chart-card">
-                <p class="eyebrow">LiCl queue distribution</p>
-                <div class="chart-box">
-                  <canvas id="pipeline-chart" aria-label="Pipeline status chart"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Library -->
-        <section class="panel" id="panel-library" aria-label="Candidate library">
-          <div class="panel-inner">
-            <div class="glass-card panel-animate panel-fill">
-              <p class="eyebrow">First-round candidate library</p>
-              <div class="card-scroll card-scroll--table">
-                <table class="library-table">
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>ID</th>
-                      <th>Sequence</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                      <th>Overall</th>
-                    </tr>
-                  </thead>
-                  <tbody id="library-body"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div class="table-wrap">
+          <table class="metric-table protein-table">
+            <thead>
+              <tr>
+                <th>Protein</th>
+                <th>Setup</th>
+                <th>LiCl production</th>
+                <th>LiCl clustering</th>
+                <th>NaCl branch</th>
+                <th>Free-energy gate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>LiD3-1</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state complete">20 ns complete</span></td>
+                <td><span class="mini-state complete">Top cluster 15.69%</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>LiND-1</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state rerun">Rerun queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>IDP-Li-1</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state complete">20 ns complete</span></td>
+                <td><span class="mini-state complete">Top cluster 7.00%</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>IDP-Li-2</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state rerun">Rerun queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>LowCharge-Li</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state rerun">Rerun queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>LiD2-IDP</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state rerun">Rerun queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>StrongBind-Li</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state active">13.51 / 20 ns</span></td>
+                <td><span class="mini-state queued">Next</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>SoftCage-Li</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>IDP-Rich-Li</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+              <tr>
+                <th>Control-Negative</th>
+                <td><span class="mini-state complete">Complete</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state queued">Waiting</span></td>
+                <td><span class="mini-state queued">Queued</span></td>
+                <td><span class="mini-state planned">PMF pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </main>
+    </section>
 
-    <footer class="dashboard-footer">
-      <button type="button" class="nav-arrow" id="nav-prev" aria-label="Previous section">←</button>
-      <nav class="section-nav" id="section-nav" aria-label="Dashboard sections"></nav>
-      <button type="button" class="nav-arrow" id="nav-next" aria-label="Next section">→</button>
-    </footer>
-  </div>
+    <section class="dashboard-page" id="time" aria-labelledby="time-title">
+      <div class="page-header">
+        <p class="eyebrow">Forecast dashboard</p>
+        <h1 id="time-title">Remaining time horizon</h1>
+        <p>Time estimates are planning ranges for the current remote GROMACS workflow and will tighten as each stage completes.</p>
+      </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+      <div class="time-hero">
+        <div>
+          <p class="eyebrow">Primary delivery estimate</p>
+          <h2>First ΔΔG selectivity table</h2>
+          <p>Li⁺ and Na⁺ free-energy comparison across the first-round peptide library.</p>
+        </div>
+        <strong>~3–4 weeks</strong>
+      </div>
+
+      <div class="timeline-grid">
+        <article class="timeline-card timeline-card--cyan">
+          <span>Now</span>
+          <h3>Active LiCl run</h3>
+          <strong>~4–7 hours</strong>
+          <p>StrongBind-Li is the current active production trajectory before clustering.</p>
+        </article>
+        <article class="timeline-card timeline-card--green">
+          <span>Near term</span>
+          <h3>LiCl production + clustering set</h3>
+          <strong>~8–10 days</strong>
+          <p>Finish Li⁺ ensembles, repair queued reruns, and extract representative structures.</p>
+        </article>
+        <article class="timeline-card timeline-card--violet">
+          <span>Comparison branch</span>
+          <h3>NaCl production + clustering set</h3>
+          <strong>~10 additional days</strong>
+          <p>Generate Na⁺ comparison ensembles for the same 10-candidate library.</p>
+        </article>
+        <article class="timeline-card timeline-card--amber">
+          <span>Free-energy stage</span>
+          <h3>PMF / ΔG extraction</h3>
+          <strong>~3–7 days</strong>
+          <p>Umbrella sampling setup, PMF analysis, and ΔG extraction after representatives exist.</p>
+        </article>
+      </div>
+
+      <div class="dashboard-card compact-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">Decision gate</p>
+            <h2>When the next task starts</h2>
+          </div>
+        </div>
+        <p class="decision-text">Umbrella sampling should wait until both Li⁺ and Na⁺ representative structures are available for the same peptide. Starting PMF before that would create a selectivity table that looks complete but lacks a matched comparison basis.</p>
+      </div>
+    </section>
+  </main>
+
   <script src="js/solution-field.js"></script>
-  <script src="data/dashboard.bundle.js"></script>
-  <script src="js/dashboard.js"></script>
-  <script src="js/navigation.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

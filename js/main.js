@@ -1,76 +1,56 @@
-/**
- * LiSPER Dashboard — entry point
- */
+(function () {
+  const pages = Array.from(document.querySelectorAll(".dashboard-page"));
+  const tabs = Array.from(document.querySelectorAll(".tab-button"));
+  const pageCount = document.getElementById("page-count");
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const finePointer = window.matchMedia("(pointer: fine)").matches;
+  function pageIndex(id) {
+    const index = pages.findIndex((page) => page.id === id);
+    return index >= 0 ? index : 0;
+  }
 
-initSolutionField();
+  function activate(id, updateHash = true) {
+    const index = pageIndex(id);
+    const activePage = pages[index];
 
-if (!prefersReducedMotion && finePointer) {
-  document.body.classList.add("has-pointer");
-
-  const glow = document.querySelector(".cursor-glow");
-  const light = document.querySelector(".cursor-light");
-
-  if (glow && light) {
-    let targetX = window.innerWidth / 2;
-    let targetY = window.innerHeight / 2;
-    let glowX = targetX;
-    let glowY = targetY;
-
-    window.addEventListener("mousemove", (event) => {
-      targetX = event.clientX;
-      targetY = event.clientY;
-      light.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%)`;
+    pages.forEach((page) => {
+      page.classList.toggle("is-active", page === activePage);
     });
 
-    function renderCursorGlow() {
-      glowX += (targetX - glowX) * 0.16;
-      glowY += (targetY - glowY) * 0.16;
-      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(renderCursorGlow);
+    tabs.forEach((tab) => {
+      const selected = tab.dataset.target === activePage.id;
+      tab.classList.toggle("is-active", selected);
+      tab.setAttribute("aria-selected", selected ? "true" : "false");
+    });
+
+    pageCount.textContent = `${index + 1} / ${pages.length}`;
+
+    if (updateHash && window.location.hash.slice(1) !== activePage.id) {
+      history.replaceState(null, "", `#${activePage.id}`);
     }
-
-    renderCursorGlow();
-  }
-}
-
-function showBootError(message) {
-  document.body.classList.add("dashboard-ready");
-  const existing = document.querySelector(".boot-error");
-  if (existing) {
-    existing.textContent = message;
-    return;
-  }
-  document.body.insertAdjacentHTML(
-    "beforeend",
-    `<div class="boot-error" role="alert">${message}</div>`
-  );
-}
-
-async function boot() {
-  // Always show the dashboard chrome, even if data or charts fail.
-  try {
-    initNavigation();
-  } catch (error) {
-    console.error("Navigation init failed:", error);
-    document.body.classList.add("dashboard-ready");
   }
 
-  try {
-    await loadAndRenderDashboard();
-  } catch (error) {
-    console.error(error);
-    const detail = error?.message ? ` ${error.message}` : "";
-    showBootError(
-      `Could not load dashboard data.${detail} Ensure data/dashboard.json is deployed, then refresh.`
-    );
-  }
-}
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => activate(tab.dataset.target));
+  });
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", boot);
-} else {
-  boot();
-}
+  window.addEventListener("hashchange", () => {
+    activate(window.location.hash.slice(1) || "process", false);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const current = pageIndex(document.querySelector(".dashboard-page.is-active")?.id);
+    if (event.key === "ArrowRight") {
+      activate(pages[(current + 1) % pages.length].id);
+    }
+    if (event.key === "ArrowLeft") {
+      activate(pages[(current - 1 + pages.length) % pages.length].id);
+    }
+  });
+
+  if (window.initSolutionField) {
+    window.initSolutionField();
+  }
+
+  activate(window.location.hash.slice(1) || "process", false);
+})();

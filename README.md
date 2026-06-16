@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://jackyissocute.github.io/LiSPER-Dashboard/"><strong>Open the live dashboard</strong></a>
   ·
-  <a href="../LiSPER">Main LiSPER repository</a>
+  <a href="[../LiSPER](https://github.com/jackyissocute/LiSPER)">Main LiSPER repository</a>
 </p>
 
 <p align="center">

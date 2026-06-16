@@ -34,7 +34,7 @@ function initSolutionField() {
     { label: "Na⁺", color: "#64748b", glow: "rgba(100,116,139,0.2)", r: 4, pull: -0.008 },
   ];
   const CL_TYPES = [
-    { label: "Cl⁻", color: "#64748b", glow: "rgba(100,116,139,0.16)", r: 4, pull: 0 },
+    { label: "Cl⁻", color: "#64748b", glow: "rgba(100,116,139,0.16)", r: 4, pull: 0, passive: true },
   ];
 
   function resize() {
@@ -108,7 +108,7 @@ function initSolutionField() {
 
     const bubbleCount = Math.min(55, Math.floor(w / 22));
     const ionPairCount = Math.min(28, Math.max(12, Math.floor(w / 34)));
-    const chlorideCount = Math.min(14, Math.max(6, Math.floor(w / 90)));
+    const chlorideCount = Math.min(36, Math.max(14, Math.floor(w / 40)));
     const molCount = Math.min(14, Math.floor(w / 90));
 
     for (let i = 0; i < bubbleCount; i++) {
@@ -167,9 +167,11 @@ function initSolutionField() {
 
     ions.forEach((ion) => {
       ion.wobble += 0.015;
-      const force = applyLightForce(ion.x, ion.y, ion.pull * 60);
-      ion.vx += force.fx;
-      ion.vy += force.fy;
+      if (!ion.passive) {
+        const force = applyLightForce(ion.x, ion.y, ion.pull * 60);
+        ion.vx += force.fx;
+        ion.vy += force.fy;
+      }
       ion.vx *= 0.985;
       ion.vy *= 0.985;
       ion.x += ion.vx + Math.sin(ion.wobble) * 0.08;

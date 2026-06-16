@@ -25,11 +25,16 @@ function initSolutionField() {
   const molecules = [];
   const ripples = [];
 
-  const ION_TYPES = [
+  const LI_TYPES = [
     { label: "Li⁺", color: "#22d3ee", glow: "rgba(34,211,238,0.45)", r: 5, pull: 0.018 },
+    { label: "Li⁺", color: "#38bdf8", glow: "rgba(56,189,248,0.4)", r: 4.5, pull: 0.015 },
+  ];
+  const NA_TYPES = [
     { label: "Na⁺", color: "#94a3b8", glow: "rgba(148,163,184,0.25)", r: 6, pull: -0.012 },
     { label: "Na⁺", color: "#64748b", glow: "rgba(100,116,139,0.2)", r: 4, pull: -0.008 },
-    { label: "Li⁺", color: "#38bdf8", glow: "rgba(56,189,248,0.4)", r: 4.5, pull: 0.015 },
+  ];
+  const CL_TYPES = [
+    { label: "Cl⁻", color: "#64748b", glow: "rgba(100,116,139,0.16)", r: 4, pull: 0 },
   ];
 
   function resize() {
@@ -56,8 +61,8 @@ function initSolutionField() {
     };
   }
 
-  function spawnIon() {
-    const t = ION_TYPES[Math.floor(Math.random() * ION_TYPES.length)];
+  function spawnIon(types) {
+    const t = types[Math.floor(Math.random() * types.length)];
     return {
       x: Math.random() * w,
       y: Math.random() * h,
@@ -102,7 +107,8 @@ function initSolutionField() {
     molecules.length = 0;
 
     const bubbleCount = Math.min(55, Math.floor(w / 22));
-    const ionCount = Math.min(28, Math.floor(w / 45));
+    const ionPairCount = Math.min(28, Math.max(12, Math.floor(w / 34)));
+    const chlorideCount = Math.min(14, Math.max(6, Math.floor(w / 90)));
     const molCount = Math.min(14, Math.floor(w / 90));
 
     for (let i = 0; i < bubbleCount; i++) {
@@ -110,7 +116,11 @@ function initSolutionField() {
       b.y = Math.random() * h;
       bubbles.push(b);
     }
-    for (let i = 0; i < ionCount; i++) ions.push(spawnIon());
+    for (let i = 0; i < ionPairCount; i++) {
+      ions.push(spawnIon(LI_TYPES));
+      ions.push(spawnIon(NA_TYPES));
+    }
+    for (let i = 0; i < chlorideCount; i++) ions.push(spawnIon(CL_TYPES));
     for (let i = 0; i < molCount; i++) molecules.push(spawnMolecule());
   }
 

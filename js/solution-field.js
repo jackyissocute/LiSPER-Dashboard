@@ -28,7 +28,7 @@ function initSolutionField() {
   const ION_TYPES = [
     { label: "Li⁺", color: "#22d3ee", glow: "rgba(34,211,238,0.45)", r: 5, pull: 0.018 },
     { label: "Na⁺", color: "#94a3b8", glow: "rgba(148,163,184,0.25)", r: 6, pull: -0.012 },
-    { label: "Cl⁻", color: "#64748b", glow: "rgba(100,116,139,0.2)", r: 4, pull: -0.008 },
+    { label: "Na⁺", color: "#64748b", glow: "rgba(100,116,139,0.2)", r: 4, pull: -0.008 },
     { label: "Li⁺", color: "#38bdf8", glow: "rgba(56,189,248,0.4)", r: 4.5, pull: 0.015 },
   ];
 

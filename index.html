@@ -15,7 +15,7 @@
       document.head.appendChild(base);
     })();
   </script>
-  <meta name="description" content="LiSPER investor-facing progress monitor for computational lithium-selective peptide discovery.">
+  <meta name="description" content="LiSPER public progress monitor for lithium-selective peptide discovery.">
   <title>LiSPER Dashboard</title>
   <link rel="icon" type="image/png" href="assets/logo-dark.png">
   <link rel="apple-touch-icon" href="assets/logo-dark.png">
@@ -31,7 +31,7 @@
   <div class="surface-glow" aria-hidden="true"></div>
 
   <header class="topbar">
-    <a class="brand" href="#process" aria-label="LiSPER progress monitor home">
+    <a class="brand" href="#process" aria-label="LiSPER dashboard home">
       <img src="assets/logo-dark-full.png" alt="LiSPER" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
       <span class="brand-fallback">LiSPER</span>
     </a>
@@ -53,29 +53,29 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>One view of the LiSPER pipeline, from candidate design to the first ΔΔG selectivity table.</p>
+        <p>The active LiSPER program has been reset around the final 8-candidate library. The previous 10-candidate MD run is archived; the next gate is ESMFold intake.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
         <article class="kpi-card">
-          <span class="kpi-label">Prepared systems</span>
-          <strong>20 / 20</strong>
-          <small>LiCl + NaCl CHARMM-GUI inputs</small>
+          <span class="kpi-label">Candidate library</span>
+          <strong>8 locked</strong>
+          <small>Final computational panel</small>
         </article>
         <article class="kpi-card kpi-card--cyan">
-          <span class="kpi-label">LiCl production</span>
-          <strong>4 complete</strong>
-          <small>1 active, 5 queued or rerun queued</small>
+          <span class="kpi-label">ESMFold intake</span>
+          <strong>Waiting</strong>
+          <small>New result archives expected</small>
         </article>
         <article class="kpi-card kpi-card--green">
-          <span class="kpi-label">Representative structures</span>
-          <strong>4 / 10</strong>
-          <small>Largest-cluster structures available</small>
+          <span class="kpi-label">Reusable assets</span>
+          <strong>3 candidates</strong>
+          <small>Exact sequence carry-over</small>
         </article>
         <article class="kpi-card kpi-card--amber">
-          <span class="kpi-label">Selectivity table</span>
-          <strong>Pending</strong>
-          <small>Requires Li⁺ and Na⁺ ΔG values</small>
+          <span class="kpi-label">Remote MD</span>
+          <strong>Paused</strong>
+          <small>Restart after new systems</small>
         </article>
       </div>
 
@@ -85,7 +85,7 @@
             <p class="eyebrow">Integrated milestone matrix</p>
             <h2>Computational discovery workflow</h2>
           </div>
-          <span class="status-pill status-pill--active">Phase I active</span>
+          <span class="status-pill status-pill--active">Phase I reset active</span>
         </div>
 
         <div class="table-wrap">
@@ -103,73 +103,73 @@
               <tr>
                 <th rowspan="3">Program roadmap</th>
                 <td>Phase I · Computational discovery</td>
-                <td><span class="progress-bar"><span style="--value:70%"></span></span><b>70%</b></td>
+                <td><span class="progress-bar"><span style="--value:20%"></span></span><b>8-candidate restart</b></td>
                 <td><span class="status-pill status-pill--active">Active</span></td>
-                <td>Ranked ΔΔG selectivity candidates</td>
+                <td>Ranked selectivity candidates</td>
               </tr>
               <tr>
                 <td>Phase II · Wet-lab validation</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:20%"></span></span><b>20%</b></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:15%"></span></span><b>Preparing</b></td>
                 <td><span class="status-pill status-pill--preparing">Preparing</span></td>
-                <td>Expression, purification, binding assays</td>
+                <td>Expression and binding assays</td>
               </tr>
               <tr>
                 <td>Phase III · Bio-DLE translation</td>
-                <td><span class="progress-bar progress-bar--violet"><span style="--value:10%"></span></span><b>10%</b></td>
+                <td><span class="progress-bar progress-bar--violet"><span style="--value:10%"></span></span><b>Concept</b></td>
                 <td><span class="status-pill status-pill--planned">Concept</span></td>
                 <td>Immobilized peptide prototype</td>
               </tr>
               <tr>
                 <th rowspan="4">System preparation</th>
-                <td>Candidate peptide library</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>10 / 10</b></td>
+                <td>Final candidate library</td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>8 / 8</b></td>
                 <td><span class="status-pill status-pill--complete">Complete</span></td>
-                <td>First-round LiSPER library</td>
+                <td>Final 8 panel</td>
               </tr>
               <tr>
-                <td>ESMFold structures</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>10 / 10</b></td>
-                <td><span class="status-pill status-pill--complete">Complete</span></td>
-                <td>Initial peptide PDBs</td>
+                <td>ESMFold structure intake</td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:38%"></span></span><b>3 reusable, 5 new</b></td>
+                <td><span class="status-pill status-pill--queued">Waiting</span></td>
+                <td>Validated PDB set</td>
               </tr>
               <tr>
                 <td>CHARMM-GUI systems</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>20 / 20</b></td>
-                <td><span class="status-pill status-pill--complete">Complete</span></td>
-                <td>LiCl and NaCl solvated systems</td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:0%"></span></span><b>0 / 16</b></td>
+                <td><span class="status-pill status-pill--planned">Pending</span></td>
+                <td>Matched LiCl and NaCl systems</td>
               </tr>
               <tr>
                 <td>Minimization + equilibration</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>20 / 20</b></td>
-                <td><span class="status-pill status-pill--complete">Complete</span></td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:0%"></span></span><b>0 / 16</b></td>
+                <td><span class="status-pill status-pill--planned">Pending</span></td>
                 <td>Production-ready states</td>
               </tr>
               <tr>
                 <th rowspan="2">LiCl branch</th>
                 <td>20 ns production MD</td>
-                <td><span class="progress-bar"><span style="--value:45%"></span></span><b>4 done + 1 active</b></td>
-                <td><span class="status-pill status-pill--active">Running</span></td>
-                <td>Li⁺ ensemble trajectories</td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:0%"></span></span><b>Paused</b></td>
+                <td><span class="status-pill status-pill--planned">Pending</span></td>
+                <td>Li+ ensemble trajectories</td>
               </tr>
               <tr>
                 <td>Structural clustering</td>
-                <td><span class="progress-bar"><span style="--value:40%"></span></span><b>4 / 10 reps</b></td>
-                <td><span class="status-pill status-pill--active">Active</span></td>
-                <td>Representative Li⁺ structures</td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:0%"></span></span><b>0 / 8</b></td>
+                <td><span class="status-pill status-pill--planned">Pending</span></td>
+                <td>Representative Li+ structures</td>
               </tr>
               <tr>
                 <th>NaCl branch</th>
-                <td>Na⁺ production + clustering</td>
-                <td><span class="progress-bar progress-bar--slate"><span style="--value:5%"></span></span><b>Queued</b></td>
-                <td><span class="status-pill status-pill--queued">Queued</span></td>
-                <td>Na⁺ comparison ensembles</td>
+                <td>Na+ production + clustering</td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:0%"></span></span><b>Pending</b></td>
+                <td><span class="status-pill status-pill--planned">Pending</span></td>
+                <td>Na+ comparison ensembles</td>
               </tr>
               <tr>
                 <th>Free energy</th>
-                <td>Umbrella sampling, PMF, ΔG, ΔΔG</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:0%"></span></span><b>0 / 10</b></td>
+                <td>Umbrella sampling, PMF, Delta G, Delta Delta G</td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:0%"></span></span><b>Planned</b></td>
                 <td><span class="status-pill status-pill--planned">Planned</span></td>
-                <td>First Li⁺/Na⁺ selectivity ranking</td>
+                <td>First selectivity ranking</td>
               </tr>
             </tbody>
           </table>
@@ -181,20 +181,20 @@
       <div class="page-header">
         <p class="eyebrow">Candidate-focused dashboard</p>
         <h1 id="proteins-title">Protein-focused metrics</h1>
-        <p>Each peptide is tracked across the same computational gates so progress can be read candidate by candidate.</p>
+        <p>Candidate names are public here; peptide sequences are intentionally not shown.</p>
       </div>
 
       <div class="dashboard-card">
         <div class="card-heading">
           <div>
-            <p class="eyebrow">10-candidate library</p>
+            <p class="eyebrow">Final 8-candidate library</p>
             <h2>Candidate progress matrix</h2>
           </div>
           <div class="legend">
             <span><i class="dot dot--complete"></i>Complete</span>
-            <span><i class="dot dot--active"></i>Running</span>
-            <span><i class="dot dot--queued"></i>Queued</span>
-            <span><i class="dot dot--planned"></i>Planned</span>
+            <span><i class="dot dot--active"></i>Active</span>
+            <span><i class="dot dot--queued"></i>Waiting</span>
+            <span><i class="dot dot--planned"></i>Pending</span>
           </div>
         </div>
 
@@ -203,94 +203,22 @@
             <thead>
               <tr>
                 <th>Protein</th>
-                <th>Setup</th>
-                <th>LiCl production</th>
-                <th>LiCl clustering</th>
-                <th>NaCl branch</th>
+                <th>Library</th>
+                <th>ESMFold</th>
+                <th>CHARMM-GUI</th>
+                <th>MD branches</th>
                 <th>Free-energy gate</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>LiD3-1</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state complete">20 ns complete</span></td>
-                <td><span class="mini-state complete">Top cluster 15.69%</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>LiND-1</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state complete">20 ns complete</span></td>
-                <td><span class="mini-state complete">Top cluster 2.40%</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>IDP-Li-1</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state complete">20 ns complete</span></td>
-                <td><span class="mini-state complete">Top cluster 7.00%</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>IDP-Li-2</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state active">8.62 / 20 ns</span></td>
-                <td><span class="mini-state queued">Next</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>LowCharge-Li</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state rerun">Rerun queued</span></td>
-                <td><span class="mini-state queued">Waiting</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>LiD2-IDP</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state rerun">Rerun queued</span></td>
-                <td><span class="mini-state queued">Waiting</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>StrongBind-Li</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state complete">20 ns complete</span></td>
-                <td><span class="mini-state complete">Top cluster 3.45%</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>SoftCage-Li</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state queued">Waiting</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>IDP-Rich-Li</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state queued">Waiting</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
-              <tr>
-                <th>Control-Negative</th>
-                <td><span class="mini-state complete">Complete</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state queued">Waiting</span></td>
-                <td><span class="mini-state queued">Queued</span></td>
-                <td><span class="mini-state planned">PMF pending</span></td>
-              </tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">New upload</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">Reusable</span></td><td><span class="mini-state planned">Rebuild preferred</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">Reusable</span></td><td><span class="mini-state planned">Rebuild preferred</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">Reusable</span></td><td><span class="mini-state planned">Rebuild preferred</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">New upload</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">New upload</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">New upload</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state queued">New upload</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -299,55 +227,38 @@
 
     <section class="dashboard-page" id="time" aria-labelledby="time-title">
       <div class="page-header">
-        <p class="eyebrow">Forecast dashboard</p>
-        <h1 id="time-title">Remaining time horizon</h1>
-        <p>Time estimates are planning ranges for the current remote GROMACS workflow and will tighten as each stage completes.</p>
+        <p class="eyebrow">Planning dashboard</p>
+        <h1 id="time-title">Remaining-time horizon</h1>
+        <p>Timing estimates are reset because the active scientific library changed. Quantitative run-time estimates will resume after the new systems are built.</p>
       </div>
 
       <div class="time-hero">
-        <div>
-          <p class="eyebrow">Primary delivery estimate</p>
-          <h2>First ΔΔG selectivity table</h2>
-          <p>Li⁺ and Na⁺ free-energy comparison across the first-round peptide library.</p>
-        </div>
-        <strong>~3–4 weeks</strong>
+        <p class="eyebrow">Current gate</p>
+        <h2>ESMFold intake is the next required step</h2>
+        <p>The dashboard will switch back to simulation progress once final PDBs and matched CHARMM-GUI systems are available.</p>
       </div>
 
       <div class="timeline-grid">
-        <article class="timeline-card timeline-card--cyan">
-          <span>Now</span>
-          <h3>Active LiCl run</h3>
-          <strong>~9–12 hours</strong>
-          <p>The current IDP-Li-2 production trajectory is running and will hand off to clustering after reaching 20 ns.</p>
+        <article class="timeline-card">
+          <span class="time-value">Waiting</span>
+          <h3>ESMFold result upload</h3>
+          <p>New result archives are expected before active structure QC can proceed.</p>
         </article>
-        <article class="timeline-card timeline-card--green">
-          <span>Near term</span>
-          <h3>LiCl production + clustering set</h3>
-          <strong>~4–6 days</strong>
-          <p>Finish Li⁺ ensembles, repair queued reruns, and extract representative structures.</p>
+        <article class="timeline-card">
+          <span class="time-value">After PDB QC</span>
+          <h3>CHARMM-GUI rebuild</h3>
+          <p>Each candidate needs matched LiCl and NaCl systems before new MD is scientifically valid.</p>
         </article>
-        <article class="timeline-card timeline-card--violet">
-          <span>Comparison branch</span>
-          <h3>NaCl production + clustering set</h3>
-          <strong>~10 additional days</strong>
-          <p>Generate Na⁺ comparison ensembles for the same 10-candidate library.</p>
+        <article class="timeline-card">
+          <span class="time-value">TBD</span>
+          <h3>Production and clustering</h3>
+          <p>Run-time estimates will be recalculated once the final 8 systems are present.</p>
         </article>
-        <article class="timeline-card timeline-card--amber">
-          <span>Free-energy stage</span>
-          <h3>PMF / ΔG extraction</h3>
-          <strong>~3–7 days</strong>
-          <p>Umbrella sampling setup, PMF analysis, and ΔG extraction after representatives exist.</p>
+        <article class="timeline-card">
+          <span class="time-value">Planned</span>
+          <h3>PMF and selectivity table</h3>
+          <p>Delta Delta G ranking remains the target output after paired Li+ and Na+ free-energy calculations.</p>
         </article>
-      </div>
-
-      <div class="dashboard-card compact-card">
-        <div class="card-heading">
-          <div>
-            <p class="eyebrow">Decision gate</p>
-            <h2>When the next task starts</h2>
-          </div>
-        </div>
-        <p class="decision-text">Umbrella sampling should wait until both Li⁺ and Na⁺ representative structures are available for the same peptide. Starting PMF before that would create a selectivity table that looks complete but lacks a matched comparison basis.</p>
       </div>
     </section>
   </main>

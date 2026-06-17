@@ -24,15 +24,15 @@
 
 LiSPER Dashboard is the public-facing progress display for the LiSPER project. It translates the active computational discovery workflow into three readable views for advisors, collaborators, investors, and other non-specialist viewers.
 
-The site is intentionally simple and static: no runtime data loader, no public raw logs, and no peptide sequences exposed. It mirrors the progress dashboard maintained in the main LiSPER README and status files.
+The site is intentionally simple and static: no runtime data loader, no public raw logs, and no peptide sequences exposed. It mirrors the progress dashboard maintained in the main LiSPER README and status files. The current public state reflects the final 8-candidate reset and the ESMFold-intake gate.
 
 ## Dashboard Pages
 
 | Page | What it shows | Who it helps |
 |---|---|---|
 | **Process metrics** | The full LiSPER workflow from system preparation to LiCl/NaCl simulation and PMF/Delta Delta G ranking. | Viewers who want the program-level status at a glance. |
-| **Protein metrics** | Candidate-by-candidate progress through setup, LiCl production, LiCl clustering, NaCl comparison, and free-energy gates. | Scientific reviewers who want to know which candidates are moving. |
-| **Time horizon** | Remaining-time estimates for the active run, LiCl branch, NaCl branch, PMF/Delta G, and first selectivity table. | Advisors and investors tracking delivery timing. |
+| **Protein metrics** | Candidate-by-candidate progress through ESMFold intake, system construction, MD, and free-energy gates. | Scientific reviewers who want to know which candidates are moving. |
+| **Time horizon** | Remaining-time estimates for ESMFold intake, system rebuild, MD restart, and first selectivity table. | Advisors and investors tracking delivery timing. |
 
 ## Update Rhythm
 
@@ -44,8 +44,9 @@ Every cycle is designed to:
 2. Sync small completed logs and products into the main LiSPER repository.
 3. Update local status files and the main LiSPER README dashboard.
 4. Mirror the public-safe dashboard values into this website repository.
+5. Commit and push meaningful updates when GitHub authentication and branch state are clean.
 
-Publication remains review-controlled: after the local website files are updated, the owner can review, commit, and push to GitHub Pages.
+GitHub Pages then refreshes from `main`. Browser/CDN caching may take a few minutes.
 
 ## Privacy Boundary
 
@@ -76,16 +77,7 @@ http://localhost:8080
 
 ## Publish Workflow
 
-After reviewing local dashboard updates:
-
-```bash
-git status
-git add .
-git commit -m "update dashboard"
-git push origin main
-```
-
-GitHub Pages will then refresh the live dashboard. Browser/CDN caching may take a few minutes; use a hard refresh if an older version appears.
+Routine publishing is handled by the LiSPER monitor automation when safe. If manual publishing is needed, review the diff first, then commit and push to `main`.
 
 ## Repository Structure
 

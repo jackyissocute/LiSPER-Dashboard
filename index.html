@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>The active LiSPER program is organized around the final 8-candidate library. ESMFold intake is complete, and seven NaCl systems are in the current GROMACS setup queue.</p>
+        <p>The active LiSPER program is organized around the final 8-candidate library. ESMFold intake is complete, seven NaCl systems finished setup cleanly, and the remaining NaCl system is ready for a follow-up queue.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -69,13 +69,13 @@
         </article>
         <article class="kpi-card kpi-card--green">
           <span class="kpi-label">CHARMM-GUI</span>
-          <strong>7 NaCl ready</strong>
-          <small>1 setup-file QC hold</small>
+          <strong>8 NaCl ready</strong>
+          <small>7 LiCl ready</small>
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Remote MD</span>
           <strong>NaCl setup</strong>
-          <small>Equilibration running</small>
+          <small>7 setup runs complete</small>
         </article>
       </div>
 
@@ -134,14 +134,14 @@
               </tr>
               <tr>
                 <td>CHARMM-GUI systems</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:88%"></span></span><b>NaCl 7 ready, 1 hold</b></td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:94%"></span></span><b>NaCl 8 ready, LiCl 7 ready</b></td>
                 <td><span class="status-pill status-pill--queued">Partial</span></td>
                 <td>NaCl setup queue and remaining LiCl systems</td>
               </tr>
               <tr>
                 <td>Minimization + equilibration</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:88%"></span></span><b>7 minimized, 1 hold</b></td>
-                <td><span class="status-pill status-pill--active">Running</span></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:88%"></span></span><b>7 equilibrated, 1 ready</b></td>
+                <td><span class="status-pill status-pill--complete">Setup complete</span></td>
                 <td>Production-ready states</td>
               </tr>
               <tr>
@@ -160,8 +160,8 @@
               <tr>
                 <th>NaCl branch</th>
                 <td>Na+ production + clustering</td>
-                <td><span class="progress-bar"><span style="--value:88%"></span></span><b>Equilibration running</b></td>
-                <td><span class="status-pill status-pill--active">Setup active</span></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:88%"></span></span><b>7 setup complete</b></td>
+                <td><span class="status-pill status-pill--complete">Setup complete</span></td>
                 <td>Na+ comparison ensembles</td>
               </tr>
               <tr>
@@ -211,14 +211,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">NaCl ready</span></td><td><span class="mini-state active">Eq running</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">Systems ready</span></td><td><span class="mini-state complete">NaCl setup done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
               <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">LiCl rep done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
               <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">LiCl rep done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Eq running</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">NaCl ready</span></td><td><span class="mini-state active">Eq running</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">NaCl ready</span></td><td><span class="mini-state active">Eq running</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">QC hold</span></td><td><span class="mini-state queued">On hold</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">NaCl ready</span></td><td><span class="mini-state active">Eq running</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">NaCl setup done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">Systems ready</span></td><td><span class="mini-state complete">NaCl setup done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">Systems ready</span></td><td><span class="mini-state complete">NaCl setup done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">NaCl ready</span></td><td><span class="mini-state queued">Next queue</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Locked</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">Systems ready</span></td><td><span class="mini-state complete">NaCl setup done</span></td><td><span class="mini-state planned">PMF pending</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -247,12 +247,12 @@
         <article class="timeline-card">
           <span class="time-value">7 + 1</span>
           <h3>CHARMM-GUI systems</h3>
-          <p>Seven NaCl systems are ready; one NaCl system needs a corrected GROMACS package.</p>
+          <p>All NaCl systems are ready; the remaining system should join a follow-up queue after the active setup gate.</p>
         </article>
         <article class="timeline-card">
           <span class="time-value">Running</span>
           <h3>Production and clustering</h3>
-          <p>NaCl minimization completed for seven systems; equilibration is active before production QC.</p>
+          <p>NaCl minimization and equilibration completed for seven systems; production waits for setup QC.</p>
         </article>
         <article class="timeline-card">
           <span class="time-value">Planned</span>

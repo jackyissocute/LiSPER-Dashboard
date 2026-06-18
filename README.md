@@ -24,7 +24,7 @@
 
 LiSPER Dashboard is the public-facing progress display for the LiSPER project. It translates the active computational discovery workflow into three readable views for advisors, collaborators, investors, and other non-specialist viewers.
 
-The site is intentionally simple and static: no runtime data loader, no public raw logs, and no peptide sequences exposed. It mirrors the progress dashboard maintained in the main LiSPER README and status files. The current public state reflects the final 8-candidate library: ESMFold intake is complete, seven NaCl systems have minimized and are in equilibration, and one NaCl package remains on setup-file QC hold.
+The site is intentionally simple and static: no runtime data loader, no public raw logs, and no peptide sequences exposed. It mirrors the progress dashboard maintained in the main LiSPER README and status files. The current public state reflects the final 8-candidate library: ESMFold intake is complete, seven NaCl systems have minimized and equilibrated cleanly, the eighth NaCl system is ready for a follow-up queue, and one LiCl system remains to be built.
 
 ## Dashboard Pages
 

@@ -109,7 +109,7 @@
               </tr>
               <tr>
                 <td>Production launch readiness</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:50%"></span></span><b>NaCl launched; LiCl gated by setup QC</b></td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:50%"></span></span><b>NaCl launched; LiCl queued after setup QC</b></td>
                 <td><span class="status-pill status-pill--active">Partial</span></td>
                 <td>Launch remaining LiCl production after setup QC</td>
               </tr>
@@ -147,20 +147,20 @@
               </tr>
               <tr>
                 <td>Structural clustering</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:0%"></span></span><b>Planned after production</b></td>
-                <td><span class="status-pill status-pill--planned">Planned</span></td>
+                <td><span class="progress-bar progress-bar--slate"><span style="--value:0%"></span></span><b>Queued after production</b></td>
+                <td><span class="status-pill status-pill--queued">Queued</span></td>
                 <td>Na+ representative structures</td>
               </tr>
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella sampling</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:0%"></span></span><b>Planned after representatives</b></td>
+                <td><span class="progress-bar progress-bar--violet"><span style="--value:0%"></span></span><b>Planned after representatives</b></td>
                 <td><span class="status-pill status-pill--planned">Planned</span></td>
                 <td>Window design and biased sampling</td>
               </tr>
               <tr>
                 <td>WHAM / PMF / Delta G</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:0%"></span></span><b>Planned after umbrella sampling</b></td>
+                <td><span class="progress-bar progress-bar--violet"><span style="--value:0%"></span></span><b>Planned after umbrella sampling</b></td>
                 <td><span class="status-pill status-pill--planned">Planned</span></td>
                 <td>First selectivity ranking</td>
               </tr>
@@ -182,12 +182,13 @@
           <div>
             <p class="eyebrow">Final 8-candidate library</p>
             <h2>Candidate progress matrix</h2>
+            <p class="card-note">NaCl setup is complete across the library, so this view now focuses on active and upcoming MD/free-energy gates.</p>
           </div>
           <div class="legend">
             <span><i class="dot dot--complete"></i>Complete</span>
             <span><i class="dot dot--active"></i>Active</span>
-            <span><i class="dot dot--queued"></i>Waiting</span>
-            <span><i class="dot dot--planned"></i>Pending</span>
+            <span><i class="dot dot--queued"></i>Queued</span>
+            <span><i class="dot dot--planned"></i>Planned</span>
           </div>
         </div>
 
@@ -198,20 +199,20 @@
                 <th>Protein</th>
                 <th>LiCl setup</th>
                 <th>LiCl production / representative</th>
-                <th>NaCl setup</th>
                 <th>NaCl production / representative</th>
-                <th>Umbrella / PMF gate</th>
+                <th>Umbrella sampling</th>
+                <th>WHAM / PMF / Delta G</th>
               </tr>
             </thead>
             <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Representative</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Representative</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state complete">Done</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state planned">Pending</span></td><td><span class="mini-state complete">Done</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Umbrella pending</span></td></tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state queued">Queued</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Representative</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Done</span></td><td><span class="mini-state complete">Representative</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Done</span></td><td><span class="mini-state queued">Queued</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state queued">Queued</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state queued">Queued</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state queued">Queued</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state active">Equilibration</span></td><td><span class="mini-state queued">Queued</span></td><td><span class="mini-state active">Running</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -227,33 +228,36 @@
 
       <div class="time-hero">
         <p class="eyebrow">Current gate</p>
-        <h2>Two workers are now splitting the MD workload</h2>
-        <p>Worker A is finishing LiCl setup. Worker B is running NaCl production and clustering in parallel. Estimates will tighten after the first parallel production jobs finish.</p>
+        <div>
+          <h2>Estimated time to first full Delta Delta G table</h2>
+          <p>Two workers are splitting Li+ and Na+ work. The estimate is conservative and will tighten after the first parallel production jobs finish.</p>
+        </div>
+        <strong>~10-18 days</strong>
       </div>
 
       <div class="timeline-grid">
-        <article class="timeline-card">
+        <article class="timeline-card timeline-card--cyan">
           <span class="time-value">~1-2 days</span>
           <h3>Setup QC</h3>
           <p>NaCl setup is complete. LiCl equilibration continues before remaining Li+ systems enter production.</p>
         </article>
-        <article class="timeline-card">
+        <article class="timeline-card timeline-card--green">
           <span class="time-value">~3-6 days</span>
           <h3>20 ns production</h3>
           <p>Na+ production is running across all candidates on worker B. Li+ production follows setup QC on worker A.</p>
         </article>
-        <article class="timeline-card">
-          <span class="time-value">Same gate</span>
+        <article class="timeline-card timeline-card--slate">
+          <span class="time-value">Queued</span>
           <h3>Clustering</h3>
           <p>Clustering is queued directly after production to generate dominant representative structures.</p>
         </article>
-        <article class="timeline-card">
+        <article class="timeline-card timeline-card--amber">
           <span class="time-value">~5-10 days</span>
           <h3>Umbrella sampling</h3>
           <p>The longest free-energy gate: window design, biased sampling, overlap checks, and reruns if needed.</p>
         </article>
-        <article class="timeline-card">
-          <span class="time-value">~10-18 days</span>
+        <article class="timeline-card timeline-card--violet">
+          <span class="time-value">~1-2 days</span>
           <h3>PMF and selectivity table</h3>
           <p>WHAM/PMF analysis converts umbrella outputs into the first defensible Delta Delta G ranking.</p>
         </article>

@@ -24,14 +24,14 @@
 
 LiSPER Dashboard is the public-facing progress display for the LiSPER project. It translates the active computational discovery workflow into three readable views for advisors, collaborators, investors, and other non-specialist viewers.
 
-The site is intentionally simple and static: no runtime data loader, no public raw logs, and no peptide sequences exposed. It mirrors the progress dashboard maintained in the main LiSPER README and status files. The current public state reflects the final 8-candidate library: ESMFold intake is complete, all paired LiCl/NaCl systems are ready, LiCl and NaCl minimization are complete for all eight candidates, and paired setup queues are running.
+The site is intentionally simple and static: no runtime data loader, no public raw logs, and no peptide sequences exposed. It mirrors the progress dashboard maintained in the main LiSPER README and status files. The current public state now focuses on active MD gates: setup QC, 20 ns production, structural clustering, representative structures, PMF, and the first selectivity ranking.
 
 ## Dashboard Pages
 
 | Page | What it shows | Who it helps |
 |---|---|---|
 | **Process metrics** | The full LiSPER workflow from system preparation to LiCl/NaCl simulation and PMF/Delta Delta G ranking. | Viewers who want the program-level status at a glance. |
-| **Protein metrics** | Candidate-by-candidate progress through ESMFold intake, system construction, MD, and free-energy gates. | Scientific reviewers who want to know which candidates are moving. |
+| **Protein metrics** | Candidate-by-candidate progress through LiCl/NaCl setup, production, representative structures, and free-energy gates. | Scientific reviewers who want to know which candidates are moving. |
 | **Time horizon** | Remaining-time estimates for setup QC, production MD, clustering, and the first selectivity table. | Advisors and investors tracking delivery timing. |
 
 ## Update Rhythm

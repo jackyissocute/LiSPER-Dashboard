@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Pre-MD intake and setup QC are complete. LiCl and NaCl production are active across both compute workers. Umbrella sampling now starts condition-by-condition as soon as a clustered representative exists. Snapshot: 2026-06-21 15:06 CST.</p>
+        <p>Pre-MD intake and setup QC are complete. LiCl and NaCl production are active across both compute workers. Umbrella sampling now starts condition-by-condition as soon as a clustered representative exists. Snapshot: 2026-06-21 18:05 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -103,7 +103,7 @@
               <tr>
                 <th rowspan="2">Current gate</th>
                 <td>Paired production monitor</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:96%"></span></span><b>13 active production jobs + 3 umbrella pulls; 27/28 CPU cores active</b></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:96%"></span></span><b>13 active production jobs + 3 umbrella window jobs; 27/28 CPU cores active</b></td>
                 <td><span class="status-pill status-pill--active">Active</span></td>
                 <td>Monitor production plus condition-level umbrella starts for clustered representatives</td>
               </tr>
@@ -122,7 +122,7 @@
               </tr>
               <tr>
                 <td>20 ns production MD</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:66%"></span></span><b>8.95-13.83 ns / 20 ns active; LiDA-1 and LiDS-1 produced</b></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:66%"></span></span><b>9.26-14.31 ns / 20 ns active; LiDA-1 and LiDS-1 produced</b></td>
                 <td><span class="status-pill status-pill--active">6 active + 2 done</span></td>
                 <td>Li+ ensembles; two representative structures</td>
               </tr>
@@ -141,7 +141,7 @@
               </tr>
               <tr>
                 <td>20 ns production MD</td>
-                <td><span class="progress-bar"><span style="--value:47%"></span></span><b>6.36-15.06 ns / 20 ns Worker B; 1.62-2.37 ns Worker A backfill; LiDA-1 produced</b></td>
+                <td><span class="progress-bar"><span style="--value:47%"></span></span><b>6.75-15.97 ns / 20 ns Worker B; 1.80-2.64 ns Worker A backfill; LiDA-1 produced</b></td>
                 <td><span class="status-pill status-pill--active">7 active + 1 done</span></td>
                 <td>Na+ ensembles; backfill pair remains non-duplicated</td>
               </tr>
@@ -154,7 +154,7 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella pulling + window generation</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:19%"></span></span><b>3 condition-level jobs active: LiDA-1 LiCl, LiDS-1 LiCl, LiDA-1 NaCl</b></td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:19%"></span></span><b>3 condition-level jobs active: LiDA-1 LiCl 0/19 windows, LiDS-1 LiCl 0/21 windows, LiDA-1 NaCl 0/15 windows</b></td>
                 <td><span class="status-pill status-pill--active">Active</span></td>
                 <td>Pull representative full systems and generate windows</td>
               </tr>
@@ -204,14 +204,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state active">13.61 ns / 20 ns</span></td><td><span class="mini-state active">9.45 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiD3-Flex</th><td><span class="mini-state active">8.98 ns / 20 ns</span></td><td><span class="mini-state active">6.36 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiND-Hybrid</th><td><span class="mini-state active">8.95 ns / 20 ns</span></td><td><span class="mini-state active">1.62 ns / 20 ns Worker A backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state active">13.76 ns / 20 ns</span></td><td><span class="mini-state active">9.95 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Representative ready: 15.69%</span></td><td><span class="mini-state active">15.06 ns / 20 ns</span></td><td><span class="mini-state active">LiCl pull active</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Representative ready: 17.64%</span></td><td><span class="mini-state complete">Representative ready: 17.94%</span></td><td><span class="mini-state active">LiCl + NaCl pulls active</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state active">13.83 ns / 20 ns</span></td><td><span class="mini-state active">2.37 ns / 20 ns Worker A backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state active">13.49 ns / 20 ns</span></td><td><span class="mini-state active">9.27 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state active">14.09 ns / 20 ns</span></td><td><span class="mini-state active">9.98 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiD3-Flex</th><td><span class="mini-state active">9.30 ns / 20 ns</span></td><td><span class="mini-state active">6.75 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiND-Hybrid</th><td><span class="mini-state active">9.26 ns / 20 ns</span></td><td><span class="mini-state active">1.80 ns / 20 ns Worker A backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state active">14.25 ns / 20 ns</span></td><td><span class="mini-state active">10.56 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Representative ready: 15.69%</span></td><td><span class="mini-state active">15.97 ns / 20 ns</span></td><td><span class="mini-state active">LiCl windows active</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Representative ready: 17.64%</span></td><td><span class="mini-state complete">Representative ready: 17.94%</span></td><td><span class="mini-state active">LiCl + NaCl windows active</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state active">14.31 ns / 20 ns</span></td><td><span class="mini-state active">2.64 ns / 20 ns Worker A backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state active">13.96 ns / 20 ns</span></td><td><span class="mini-state active">9.79 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -229,7 +229,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are running paired Li+ and Na+ production plus condition-level umbrella pulls at 27/28 active CPU cores. LiDA-1 LiCl, LiDS-1 LiCl, and LiDA-1 NaCl have entered pulling/window generation. The remaining LiCl active jobs are at 8.95-13.83 ns / 20 ns; NaCl has five Worker B jobs at 6.36-15.06 ns / 20 ns and two Worker A backfill jobs at 1.62-2.37 ns.</p>
+          <p>Two workers are running paired Li+ and Na+ production plus condition-level umbrella pulls at 27/28 active CPU cores. LiDA-1 LiCl, LiDS-1 LiCl, and LiDA-1 NaCl have entered window sampling. The remaining LiCl active jobs are at 9.26-14.31 ns / 20 ns; NaCl has five Worker B jobs at 6.75-15.97 ns / 20 ns and two Worker A backfill jobs at 1.80-2.64 ns.</p>
         </div>
         <strong>~13-31+ days</strong>
       </div>

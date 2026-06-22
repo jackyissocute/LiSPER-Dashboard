@@ -378,6 +378,10 @@ h3 {
   background: linear-gradient(90deg, #059669, var(--green));
 }
 
+.window-meter .is-active {
+  background: linear-gradient(90deg, #f59e0b, #facc15);
+}
+
 .window-card small {
   color: #e2e8f0;
   font-family: "JetBrains Mono", monospace;

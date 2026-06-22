@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Production, clustering, and umbrella windows are active across both compute workers. Snapshot: 2026-06-22 09:10 CST.</p>
+        <p>Production, clustering, and umbrella windows are active across both compute workers. Snapshot: 2026-06-22 10:18 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -75,7 +75,7 @@
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
           <strong>10/55 windows</strong>
-          <small>5 active; LiDS-1 NaCl repair gate</small>
+          <small>5 active windows + 1 pull</small>
         </article>
       </div>
 
@@ -104,13 +104,13 @@
           </div>
           <small>active 005-007</small>
         </article>
-        <article class="window-card window-card--blocked">
+        <article class="window-card window-card--active">
           <span class="window-label">LiDS-1 · NaCl</span>
           <strong>0<span>/pending</span></strong>
-          <div class="window-meter" aria-label="LiDS-1 NaCl blocked before window generation">
+          <div class="window-meter" aria-label="LiDS-1 NaCl pull active before window generation">
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
-          <small>repair gate</small>
+          <small>pull active</small>
         </article>
       </div>
 
@@ -137,7 +137,7 @@
               <tr>
                 <th>Compute</th>
                 <td>Worker load</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:96%"></span></span><b>27/28 cores</b></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>28/28 cores</b></td>
                 <td><span class="status-pill status-pill--active">Active</span></td>
               </tr>
               <tr>
@@ -165,8 +165,8 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:18%"></span></span><b>10/55 complete · 5 active</b></td>
-                <td><span class="status-pill status-pill--active">windows</span></td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:18%"></span></span><b>10/55 complete · 5 windows + 1 pull</b></td>
+                <td><span class="status-pill status-pill--active">active</span></td>
               </tr>
               <tr>
                 <td>WHAM / PMF / Delta G</td>
@@ -217,7 +217,7 @@
               <tr><th>LiD3-Flex</th><td><span class="mini-state active">11.06 ns / 20 ns</span></td><td><span class="mini-state active">8.75 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiND-Hybrid</th><td><span class="mini-state active">11.09 ns / 20 ns</span></td><td><span class="mini-state active">2.73 ns / 20 ns backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiLC-1</th><td><span class="mini-state active">17.05 ns / 20 ns</span></td><td><span class="mini-state active">13.70 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><span class="mini-state active">LiCl 2/21</span><span class="mini-state blocked">NaCl repair</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><span class="mini-state active">LiCl 2/21</span><span class="mini-state active">NaCl pull</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><span class="mini-state active">LiCl 3/19 · NaCl 5/15</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiN3-Core</th><td><span class="mini-state active">17.13 ns / 20 ns</span></td><td><span class="mini-state active">4.12 ns / 20 ns backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiA3-Ref</th><td><span class="mini-state active">16.61 ns / 20 ns</span></td><td><span class="mini-state active">12.73 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
@@ -238,7 +238,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are running production and umbrella windows at 27/28 active CPU cores. Umbrella progress is 10/55 valid windows complete with five active windows. LiDS-1 NaCl is representative-ready but paused at an extraction repair gate.</p>
+          <p>Two workers are running production and umbrella work at 28/28 active CPU cores. Umbrella progress is 10/55 valid windows complete with five active windows plus one LiDS-1 NaCl pull.</p>
         </div>
         <strong>~12-30+ days</strong>
       </div>
@@ -262,7 +262,7 @@
         <article class="timeline-card timeline-card--amber">
           <span class="time-value">10/55</span>
           <h3>Umbrella sampling</h3>
-          <p>Five valid windows are active now. LiDS-1 NaCl waits on extraction repair before windows.</p>
+          <p>Five valid windows are active now. LiDS-1 NaCl is in pull before window generation.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~1-2 days</span>

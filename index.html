@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Production, clustering, and umbrella windows are active across both compute workers. Snapshot: 2026-06-22 18:23 CST.</p>
+        <p>Worker B recovered and is running at full CPU load. Worker A reconnect is pending. Snapshot: 2026-06-22 21:41 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -74,8 +74,8 @@
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
-          <strong>16/72 windows</strong>
-          <small>6 active windows</small>
+          <strong>20/72 windows</strong>
+          <small>4 active confirmed</small>
         </article>
       </div>
 
@@ -86,7 +86,7 @@
           <div class="window-meter" aria-label="5 of 19 windows complete">
             <i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i></i><i></i><i></i><i></i><i></i>
           </div>
-          <small>active 005</small>
+          <small>last-known 005</small>
         </article>
         <article class="window-card">
           <span class="window-label">LiDS-1 · LiCl</span>
@@ -94,21 +94,21 @@
           <div class="window-meter" aria-label="3 of 21 windows complete">
             <i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
-          <small>active 003</small>
+          <small>last-known 003</small>
         </article>
         <article class="window-card window-card--active">
           <span class="window-label">LiDA-1 · NaCl</span>
-          <strong>8<span>/15</span></strong>
-          <div class="window-meter" aria-label="8 of 15 windows complete">
-            <i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i></i><i></i>
+          <strong>11<span>/15</span></strong>
+          <div class="window-meter" aria-label="11 of 15 windows complete">
+            <i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i></i><i></i><i></i><i></i>
           </div>
-          <small>active 008-010</small>
+          <small>active 011-014</small>
         </article>
         <article class="window-card window-card--active">
           <span class="window-label">LiDS-1 · NaCl</span>
-          <strong>0<span>/17</span></strong>
-          <div class="window-meter" aria-label="0 of 17 windows complete">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <strong>1<span>/17</span></strong>
+          <div class="window-meter" aria-label="1 of 17 windows complete">
+            <i class="is-complete"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
           <small>active 000</small>
         </article>
@@ -137,8 +137,8 @@
               <tr>
                 <th>Compute</th>
                 <td>Worker load</td>
-                <td><span class="progress-bar progress-bar--green"><span style="--value:100%"></span></span><b>28/28 cores</b></td>
-                <td><span class="status-pill status-pill--active">Active</span></td>
+                <td><span class="progress-bar progress-bar--green"><span style="--value:43%"></span></span><b>12/28 confirmed</b></td>
+                <td><span class="status-pill status-pill--active">Worker B recovered</span></td>
               </tr>
               <tr>
                 <th rowspan="2">LiCl</th>
@@ -154,8 +154,8 @@
               <tr>
                 <th rowspan="2">NaCl</th>
                 <td>20 ns production MD</td>
-                <td><span class="progress-bar"><span style="--value:63%"></span></span><b>9.79-15.49 ns / 20 ns</b></td>
-                <td><span class="status-pill status-pill--active">6 active + 2 done</span></td>
+                <td><span class="progress-bar"><span style="--value:65%"></span></span><b>10.06-15.91 ns / 20 ns</b></td>
+                <td><span class="status-pill status-pill--active">4 active + 2 done</span></td>
               </tr>
               <tr>
                 <td>Structural clustering</td>
@@ -165,8 +165,8 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--amber"><span style="--value:22%"></span></span><b>16/72 complete · 6 active</b></td>
-                <td><span class="status-pill status-pill--active">active</span></td>
+                <td><span class="progress-bar progress-bar--amber"><span style="--value:28%"></span></span><b>20/72 known · 4 active</b></td>
+                <td><span class="status-pill status-pill--active">recovered</span></td>
               </tr>
               <tr>
                 <td>WHAM / PMF / Delta G</td>
@@ -213,14 +213,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state active">18.43 ns / 20 ns</span></td><td><span class="mini-state active">14.72 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiD3-Flex</th><td><span class="mini-state active">12.14 ns / 20 ns</span></td><td><span class="mini-state active">9.79 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiND-Hybrid</th><td><span class="mini-state active">12.23 ns / 20 ns</span></td><td><span class="mini-state active">3.33 ns / 20 ns backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state active">18.80 ns / 20 ns</span></td><td><span class="mini-state active">15.49 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><span class="mini-state active">LiCl 3/21</span><span class="mini-state active">NaCl 0/17</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><span class="mini-state active">LiCl 5/19 · NaCl 8/15</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state active">18.89 ns / 20 ns</span></td><td><span class="mini-state active">5.03 ns / 20 ns backfill</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state active">18.23 ns / 20 ns</span></td><td><span class="mini-state active">14.29 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state active">18.43 ns / 20 ns</span></td><td><span class="mini-state active">15.14 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiD3-Flex</th><td><span class="mini-state active">12.14 ns / 20 ns</span></td><td><span class="mini-state active">10.06 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiND-Hybrid</th><td><span class="mini-state active">12.23 ns / 20 ns</span></td><td><span class="mini-state planned">Reconnect</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state active">18.80 ns / 20 ns</span></td><td><span class="mini-state active">15.91 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><span class="mini-state active">LiCl 3/21</span><span class="mini-state active">NaCl 1/17</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><span class="mini-state active">LiCl 5/19 · NaCl 11/15</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state active">18.89 ns / 20 ns</span></td><td><span class="mini-state planned">Reconnect</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state active">18.23 ns / 20 ns</span></td><td><span class="mini-state active">14.66 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -238,7 +238,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are running production and umbrella work at 28/28 active CPU cores. Umbrella progress is 16/72 valid windows complete with six active windows.</p>
+          <p>Worker B is recovered at 12/12 confirmed cores. Worker A is reconnect-pending; umbrella progress is 20/72 known windows complete.</p>
         </div>
         <strong>~12-30+ days</strong>
       </div>
@@ -252,7 +252,7 @@
         <article class="timeline-card timeline-card--green">
           <span class="time-value">~4-12 days</span>
           <h3>20 ns production</h3>
-          <p>Li+ has two clustered representatives. Na+ has two clustered representatives and six active jobs across both workers.</p>
+          <p>Na+ Worker B production recovered cleanly from checkpoints; Worker A backfill will be verified after reconnect.</p>
         </article>
         <article class="timeline-card timeline-card--slate">
           <span class="time-value">4 reps ready</span>
@@ -260,9 +260,9 @@
           <p>LiDA-1 and LiDS-1 now have paired representatives. Remaining candidates cluster directly after production.</p>
         </article>
         <article class="timeline-card timeline-card--amber">
-          <span class="time-value">16/72</span>
+          <span class="time-value">20/72</span>
           <h3>Umbrella sampling</h3>
-          <p>Six valid windows are active now, including the first LiDS-1 NaCl window.</p>
+          <p>Four LiDA-1 NaCl windows are active now; LiCl windows are last-known until Worker A reconnects.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~1-2 days</span>

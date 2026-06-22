@@ -317,7 +317,7 @@ h3 {
   max-width: 1180px;
   margin: 0 auto 18px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
 }
 
@@ -332,6 +332,11 @@ h3 {
 
 .window-card--active {
   border-color: rgba(245, 158, 11, 0.46);
+}
+
+.window-card--blocked {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(28, 20, 48, 0.72);
 }
 
 .window-label {
@@ -534,6 +539,12 @@ h3 {
 .mini-state.planned {
   color: #f5f3ff;
   background: rgba(109, 40, 217, 0.92);
+}
+
+.status-pill--blocked,
+.mini-state.blocked {
+  color: #f5f3ff;
+  background: rgba(126, 34, 206, 0.94);
 }
 
 .legend {

@@ -464,6 +464,14 @@ h3 {
   background: linear-gradient(90deg, #7c3aed, var(--violet));
 }
 
+.progress-bar--qc span {
+  background: linear-gradient(90deg, #8b5cf6, #c084fc);
+}
+
+.progress-bar--warning span {
+  background: linear-gradient(90deg, #e11d48, var(--rose));
+}
+
 .progress-bar--amber span {
   background: linear-gradient(90deg, #d97706, var(--amber));
 }
@@ -508,6 +516,12 @@ h3 {
   background: rgba(124, 58, 237, 0.94);
 }
 
+.status-pill--qc,
+.mini-state.qc {
+  color: #faf5ff;
+  background: rgba(147, 51, 234, 0.96);
+}
+
 .status-pill--planned,
 .mini-state.planned {
   color: #e2e8f0;
@@ -515,9 +529,11 @@ h3 {
 }
 
 .status-pill--blocked,
-.mini-state.blocked {
-  color: #f5f3ff;
-  background: rgba(126, 34, 206, 0.94);
+.status-pill--warning,
+.mini-state.blocked,
+.mini-state.warning {
+  color: #fff1f2;
+  background: rgba(225, 29, 72, 0.94);
 }
 
 .legend {
@@ -554,8 +570,16 @@ h3 {
   background: var(--violet);
 }
 
+.dot--qc {
+  background: #c084fc;
+}
+
 .dot--planned {
   background: var(--slate);
+}
+
+.dot--warning {
+  background: var(--rose);
 }
 
 .time-hero {

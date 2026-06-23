@@ -313,81 +313,6 @@ h3 {
   line-height: 1;
 }
 
-.window-board {
-  max-width: 1180px;
-  margin: 0 auto 18px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-}
-
-.window-card {
-  min-height: 142px;
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: rgba(10, 24, 42, 0.72);
-  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
-}
-
-.window-card--active {
-  border-color: rgba(245, 158, 11, 0.46);
-}
-
-.window-card--blocked {
-  border-color: rgba(168, 85, 247, 0.5);
-  background: rgba(28, 20, 48, 0.72);
-}
-
-.window-label {
-  display: block;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.window-card strong {
-  display: block;
-  margin: 8px 0 12px;
-  color: #ffffff;
-  font-family: "JetBrains Mono", monospace;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 0.9;
-}
-
-.window-card strong span {
-  color: var(--muted);
-  font-size: 0.46em;
-}
-
-.window-meter {
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  gap: 4px;
-  margin-bottom: 10px;
-}
-
-.window-meter i {
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(148, 163, 184, 0.2);
-}
-
-.window-meter .is-complete {
-  background: linear-gradient(90deg, #059669, var(--green));
-}
-
-.window-meter .is-active {
-  background: linear-gradient(90deg, #f59e0b, #facc15);
-}
-
-.window-card small {
-  color: #e2e8f0;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.78rem;
-}
-
 .dashboard-card {
   max-width: 1180px;
   margin: 0 auto;
@@ -466,6 +391,40 @@ h3 {
 
 .protein-table {
   min-width: 1040px;
+}
+
+.umbrella-cell {
+  min-width: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 8px;
+}
+
+.mini-window-meter {
+  width: 54px;
+  display: inline-grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+  align-items: center;
+}
+
+.mini-window-meter i {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.23);
+}
+
+.mini-window-meter .is-complete {
+  background: linear-gradient(90deg, #059669, var(--green));
+}
+
+.mini-window-meter .is-active {
+  background: linear-gradient(90deg, #d97706, #facc15);
+}
+
+.mini-window-meter--wide {
+  width: 64px;
 }
 
 .progress-bar {
@@ -704,7 +663,6 @@ h3 {
   }
 
   .kpi-strip,
-  .window-board,
   .timeline-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -737,7 +695,6 @@ h3 {
   }
 
   .kpi-strip,
-  .window-board,
   .timeline-grid {
     grid-template-columns: 1fr;
   }

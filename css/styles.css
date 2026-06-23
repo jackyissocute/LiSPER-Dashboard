@@ -399,7 +399,15 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 7px 8px;
+  gap: 7px 10px;
+}
+
+.umbrella-pair {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
 
 .mini-window-meter {

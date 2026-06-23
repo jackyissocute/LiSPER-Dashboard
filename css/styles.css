@@ -9,6 +9,7 @@
   --cyan: #22d3ee;
   --blue: #38bdf8;
   --green: #34d399;
+  --yellow: #facc15;
   --amber: #f59e0b;
   --violet: #a78bfa;
   --rose: #fb7185;
@@ -416,11 +417,11 @@ h3 {
 }
 
 .mini-window-meter .is-complete {
-  background: linear-gradient(90deg, #059669, var(--green));
+  background: linear-gradient(90deg, #eab308, var(--yellow));
 }
 
 .mini-window-meter .is-active {
-  background: linear-gradient(90deg, #d97706, #facc15);
+  background: linear-gradient(90deg, #0284c7, var(--blue));
 }
 
 .mini-window-meter--wide {
@@ -446,8 +447,9 @@ h3 {
   background: linear-gradient(90deg, #0284c7, var(--cyan));
 }
 
-.progress-bar--green span {
-  background: linear-gradient(90deg, #059669, var(--green));
+.progress-bar--green span,
+.progress-bar--complete span {
+  background: linear-gradient(90deg, #ca8a04, var(--yellow));
 }
 
 .progress-bar--violet span {
@@ -476,14 +478,14 @@ h3 {
 
 .status-pill--complete,
 .mini-state.complete {
-  color: #052e1f;
-  background: rgba(52, 211, 153, 0.95);
+  color: #241a00;
+  background: rgba(250, 204, 21, 0.96);
 }
 
 .status-pill--active,
 .mini-state.active {
   color: #061524;
-  background: rgba(34, 211, 238, 0.95);
+  background: rgba(56, 189, 248, 0.96);
 }
 
 .status-pill--preparing,
@@ -494,14 +496,14 @@ h3 {
 
 .status-pill--queued,
 .mini-state.queued {
-  color: #dbeafe;
-  background: rgba(51, 65, 85, 0.95);
+  color: #f5f3ff;
+  background: rgba(124, 58, 237, 0.94);
 }
 
 .status-pill--planned,
 .mini-state.planned {
-  color: #f5f3ff;
-  background: rgba(109, 40, 217, 0.92);
+  color: #e2e8f0;
+  background: rgba(71, 85, 105, 0.96);
 }
 
 .status-pill--blocked,
@@ -533,19 +535,19 @@ h3 {
 }
 
 .dot--complete {
-  background: var(--green);
+  background: var(--yellow);
 }
 
 .dot--active {
-  background: var(--cyan);
+  background: var(--blue);
 }
 
 .dot--queued {
-  background: var(--slate);
+  background: var(--violet);
 }
 
 .dot--planned {
-  background: var(--violet);
+  background: var(--slate);
 }
 
 .time-hero {

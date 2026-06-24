@@ -432,6 +432,10 @@ h3 {
   background: linear-gradient(90deg, #0284c7, var(--blue));
 }
 
+.mini-window-meter .is-qc {
+  background: linear-gradient(90deg, #8b5cf6, #c084fc);
+}
+
 .mini-window-meter--wide {
   width: 64px;
 }

@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Two-worker MD snapshot: 2026-06-25 10:22 CST.</p>
+        <p>Two-worker MD snapshot: 2026-06-25 10:35 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -74,8 +74,8 @@
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
-          <strong>QC hold</strong>
-          <small>binding-site coordinate audit</small>
+          <strong>v2 active</strong>
+          <small>2 audited LiCl pulls</small>
         </article>
       </div>
 
@@ -130,8 +130,8 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--qc"><span style="--value:91%"></span></span><b>90 current + 5 repair · 16 active</b></td>
-                <td><span class="status-pill status-pill--qc">QC hold</span></td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:67%"></span></span><b>2 audited v2 pulls active</b></td>
+                <td><span class="status-pill status-pill--active">v2 LiCl</span></td>
               </tr>
               <tr>
                 <td>WHAM / PMF / Delta G</td>
@@ -205,7 +205,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are active at 24/30 mdrun threads. Umbrella progress is on QC hold while the reaction coordinate is retuned to the clustered binding-site geometry.</p>
+          <p>Two workers are active at 25/30 mdrun threads. Old umbrella launches are held; LiDS-1 LiCl and LiDA-1 LiCl are running audited binding-site v2 pulls.</p>
         </div>
         <strong>~5-14 days</strong>
       </div>
@@ -227,9 +227,9 @@
           <p>LiCl has six representatives; NaCl has five. Remaining candidates cluster directly after production.</p>
         </article>
         <article class="timeline-card timeline-card--amber">
-          <span class="time-value">QC hold</span>
+          <span class="time-value">v2 active</span>
           <h3>Umbrella sampling</h3>
-          <p>Sixteen active windows may finish; new launches pause until the donor-site coordinate and denser window strategy are reviewed.</p>
+          <p>Two audited LiCl pulls are active. NaCl v2 work waits for safe Worker B cores.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~1-2 days</span>

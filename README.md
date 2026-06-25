@@ -30,8 +30,8 @@ The site is intentionally simple and static: no runtime data loader, no public r
 
 | Page | What it shows | Who it helps |
 |---|---|---|
-| **Process metrics** | The full LiSPER workflow from system preparation to LiCl/NaCl simulation and PMF/Delta Delta G ranking, with numeric umbrella window meters. | Viewers who want the program-level status at a glance. |
-| **Protein metrics** | Candidate-by-candidate progress through LiCl/NaCl setup, production, representative structures, and free-energy gates. Window status is shown as completed/total rather than prose. | Scientific reviewers who want to know which candidates are moving. |
+| **Process metrics** | The full LiSPER workflow from system preparation to LiCl/NaCl simulation and PMF/Delta Delta G ranking, with compact refined-run meters. | Viewers who want the program-level status at a glance. |
+| **Protein metrics** | Candidate-by-candidate progress through LiCl/NaCl setup, production, representative structures, and free-energy gates. Protocol updates are shown as concise version/progress states rather than long repair prose. | Scientific reviewers who want to know which candidates are moving. |
 | **Time horizon** | Remaining-time estimates for setup QC, production MD, clustering, and the first selectivity table. | Advisors and investors tracking delivery timing. |
 
 ## Update Rhythm

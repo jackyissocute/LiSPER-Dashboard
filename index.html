@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Two-worker MD snapshot: 2026-06-25 09:35 CST.</p>
+        <p>Two-worker MD snapshot: 2026-06-25 10:22 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -74,7 +74,7 @@
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
-          <strong>90 + 5 repair</strong>
+          <strong>QC hold</strong>
           <small>16 windows active</small>
         </article>
       </div>
@@ -130,12 +130,12 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar"><span style="--value:91%"></span></span><b>90 current + 5 repair · 16 active</b></td>
-                <td><span class="status-pill status-pill--active">active</span></td>
+                <td><span class="progress-bar progress-bar--qc"><span style="--value:91%"></span></span><b>90 current + 5 repair · 16 active</b></td>
+                <td><span class="status-pill status-pill--qc">QC hold</span></td>
               </tr>
               <tr>
                 <td>WHAM / PMF / Delta G</td>
-                <td><span class="progress-bar progress-bar--qc"><span style="--value:75%"></span></span><b>LiDA-1 + LiDS-1 WHAM QC complete</b></td>
+                <td><span class="progress-bar progress-bar--qc"><span style="--value:75%"></span></span><b>LiDA-1 + LiDS-1 WHAM QC complete; parameter audit</b></td>
                 <td><span class="status-pill status-pill--qc">QC review</span></td>
               </tr>
             </tbody>
@@ -205,7 +205,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are active at 24/30 mdrun threads. Umbrella progress is 90 current windows plus 5 completed repair extensions, with 16 active windows.</p>
+          <p>Two workers are active at 24/30 mdrun threads. Umbrella progress is on QC hold: 90 current windows plus 5 completed repair extensions, with 16 active windows finishing.</p>
         </div>
         <strong>~5-14 days</strong>
       </div>
@@ -227,9 +227,9 @@
           <p>LiCl has six representatives; NaCl has five. Remaining candidates cluster directly after production.</p>
         </article>
         <article class="timeline-card timeline-card--amber">
-          <span class="time-value">90 + 16 active</span>
+          <span class="time-value">QC hold</span>
           <h3>Umbrella sampling</h3>
-          <p>Sixteen umbrella windows are active. Superseded windows remain diagnostics only.</p>
+          <p>Sixteen active windows may finish; new old-parameter launches are paused pending overlap/binning audit.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~1-2 days</span>

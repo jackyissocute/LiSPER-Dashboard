@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Two-worker MD snapshot: 2026-06-25 13:25 CST.</p>
+        <p>Two-worker MD snapshot: 2026-06-25 14:25 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -69,12 +69,12 @@
         </article>
         <article class="kpi-card kpi-card--green">
           <span class="kpi-label">NaCl branch</span>
-          <strong>5 reps + v2</strong>
-          <small>LiDS-1 NaCl v2 pull active</small>
+          <strong>5 reps + 2 v2</strong>
+          <small>LiDS-1 and LiDA-1 NaCl v2 pulls active</small>
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
-          <strong>3 v2 pulls</strong>
+          <strong>4 v2 pulls</strong>
           <small>PMF remains QC-only</small>
         </article>
       </div>
@@ -102,7 +102,7 @@
               <tr>
                 <th>Compute</th>
                 <td>Worker load</td>
-                <td><span class="progress-bar"><span style="--value:70%"></span></span><b>21/30 mdrun threads</b></td>
+                <td><span class="progress-bar"><span style="--value:40%"></span></span><b>12/30 mdrun threads now</b></td>
                 <td><span class="status-pill status-pill--active">Active</span></td>
               </tr>
               <tr>
@@ -130,7 +130,7 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:72%"></span></span><b>3 audited v2 pulls active</b></td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:76%"></span></span><b>4 audited v2 pulls active</b></td>
                 <td><span class="status-pill status-pill--active">v2 LiCl + NaCl</span></td>
               </tr>
               <tr>
@@ -185,7 +185,7 @@
               <tr><th>LiND-Hybrid</th><td><span class="mini-state active">15.61 ns / 20 ns</span></td><td><span class="mini-state active">5.09 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 3/21</span><span class="mini-window-meter" aria-label="LiLC-1 LiCl 3 of 21 windows complete, 003 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 4/21</span><span class="mini-window-meter" aria-label="LiLC-1 NaCl 4 of 21 windows complete, 004 and 005 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state complete">LiCl 21/21 + v2 pull</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDS-1 LiCl 21 of 21 old-parameter windows complete and audited v2 pull active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 17/17 + v2 pull</span><span class="mini-window-meter" aria-label="LiDS-1 NaCl 17 of 17 old-parameter windows complete and audited v2 pull active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state warning">Old PMF preliminary</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 14/19</span><span class="mini-window-meter" aria-label="LiDA-1 LiCl 14 of 19 windows complete, 014 and 015 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span><span class="umbrella-pair"><span class="mini-state qc">NaCl 15/15 + 5/5</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDA-1 NaCl 15 of 15 windows and 5 of 5 repair extensions complete; combined WHAM QC complete"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-qc"></i></span></span></div></td><td><span class="mini-state qc">0 empty · 1 weak</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 14/19 + v2 pull</span><span class="mini-window-meter" aria-label="LiDA-1 LiCl 14 of 19 old-parameter windows complete and audited v2 pull active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 15/15 + repair + v2</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDA-1 NaCl old-parameter windows and repair extensions complete, audited v2 pull active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-qc"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state warning">Old PMF preliminary</span></td></tr>
               <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state active">7.78 ns / 20 ns</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 3/21</span><span class="mini-window-meter" aria-label="LiN3-Core LiCl 3 of 21 windows complete, 003 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 2/21</span><span class="mini-window-meter" aria-label="LiA3-Ref LiCl 2 of 21 windows complete, 002 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 4/21</span><span class="mini-window-meter" aria-label="LiA3-Ref NaCl 4 of 21 windows complete, 004 to 007 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
             </tbody>
@@ -205,7 +205,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are active at 21/30 mdrun threads. Old umbrella launches are held or guarded; LiDS-1 LiCl, LiDA-1 LiCl, and LiDS-1 NaCl are running audited binding-site v2 pulls.</p>
+          <p>Two workers are active at 12/30 mdrun threads during pull stages. Old umbrella launches are stopped or guarded; paired LiDS-1 and LiDA-1 LiCl/NaCl are running audited binding-site v2 pulls.</p>
         </div>
         <strong>~5-14 days</strong>
       </div>
@@ -229,7 +229,7 @@
         <article class="timeline-card timeline-card--amber">
           <span class="time-value">v2 active</span>
           <h3>Umbrella sampling</h3>
-          <p>Three audited pulls are active: LiDS-1 LiCl, LiDA-1 LiCl, and LiDS-1 NaCl. The NaCl v2 launch passed its repaired topology gate.</p>
+          <p>Four audited pulls are active: paired LiDS-1 and LiDA-1 in both LiCl and NaCl. The NaCl v2 launches passed their repaired topology gates.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~1-2 days</span>

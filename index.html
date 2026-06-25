@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Two-worker MD snapshot: 2026-06-24 21:05 CST.</p>
+        <p>Two-worker MD snapshot: 2026-06-25 09:35 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -74,8 +74,8 @@
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
-          <strong>72 + 5 repair</strong>
-          <small>19 windows active</small>
+          <strong>90 + 5 repair</strong>
+          <small>16 windows active</small>
         </article>
       </div>
 
@@ -102,7 +102,7 @@
               <tr>
                 <th>Compute</th>
                 <td>Worker load</td>
-                <td><span class="progress-bar"><span style="--value:90%"></span></span><b>27/30 mdrun threads</b></td>
+                <td><span class="progress-bar"><span style="--value:80%"></span></span><b>24/30 mdrun threads</b></td>
                 <td><span class="status-pill status-pill--active">Active</span></td>
               </tr>
               <tr>
@@ -130,12 +130,12 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar"><span style="--value:88%"></span></span><b>72 current + 5 repair · 19 active</b></td>
+                <td><span class="progress-bar"><span style="--value:91%"></span></span><b>90 current + 5 repair · 16 active</b></td>
                 <td><span class="status-pill status-pill--active">active</span></td>
               </tr>
               <tr>
                 <td>WHAM / PMF / Delta G</td>
-                <td><span class="progress-bar progress-bar--qc"><span style="--value:70%"></span></span><b>LiDA-1 NaCl WHAM QC complete</b></td>
+                <td><span class="progress-bar progress-bar--qc"><span style="--value:75%"></span></span><b>LiDA-1 + LiDS-1 WHAM QC complete</b></td>
                 <td><span class="status-pill status-pill--qc">QC review</span></td>
               </tr>
             </tbody>
@@ -180,14 +180,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 2/21</span><span class="mini-window-meter" aria-label="LiD3-Core LiCl 2 of 21 windows complete, 002 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 0/21</span><span class="mini-window-meter" aria-label="LiD3-Core NaCl windows 000 to 003 active"><i class="is-active"></i><i class="is-active"></i><i class="is-active"></i><i class="is-active"></i><i></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 3/21</span><span class="mini-window-meter" aria-label="LiD3-Core LiCl 3 of 21 windows complete, 003 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 4/21</span><span class="mini-window-meter" aria-label="LiD3-Core NaCl 4 of 21 windows complete, 004 to 007 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiD3-Flex</th><td><span class="mini-state active">15.53 ns / 20 ns</span></td><td><span class="mini-state active">14.19 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
               <tr><th>LiND-Hybrid</th><td><span class="mini-state active">15.61 ns / 20 ns</span></td><td><span class="mini-state active">5.09 ns / 20 ns</span></td><td><span class="mini-state planned">Planned</span></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 2/21</span><span class="mini-window-meter" aria-label="LiLC-1 LiCl 2 of 21 windows complete, 002 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 2/21</span><span class="mini-window-meter" aria-label="LiLC-1 NaCl 2 of 21 windows complete, 002 and 003 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i class="is-active"></i><i></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 18/21</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDS-1 LiCl 18 of 21 windows complete, 018 to 020 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span><span class="umbrella-pair"><span class="mini-state complete">NaCl 17/17</span><span class="mini-window-meter" aria-label="LiDS-1 NaCl 17 of 17 windows complete"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i></span></span></div></td><td><span class="mini-state queued">WHAM ready</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 12/19</span><span class="mini-window-meter" aria-label="LiDA-1 LiCl 12 of 19 windows complete, 012 and 013 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i class="is-active"></i></span></span><span class="umbrella-pair"><span class="mini-state qc">NaCl 15/15 + 5/5</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDA-1 NaCl 15 of 15 windows and 5 of 5 repair extensions complete; combined WHAM QC complete"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-qc"></i></span></span></div></td><td><span class="mini-state qc">0 empty · 1 weak</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state active">7.78 ns / 20 ns</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 2/21</span><span class="mini-window-meter" aria-label="LiN3-Core LiCl 2 of 21 windows complete, 002 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i><i></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 2/21</span><span class="mini-window-meter" aria-label="LiA3-Ref LiCl 2 of 21 windows complete, 002 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 0/21</span><span class="mini-window-meter" aria-label="LiA3-Ref NaCl windows 000 to 003 active"><i class="is-active"></i><i class="is-active"></i><i class="is-active"></i><i class="is-active"></i><i></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 3/21</span><span class="mini-window-meter" aria-label="LiLC-1 LiCl 3 of 21 windows complete, 003 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 4/21</span><span class="mini-window-meter" aria-label="LiLC-1 NaCl 4 of 21 windows complete, 004 and 005 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state complete">LiCl 21/21</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDS-1 LiCl 21 of 21 windows complete"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i></span></span><span class="umbrella-pair"><span class="mini-state complete">NaCl 17/17</span><span class="mini-window-meter" aria-label="LiDS-1 NaCl 17 of 17 windows complete"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i></span></span></div></td><td><span class="mini-state warning">QC warnings</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 14/19</span><span class="mini-window-meter" aria-label="LiDA-1 LiCl 14 of 19 windows complete, 014 and 015 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span><span class="umbrella-pair"><span class="mini-state qc">NaCl 15/15 + 5/5</span><span class="mini-window-meter mini-window-meter--wide" aria-label="LiDA-1 NaCl 15 of 15 windows and 5 of 5 repair extensions complete; combined WHAM QC complete"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-qc"></i></span></span></div></td><td><span class="mini-state qc">0 empty · 1 weak</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state active">7.78 ns / 20 ns</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 3/21</span><span class="mini-window-meter" aria-label="LiN3-Core LiCl 3 of 21 windows complete, 003 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="mini-state active">LiCl 2/21</span><span class="mini-window-meter" aria-label="LiA3-Ref LiCl 2 of 21 windows complete, 002 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i><i></i><i></i></span></span><span class="umbrella-pair"><span class="mini-state active">NaCl 4/21</span><span class="mini-window-meter" aria-label="LiA3-Ref NaCl 4 of 21 windows complete, 004 to 007 active"><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-complete"></i><i class="is-active"></i></span></span></div></td><td><span class="mini-state planned">Planned</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -205,7 +205,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first full Delta Delta G table</h2>
-          <p>Two workers are active at 27/30 mdrun threads. Umbrella progress is 72 current windows plus 5 completed repair extensions, with 19 active windows.</p>
+          <p>Two workers are active at 24/30 mdrun threads. Umbrella progress is 90 current windows plus 5 completed repair extensions, with 16 active windows.</p>
         </div>
         <strong>~5-14 days</strong>
       </div>
@@ -227,14 +227,14 @@
           <p>LiCl has six representatives; NaCl has five. Remaining candidates cluster directly after production.</p>
         </article>
         <article class="timeline-card timeline-card--amber">
-          <span class="time-value">72 + 19 active</span>
+          <span class="time-value">90 + 16 active</span>
           <h3>Umbrella sampling</h3>
-          <p>Nineteen umbrella windows are active. Superseded windows remain diagnostics only.</p>
+          <p>Sixteen umbrella windows are active. Superseded windows remain diagnostics only.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~1-2 days</span>
           <h3>PMF and selectivity table</h3>
-          <p>NaCl LiDA-1 combined WHAM/bootstrap is complete; final Delta G waits for tail and time-slice QC review.</p>
+          <p>LiDA-1 and LiDS-1 WHAM/QC are complete but preliminary; final Delta G waits for overlap, uncertainty, and time-slice review.</p>
         </article>
       </div>
     </section>

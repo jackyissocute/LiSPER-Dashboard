@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Two-worker MD snapshot: 2026-06-26 13:20 CST.</p>
+        <p>GCP migration snapshot: 2026-06-30 13:15 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -70,12 +70,12 @@
         <article class="kpi-card kpi-card--green">
           <span class="kpi-label">NaCl branch</span>
           <strong>6 reps + 2 active</strong>
-          <small>LiD3-Flex paired windows active</small>
+          <small>Backfill production continues on GCP</small>
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
-          <strong>Refined work active</strong>
-          <small>LiDA/LiDS/LiD3-Flex plus LiA3-Ref windows</small>
+          <strong>GCP steward active</strong>
+          <small>30/32 mdrun cores verified on GCP</small>
         </article>
       </div>
 
@@ -102,8 +102,8 @@
               <tr>
                 <th>Compute</th>
                 <td>Worker load</td>
-                <td><span class="progress-bar"><span style="--value:100%"></span></span><b>30/30 mdrun threads now</b></td>
-                <td><span class="status-pill status-pill--active">Active</span></td>
+                <td><span class="progress-bar"><span style="--value:94%"></span></span><b>30/32 GCP mdrun cores active</b></td>
+                <td><span class="status-pill status-pill--active">GCP active</span></td>
               </tr>
               <tr>
                 <th rowspan="2">LiCl</th>
@@ -130,7 +130,7 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:88%"></span></span><b>Refined umbrella tracks active; both workers full</b></td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:88%"></span></span><b>Refined umbrella tracks active on GCP</b></td>
                 <td><span class="status-pill status-pill--active">Refined active</span></td>
               </tr>
               <tr>
@@ -205,7 +205,7 @@
         <p class="eyebrow">Current gate</p>
         <div>
           <h2>Estimated time to first defensible Delta Delta G table</h2>
-          <p>Two workers are active at 30/30 verified mdrun threads after recovery, cleanup, and efficiency fill. The current bottleneck is reliable PMF convergence: LiDA-1 NaCl V3 WHAM is complete but still preliminary, so V4 tail repair is now active on the outermost safe tail window.</p>
+          <p>The 32-core GCP runner is active at about 30/32 verified mdrun cores after migration. AutoDL is retained only as a backup/source while final handoff is verified. The current bottleneck is reliable PMF convergence: LiDA-1 NaCl V3 WHAM is complete but still preliminary, so V4 tail repair is active on the outermost safe tail window.</p>
         </div>
         <strong>~3-7 days</strong>
       </div>

@@ -497,7 +497,8 @@ h3 {
 }
 
 .status-pill--complete,
-.mini-state.complete {
+.mini-state.complete,
+.mini-state.repair {
   color: #241a00;
   background: rgba(250, 204, 21, 0.96);
 }

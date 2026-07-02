@@ -517,14 +517,14 @@ h3 {
 
 .status-pill--queued,
 .mini-state.queued {
-  color: #f5f3ff;
-  background: rgba(124, 58, 237, 0.94);
+  color: #e2e8f0;
+  background: rgba(71, 85, 105, 0.96);
 }
 
 .status-pill--qc,
 .mini-state.qc {
-  color: #faf5ff;
-  background: rgba(147, 51, 234, 0.96);
+  color: #241a00;
+  background: rgba(250, 204, 21, 0.96);
 }
 
 .status-pill--planned,

@@ -11,7 +11,7 @@
   --green: #34d399;
   --yellow: #facc15;
   --amber: #f59e0b;
-  --violet: #a78bfa;
+  --violet: #facc15;
   --rose: #fb7185;
   --slate: #94a3b8;
   --header-h: 78px;
@@ -297,7 +297,7 @@ h3 {
 }
 
 .timeline-card--violet::before {
-  background: var(--violet);
+  background: var(--yellow);
 }
 
 .kpi-label {
@@ -433,7 +433,7 @@ h3 {
 }
 
 .mini-window-meter .is-qc {
-  background: linear-gradient(90deg, #8b5cf6, #c084fc);
+  background: linear-gradient(90deg, #ca8a04, var(--yellow));
 }
 
 .mini-window-meter--wide {
@@ -465,11 +465,11 @@ h3 {
 }
 
 .progress-bar--violet span {
-  background: linear-gradient(90deg, #7c3aed, var(--violet));
+  background: linear-gradient(90deg, #ca8a04, var(--yellow));
 }
 
 .progress-bar--qc span {
-  background: linear-gradient(90deg, #8b5cf6, #c084fc);
+  background: linear-gradient(90deg, #ca8a04, var(--yellow));
 }
 
 .progress-bar--warning span {
@@ -572,11 +572,11 @@ h3 {
 }
 
 .dot--queued {
-  background: var(--violet);
+  background: var(--yellow);
 }
 
 .dot--qc {
-  background: #c084fc;
+  background: var(--yellow);
 }
 
 .dot--planned {

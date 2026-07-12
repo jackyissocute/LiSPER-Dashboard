@@ -16,7 +16,7 @@
 
 <p align="center">
   <img alt="Dashboard" src="https://img.shields.io/badge/dashboard-static_site-2563eb">
-  <img alt="Update cycle" src="https://img.shields.io/badge/monitor_cycle-every_4_hours-0f766e">
+  <img alt="Update cycle" src="https://img.shields.io/badge/monitor_cycle-every_30_minutes-0f766e">
   <img alt="Privacy" src="https://img.shields.io/badge/sequences-not_public-f59e0b">
 </p>
 

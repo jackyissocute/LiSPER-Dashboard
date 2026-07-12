@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Scientific steward snapshot: 2026-07-12 20:30 CST.</p>
+        <p>Scientific steward snapshot: 2026-07-12 20:55 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -75,7 +75,7 @@
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next gate</span>
           <strong>LiLC-1 locked pull</strong>
-          <small>Both ions ~3% of 1.0 ns pull on EPYC 9554P</small>
+          <small>Both ions ~8% of 1.0 ns pull · ~3.0 ns/day each</small>
         </article>
       </div>
 
@@ -101,9 +101,9 @@
             <tbody>
               <tr>
                 <th>Compute</th>
-                <td>Worker load</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:2%"></span></span><b>2/124 mdrun (LiLC-1 LiCl+NaCl pull)</b></td>
-                <td><span class="status-pill status-pill--active">EPYC pull</span></td>
+                <td>Worker slots in use</td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:2%"></span></span><b>2 active / 124 capacity (not completed — occupancy)</b></td>
+                <td><span class="status-pill status-pill--active">2 running</span></td>
               </tr>
               <tr>
                 <th rowspan="2">LiCl</th>
@@ -130,7 +130,7 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:3%"></span></span><b>LiLC-1 locked-site pull ~3% (both ions)</b></td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:8%"></span></span><b>LiLC-1 locked-site pull ~8% (both ions · ~3.0 ns/day each)</b></td>
                 <td><span class="status-pill status-pill--active">Locked pilot</span></td>
               </tr>
               <tr>
@@ -191,7 +191,7 @@
               <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">legacy diagnostic</span><span class="stage-dots" aria-label="LiD3-Core LiCl: legacy mismatched-site diagnostic only; await locked-site restart"><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning stage-dot--warning-shape" title="Not ranking path"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">await locked-site</span><span class="stage-dots" aria-label="LiD3-Core NaCl: await locked-site restart"><i class="stage-dot stage-dot--planned" title="Prep planned"></i><i class="stage-dot stage-dot--planned" title="Pull planned"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--repair">Site lock required</span></td></tr>
               <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Rep 4.40%</span></td><td><span class="mini-state complete">Rep 3.80%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">legacy diagnostic</span><span class="stage-dots" aria-label="LiD3-Flex LiCl: legacy diagnostic only"><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning stage-dot--warning-shape" title="Not ranking path"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">await locked-site</span><span class="stage-dots" aria-label="LiD3-Flex NaCl: await locked-site restart"><i class="stage-dot stage-dot--planned" title="Prep planned"></i><i class="stage-dot stage-dot--planned" title="Pull planned"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--repair">Site lock required</span></td></tr>
               <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Rep 12.89%</span></td><td><span class="mini-state complete">Rep ready</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">legacy diagnostic</span><span class="stage-dots" aria-label="LiND-Hybrid LiCl: legacy diagnostic only"><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning stage-dot--warning-shape" title="Not ranking path"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">await locked-site</span><span class="stage-dots" aria-label="LiND-Hybrid NaCl: await locked-site restart"><i class="stage-dot stage-dot--planned" title="Prep planned"></i><i class="stage-dot stage-dot--planned" title="Pull planned"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--repair">Site lock required</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl locked pull ~3%</span><span class="stage-dots" aria-label="LiLC-1 LiCl locked-site: prep complete, pull running ~3%, windows planned, umbrella MD planned, QC planned"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--running" title="Pull ~3%"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl locked pull ~3%</span><span class="stage-dots" aria-label="LiLC-1 NaCl locked-site: prep complete, pull running ~3%, windows planned, umbrella MD planned, QC planned"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--running" title="Pull ~3%"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--active">Await pilot WHAM</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl locked pull ~8%</span><span class="stage-dots" aria-label="LiLC-1 LiCl locked-site: prep complete, pull running ~8%, windows planned, umbrella MD planned, QC planned"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--running" title="Pull ~8%"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl locked pull ~8%</span><span class="stage-dots" aria-label="LiLC-1 NaCl locked-site: prep complete, pull running ~8%, windows planned, umbrella MD planned, QC planned"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--running" title="Pull ~8%"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--active">Await pilot WHAM</span></td></tr>
               <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">legacy V2 diagnostic</span><span class="stage-dots" aria-label="LiDS-1 LiCl: legacy V2 diagnostic only"><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning stage-dot--warning-shape" title="Not ranking path"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">await locked-site</span><span class="stage-dots" aria-label="LiDS-1 NaCl: await locked-site restart"><i class="stage-dot stage-dot--planned" title="Prep planned"></i><i class="stage-dot stage-dot--planned" title="Pull planned"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--repair">Site lock required</span></td></tr>
               <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">legacy V4 diagnostic</span><span class="stage-dots" aria-label="LiDA-1 LiCl: legacy V4 diagnostic only"><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning stage-dot--warning-shape" title="Not ranking path"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">await locked-site</span><span class="stage-dots" aria-label="LiDA-1 NaCl: await locked-site restart"><i class="stage-dot stage-dot--planned" title="Prep planned"></i><i class="stage-dot stage-dot--planned" title="Pull planned"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--repair">Site lock required</span></td></tr>
               <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state complete">Rep 11.44%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">legacy diagnostic</span><span class="stage-dots" aria-label="LiN3-Core LiCl: legacy diagnostic only"><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning" title="Legacy diagnostic"></i><i class="stage-dot stage-dot--warning stage-dot--warning-shape" title="Not ranking path"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">await locked-site</span><span class="stage-dots" aria-label="LiN3-Core NaCl: await locked-site restart"><i class="stage-dot stage-dot--planned" title="Prep planned"></i><i class="stage-dot stage-dot--planned" title="Pull planned"></i><i class="stage-dot stage-dot--planned" title="Windows planned"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD planned"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC planned"></i></span></span></div></td><td><span class="status-pill status-pill--repair">Site lock required</span></td></tr>
@@ -206,43 +206,48 @@
       <div class="page-header">
         <p class="eyebrow">Planning dashboard</p>
         <h1 id="time-title">Remaining-time horizon</h1>
-        <p>Timing estimates now focus on the next scientific gates rather than completed intake work.</p>
+        <p>ETAs from live EPYC pull logs (~3.0 ns/day per 1-thread mdrun), then scaled to window fan-out.</p>
       </div>
 
       <div class="time-hero">
-        <p class="eyebrow">Current gate</p>
-        <div>
-          <h2>Estimated time to first defensible Delta Delta G table</h2>
-          <p>Locked-site LiLC-1 pilot is running (pull ~3%). After windows finish: WHAM + paired QC. Scale other 7 only after PASS. Legacy mismatched-site data stays diagnostic only.</p>
+        <div class="time-hero-copy">
+          <p class="eyebrow">Current gate</p>
+          <h2>Time to first defensible Delta Delta G table</h2>
+          <p>LiLC-1 locked-site pull ~8% both ions. After pull: ~31 windows/ion (0.5 ns eq + 2.0 ns prod). First publishable row needs pilot WHAM + paired QC PASS; then scale other 7.</p>
+          <p class="time-hero-rate">Measured now: ~3.0 ns/day · ~125 ps/h per pull mdrun · pull rem ~7 h. Windows phase (62 jobs): ~3.1 windows/h host-wide · ~0.8 day. Full 8-candidate table at 124-slot fan-out: ~4.4 days.</p>
         </div>
-        <strong>~1 day after pilot PASS</strong>
+        <div class="time-hero-eta">
+          <span class="time-hero-eta-label">ETA first ΔΔG row</span>
+          <strong>~1.2 d</strong>
+          <span class="time-hero-eta-sub">from live rate</span>
+        </div>
       </div>
 
       <div class="timeline-grid">
         <article class="timeline-card timeline-card--cyan">
           <span class="time-value">Complete</span>
           <h3>Setup QC</h3>
-          <p>LiCl and NaCl setup are complete. The active gate has moved to paired production and clustering.</p>
+          <p>LiCl and NaCl setup closed. Gate moved to production/clustering.</p>
         </article>
         <article class="timeline-card timeline-card--green">
           <span class="time-value">Complete</span>
           <h3>20 ns production</h3>
-          <p>LiCl and NaCl production are complete for all eight candidates.</p>
+          <p>All eight candidates finished LiCl and NaCl production.</p>
         </article>
         <article class="timeline-card timeline-card--slate">
-          <span class="time-value">16 reps ready</span>
+          <span class="time-value">16 reps</span>
           <h3>Clustering</h3>
-          <p>LiCl and NaCl representatives are ready for all eight candidates.</p>
+          <p>All LiCl/NaCl representatives ready for locked-site umbrella.</p>
         </article>
         <article class="timeline-card timeline-card--cyan">
-          <span class="time-value">~0.5 day</span>
+          <span class="time-value">~1.1 d</span>
           <h3>Umbrella sampling</h3>
-          <p>LiLC-1 locked-site LiCl+NaCl pull ~3%. Then ~31 windows per ion. Other candidates wait for pilot PASS.</p>
+          <p>Pull rem ~7 h at ~3.0 ns/day. Then ~62 window jobs → ~0.8 d at ~3 win/h. Other candidates wait pilot PASS.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
-          <span class="time-value">After pilot</span>
-          <h3>PMF and selectivity table</h3>
-          <p>No Delta G is final until locked-site WHAM QC PASS. First row: LiLC-1; then scale remaining 7.</p>
+          <span class="time-value">~4.4 d</span>
+          <h3>Full ΔΔG table</h3>
+          <p>First LiLC-1 row ~1.2 d. Remaining 7 at 124-slot fan-out ~3.2 d more after PASS.</p>
         </article>
       </div>
     </section>

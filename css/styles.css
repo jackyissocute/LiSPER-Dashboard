@@ -727,31 +727,79 @@ h3 {
 
 .time-hero {
   max-width: 1180px;
-  min-height: 210px;
+  min-height: 0;
   margin: 0 auto 16px;
-  padding: clamp(20px, 4vw, 34px);
+  padding: clamp(20px, 3.5vw, 28px);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, auto);
+  grid-template-columns: minmax(0, 1.55fr) minmax(180px, 0.55fr);
   align-items: center;
-  gap: 22px;
+  gap: clamp(16px, 3vw, 28px);
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(56, 189, 248, 0.14), rgba(167, 139, 250, 0.12)),
     var(--panel-strong);
 }
 
-.time-hero .eyebrow {
-  grid-column: 1 / -1;
-  margin-bottom: -12px;
+.time-hero-copy {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
 }
 
-.time-hero strong {
+.time-hero-copy .eyebrow {
+  margin: 0;
+}
+
+.time-hero-copy h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  line-height: 1.2;
+}
+
+.time-hero-copy p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+.time-hero-rate {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.time-hero-eta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+  padding: 14px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: var(--radius);
+  background: rgba(2, 6, 23, 0.35);
+}
+
+.time-hero-eta-label,
+.time-hero-eta-sub {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.time-hero-eta strong {
   color: #f8fbff;
   font-family: "JetBrains Mono", monospace;
-  font-size: clamp(2.8rem, 8vw, 7.2rem);
-  line-height: 0.9;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  line-height: 1;
   text-align: right;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   text-shadow: 0 0 34px rgba(34, 211, 238, 0.32);
 }
 
@@ -848,9 +896,13 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .time-hero strong {
+  .time-hero-eta {
+    align-items: flex-start;
     text-align: left;
-    white-space: normal;
+  }
+
+  .time-hero-eta strong {
+    text-align: left;
   }
 }
 

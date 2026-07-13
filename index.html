@@ -53,7 +53,7 @@
       <div class="page-header">
         <p class="eyebrow">Task-focused dashboard</p>
         <h1 id="process-title">Process metrics</h1>
-        <p>Scientific steward snapshot: 2026-07-13 23:34 CST.</p>
+        <p>Scientific steward snapshot: 2026-07-14 00:19 CST.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
@@ -64,18 +64,18 @@
         </article>
         <article class="kpi-card kpi-card--cyan">
           <span class="kpi-label">Real mdrun</span>
-          <strong>16 pull jobs</strong>
+          <strong>40 mdrun jobs</strong>
           <small>Verified from executable, CWD, and thread count</small>
         </article>
         <article class="kpi-card kpi-card--green">
           <span class="kpi-label">CPU use</span>
-          <strong>112 / 124</strong>
-          <small>Seven threads per independent pull</small>
+          <strong>124 / 124</strong>
+          <small>14 pulls plus 26 one-thread window jobs</small>
         </article>
         <article class="kpi-card kpi-card--amber">
           <span class="kpi-label">Next transition</span>
-          <strong>Pull → windows</strong>
-          <small>Each completed pull backfills one-thread windows</small>
+          <strong>Windows active</strong>
+          <small>LiDA-1 paired pulls complete; window fan-out started</small>
         </article>
       </div>
 
@@ -102,8 +102,8 @@
               <tr>
                 <th>Compute</th>
                 <td>Worker slots in use</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:90%"></span></span><b>16 real mdrun · 112 / 124 compute threads</b></td>
-                <td><span class="status-pill status-pill--active">16 running</span></td>
+                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>40 real mdrun · 124 / 124 compute threads</b></td>
+                <td><span class="status-pill status-pill--active">40 running</span></td>
               </tr>
               <tr>
                 <th rowspan="2">LiCl</th>
@@ -130,13 +130,13 @@
               <tr>
                 <th rowspan="2">Free energy</th>
                 <td>Pull trajectories</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:38%"></span></span><b>16/16 active · observed range 21.7–70.9%</b></td>
-                <td><span class="status-pill status-pill--active">Paired production</span></td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:71%"></span></span><b>2/16 complete · 14 active at 41.9–97.4%</b></td>
+                <td><span class="status-pill status-pill--active">14 running</span></td>
               </tr>
               <tr>
                 <td>Windows → equilibration → production → WHAM / PMF</td>
-                <td><span class="progress-bar"><span style="--value:0%"></span></span><b>Pending completion of each pull; no PMF result claimed yet</b></td>
-                <td><span class="status-pill status-pill--queued">Dependency pending</span></td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:43%"></span></span><b>LiDA-1: 26/30 LiCl equilibrations active; 30 NaCl queued</b></td>
+                <td><span class="status-pill status-pill--active">Equilibrating</span></td>
               </tr>
             </tbody>
           </table>
@@ -188,14 +188,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 33.3%</span><span class="ion-chip ion-chip--nacl">NaCl pull 32.5%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Rep 4.40%</span></td><td><span class="mini-state complete">Rep 3.80%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 22.2%</span><span class="ion-chip ion-chip--nacl">NaCl pull 22.2%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Rep 12.89%</span></td><td><span class="mini-state complete">Rep ready</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 21.7%</span><span class="ion-chip ion-chip--nacl">NaCl pull 22.4%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 32.6%</span><span class="ion-chip ion-chip--nacl">NaCl pull 33.3%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 48.6%</span><span class="ion-chip ion-chip--nacl">NaCl pull 48.7%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 70.9%</span><span class="ion-chip ion-chip--nacl">NaCl pull 65.7%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state complete">Rep 11.44%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 33.3%</span><span class="ion-chip ion-chip--nacl">NaCl pull 32.5%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 31.2%</span><span class="ion-chip ion-chip--nacl">NaCl pull 31.6%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 66.4%</span><span class="ion-chip ion-chip--nacl">NaCl pull 65.2%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Rep 4.40%</span></td><td><span class="mini-state complete">Rep 3.80%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 44.6%</span><span class="ion-chip ion-chip--nacl">NaCl pull 41.9%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Rep 12.89%</span></td><td><span class="mini-state complete">Rep ready</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 42.1%</span><span class="ion-chip ion-chip--nacl">NaCl pull 45.0%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 65.3%</span><span class="ion-chip ion-chip--nacl">NaCl pull 66.6%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 96.9%</span><span class="ion-chip ion-chip--nacl">NaCl pull 97.4%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl 26/30 eq active</span><span class="ion-chip ion-chip--nacl">NaCl 30 eq queued</span></div></td><td><span class="status-pill status-pill--active">Equilibrating</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state complete">Rep 11.44%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 66.3%</span><span class="ion-chip ion-chip--nacl">NaCl pull 65.4%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 62.6%</span><span class="ion-chip ion-chip--nacl">NaCl pull 63.6%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -206,15 +206,15 @@
       <div class="page-header">
         <p class="eyebrow">Planning dashboard</p>
         <h1 id="time-title">Remaining-time horizon</h1>
-        <p>Planning view from the live 2026-07-13 23:34 CST process audit; estimates update only from measured stage throughput.</p>
+        <p>Planning view from the live 2026-07-14 00:19 CST process audit; estimates update only from measured stage throughput.</p>
       </div>
 
       <div class="time-hero">
         <div class="time-hero-copy">
           <p class="eyebrow">Current stage</p>
           <h2>Path to the paired PMF-derived Delta Delta G table</h2>
-          <p>All 16 LiCl/NaCl pull trajectories are active. Each completed pull generates its candidate-specific windows, followed by 0.5 ns equilibration, 2 ns production, WHAM, and paired PMF analysis.</p>
-          <p class="time-hero-rate">Current measured occupancy: 16 real mdrun processes using 112/124 compute threads. The scheduler will backfill completed pulls with independent one-thread windows. A reliable table ETA will be calculated from the actual generated window counts and first-window throughput.</p>
+          <p>LiDA-1 completed both pulls and generated 30 windows per ion. Fourteen pulls remain active while LiDA-1/LiCl window equilibration has begun; production, paired WHAM, and PMF analysis follow.</p>
+          <p class="time-hero-rate">Current measured occupancy: 40 real mdrun processes using 124/124 compute threads. Fourteen seven-thread pulls plus 26 one-thread windows fill the safe ceiling; queued distinct windows backfill as slots open.</p>
         </div>
         <div class="time-hero-eta">
           <span class="time-hero-eta-label">Table ETA</span>
@@ -240,14 +240,14 @@
           <p>All LiCl/NaCl representatives ready for locked-site umbrella.</p>
         </article>
         <article class="timeline-card timeline-card--cyan">
-          <span class="time-value">16 active</span>
+          <span class="time-value">14 active</span>
           <h3>Pull trajectories</h3>
-          <p>Eight paired LiCl/NaCl candidates are progressing; observed pull progress spans 21.7–70.9%.</p>
+          <p>Seven paired LiCl/NaCl candidates remain in pull; observed active progress spans 41.9–97.4%.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
-          <span class="time-value">Next</span>
+          <span class="time-value">26 active</span>
           <h3>Windows → PMF table</h3>
-          <p>Generate windows, equilibrate, produce, then run WHAM and report uncertainty and convergence diagnostics without an invented universal PASS threshold.</p>
+          <p>LiDA-1/LiCl windows are equilibrating; NaCl and later campaigns remain queued behind the 124-thread safety gate.</p>
         </article>
       </div>
     </section>

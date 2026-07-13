@@ -3,257 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    (function () {
-      var path = location.pathname;
-      if (!path.endsWith("/")) {
-        var last = path.split("/").pop() || "";
-        path = last.indexOf(".") >= 0 ? path.slice(0, path.lastIndexOf("/") + 1) : path + "/";
-      }
-      var base = document.createElement("base");
-      base.href = path;
-      document.head.appendChild(base);
-    })();
-  </script>
-  <meta name="description" content="LiSPER public progress monitor for lithium-selective peptide discovery.">
+  <meta name="description" content="LiSPER evidence-first Li/Na peptide free-energy status.">
   <title>LiSPER Dashboard</title>
   <link rel="icon" type="image/png" href="assets/logo-dark.png">
-  <link rel="apple-touch-icon" href="assets/logo-dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="solution-layer" aria-hidden="true">
-    <canvas id="solution-canvas"></canvas>
-  </div>
+  <div class="solution-layer" aria-hidden="true"><canvas id="solution-canvas"></canvas></div>
   <div class="surface-glow" aria-hidden="true"></div>
 
   <header class="topbar">
-    <a class="brand" href="#process" aria-label="LiSPER dashboard home">
-      <img src="assets/logo-dark-full.png" alt="LiSPER" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
-      <span class="brand-fallback">LiSPER</span>
+    <a class="brand" href="#status" aria-label="LiSPER dashboard home">
+      <img src="assets/logo-dark-full.png" alt="LiSPER" class="brand-logo">
     </a>
-
-    <nav class="page-tabs" aria-label="Dashboard pages">
-      <button class="tab-button is-active" type="button" data-target="process">Process metrics</button>
-      <button class="tab-button" type="button" data-target="proteins">Protein metrics</button>
-      <button class="tab-button" type="button" data-target="time">Time horizon</button>
-    </nav>
-
-    <div class="topbar-meta">
-      <span id="page-count">1 / 3</span>
-      <span>Static report</span>
-    </div>
+    <div class="topbar-meta"><span>Evidence-first report</span></div>
   </header>
 
-  <main class="dashboard-main">
-    <section class="dashboard-page is-active" id="process" aria-labelledby="process-title">
+  <main class="dashboard-main" id="status">
+    <section class="dashboard-page is-active">
       <div class="page-header">
-        <p class="eyebrow">Task-focused dashboard</p>
-        <h1 id="process-title">Process metrics</h1>
-        <p>Scientific steward snapshot: 2026-07-13 21:13 CST.</p>
+        <p class="eyebrow">Scientific reset</p>
+        <h1>Li/Na binding and selectivity</h1>
+        <p>Snapshot: 2026-07-13 22:06 CST. Only current, reproducible evidence is shown.</p>
       </div>
 
-      <div class="kpi-strip" aria-label="Current computational snapshot">
+      <div class="kpi-strip" aria-label="Current computational status">
         <article class="kpi-card">
-          <span class="kpi-label">Setup QC</span>
-          <strong>Audit reopened</strong>
-          <small>Published Na NBFIX provenance is now enforced</small>
+          <span class="kpi-label">Complete source exports</span>
+          <strong>8 / 16</strong>
+          <small>All 8 LiCl complete; all 8 NaCl CHARMM-GUI exports need restoration</small>
         </article>
         <article class="kpi-card kpi-card--cyan">
-          <span class="kpi-label">LiCl branch</span>
-          <strong>8 reps ready</strong>
-          <small>LiCl production and clustering complete</small>
+          <span class="kpi-label">Accepted affinity rows</span>
+          <strong>0 / 8</strong>
+          <small>Standard-state double-decoupling calculations not started</small>
         </article>
         <article class="kpi-card kpi-card--green">
-          <span class="kpi-label">NaCl branch</span>
-          <strong>7/8 rebuild</strong>
-          <small>Seven historical Na paths omitted audited NBFIX terms; LiDA-1 contains both</small>
+          <span class="kpi-label">Accepted selectivity rows</span>
+          <strong>0 / 8</strong>
+          <small>Matched bulk/site Li-to-Na cycles not started</small>
         </article>
         <article class="kpi-card kpi-card--amber">
-          <span class="kpi-label">Next gate</span>
-          <strong>LiLC-1 Method correction</strong>
-          <small>Pilot stopped · 42 refined bulk windows complete · Li hydration-model sensitivity unresolved · zero peptide production</small>
+          <span class="kpi-label">Active gate</span>
+          <strong>Force-field validation</strong>
+          <small>Li/Na hydration and acetate/amide interaction sensitivity</small>
         </article>
       </div>
 
       <div class="dashboard-card">
         <div class="card-heading">
-          <div>
-            <p class="eyebrow">Integrated milestone matrix</p>
-            <h2>Computational discovery workflow</h2>
-          </div>
-          <span class="status-pill status-pill--active">Phase I active</span>
+          <div><p class="eyebrow">Declared estimands</p><h2>What the final table will mean</h2></div>
+          <span class="status-pill status-pill--active">Method active</span>
         </div>
-
         <div class="table-wrap">
-          <table class="metric-table process-table">
-            <thead>
-              <tr>
-                <th>Layer</th>
-                <th>Milestone</th>
-                <th>Progress</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+          <table class="metric-table">
+            <thead><tr><th>Question</th><th>Estimator</th><th>Current state</th></tr></thead>
             <tbody>
-              <tr>
-                <th>Compute</th>
-                <td>Worker slots in use</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:0%"></span></span><b>0 active / 124 capacity — refined bulk validation complete; next model inputs under evidence review</b></td>
-                <td><span class="status-pill status-pill--warning">Method correction</span></td>
-              </tr>
-              <tr>
-                <th rowspan="2">LiCl</th>
-                <td>20 ns production MD</td>
-                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>8/8 complete</b></td>
-                <td><span class="status-pill status-pill--complete">8 done</span></td>
-              </tr>
-              <tr>
-                <td>Structural clustering</td>
-                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>8/8 reps</b></td>
-                <td><span class="status-pill status-pill--complete">8 clustered</span></td>
-              </tr>
-              <tr>
-                <th rowspan="2">NaCl</th>
-                <td>20 ns production MD</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:12.5%"></span></span><b>8/8 historical; 7/8 require rebuild</b></td>
-                <td><span class="status-pill status-pill--warning">NBFIX audit</span></td>
-              </tr>
-              <tr>
-                <td>Structural clustering</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:12.5%"></span></span><b>8/8 historical reps; 7/8 unusable for claims</b></td>
-                <td><span class="status-pill status-pill--warning">7 rebuild</span></td>
-              </tr>
-              <tr>
-                <th rowspan="2">Free energy</th>
-                <td>Umbrella windows</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:0%"></span></span><b>LiLC-1 stopped — Na topology invalid; coordinate permits off-site rebinding</b></td>
-                <td><span class="status-pill status-pill--warning">Pilot stopped</span></td>
-              </tr>
-              <tr>
-                <td>WHAM / PMF / Delta G</td>
-                <td><span class="progress-bar progress-bar--active"><span style="--value:50%"></span></span><b>Old verdict retired — estimator, uncertainty, overlap, state, and replica review active</b></td>
-                <td><span class="status-pill status-pill--qc">Delta G hold</span></td>
-              </tr>
+              <tr><th>Li binding strength</th><td>Standard 1 M binding free energy</td><td>Not calculated</td></tr>
+              <tr><th>Li over Na selectivity</th><td>Matched bulk/site Li-to-Na thermodynamic cycle</td><td>Not calculated</td></tr>
+              <tr><th>Capture/release speed</th><td>Independent kinetic analysis</td><td>Outside the equilibrium table</td></tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="dashboard-page" id="proteins" aria-labelledby="proteins-title">
-      <div class="page-header">
-        <p class="eyebrow">Candidate-focused dashboard</p>
-        <h1 id="proteins-title">Protein-focused metrics</h1>
-        <p>Candidate names are public here; peptide sequences are intentionally not shown.</p>
-      </div>
-
-      <div class="dashboard-card">
-        <div class="card-heading">
-          <div>
-            <p class="eyebrow">Final 8-candidate library</p>
-            <h2>Candidate progress matrix</h2>
-            <p class="card-note">Historical data are preserved. Seven Na paths require NBFIX-corrected rebuilds, and LiLC-1 is stopped for reaction-coordinate correction; geometry screens are not binding validation.</p>
-          </div>
-          <div class="legend" aria-label="Dashboard color legend">
-            <div class="legend-group">
-              <span class="legend-label">Status</span>
-              <span><i class="dot dot--complete"></i>Complete</span>
-              <span><i class="dot dot--active"></i>Running</span>
-              <span><i class="dot dot--queued"></i>Held</span>
-              <span><i class="dot dot--qc"></i>Method Review</span>
-              <span><i class="dot dot--warning"></i>Warning</span>
-              <span><i class="dot dot--planned"></i>Planned</span>
-            </div>
-            <div class="legend-group">
-              <span class="legend-label">Ion</span>
-              <span><i class="dot dot--licl"></i>LiCl accent</span>
-              <span><i class="dot dot--nacl"></i>NaCl accent</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table class="metric-table protein-table">
-            <thead>
-              <tr>
-                <th>Protein</th>
-                <th>LiCl production / representative</th>
-                <th>NaCl production / representative</th>
-                <th>Umbrella sampling</th>
-                <th>WHAM / PMF / Delta G</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiD3-Core LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiD3-Core NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Rep 4.40%</span></td><td><span class="mini-state complete">Rep 3.80%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiD3-Flex LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiD3-Flex NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Rep 12.89%</span></td><td><span class="mini-state complete">Rep ready</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiND-Hybrid LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiND-Hybrid NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-              <tr><th>LiLC-1</th><td><span class="mini-state complete">Diagnostic preserved</span></td><td><span class="mini-state warning">Rebuild required</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl stopped: off-site rebinding</span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl invalid NBFIX: rebuild</span></span></div></td><td><span class="status-pill status-pill--warning">METHOD CORRECTION</span></td></tr>
-              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiDS-1 LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiDS-1 NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiDA-1 LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiDA-1 NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state complete">Rep 11.44%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiN3-Core LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiN3-Core NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="umbrella-pair"><span class="ion-chip ion-chip--licl">LiCl geometry screened</span><span class="stage-dots" aria-label="LiA3-Ref LiCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span><span class="umbrella-pair"><span class="ion-chip ion-chip--nacl">NaCl geometry screened</span><span class="stage-dots" aria-label="LiA3-Ref NaCl: prep complete; pull/windows/MD/QC queued"><i class="stage-dot stage-dot--complete" title="Prep complete"></i><i class="stage-dot stage-dot--planned" title="Pull queued"></i><i class="stage-dot stage-dot--planned" title="Windows queued"></i><i class="stage-dot stage-dot--planned" title="Umbrella MD queued"></i><i class="stage-dot stage-dot--planned stage-dot--qc-stage" title="QC queued"></i></span></span></div></td><td><span class="status-pill status-pill--queued">Held for method review</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="dashboard-page" id="time" aria-labelledby="time-title">
-      <div class="page-header">
-        <p class="eyebrow">Planning dashboard</p>
-        <h1 id="time-title">Remaining-time horizon</h1>
-        <p>Live compute state is reported separately from scientific confidence; duration alone cannot establish convergence.</p>
-      </div>
-
-      <div class="time-hero">
-        <div class="time-hero-copy">
-          <p class="eyebrow">Current gate</p>
-          <h2>Time to first defensible Delta Delta G table</h2>
-          <p>LiLC-1 production is stopped with checkpoints preserved. The Na topology omitted published NBFIX terms, and the current distance coordinate permits rebinding to other peptide oxygens. Extending these trajectories would not make the intended same-site free energy valid.</p>
-          <p class="time-hero-rate">Current compute: 0/124 real one-thread jobs; formal peptide production remains 0. All 42 refined bulk windows completed, and no additional distinct task is ready until Li hydration-model sensitivity and functional-group inputs are specified from evidence. Formal production waits for a validated model, defined estimand, corrected topology, proved bound state/restraints, and explicit approval.</p>
-        </div>
-        <div class="time-hero-eta">
-          <span class="time-hero-eta-label">ETA first ΔΔG row</span>
-          <strong>Not defensible yet</strong>
-          <span class="time-hero-eta-sub">method and replication evidence unresolved</span>
         </div>
       </div>
 
       <div class="timeline-grid">
-        <article class="timeline-card timeline-card--cyan">
-          <span class="time-value">Reopened</span>
-          <h3>Setup QC</h3>
-          <p>Na force-field provenance audit found seven affected historical paths; corrected pinned topologies are required.</p>
-        </article>
         <article class="timeline-card timeline-card--green">
-          <span class="time-value">Complete</span>
-          <h3>20 ns production</h3>
-          <p>Li production is preserved. Seven historical Na paths omitted audited NBFIX terms and require rebuild; LiDA-1 contains both terms.</p>
+          <span class="time-value">Audited</span><h3>System provenance</h3>
+          <p>Eight LiCl source exports are complete; NaCl fragments establish metadata only and are not production inputs.</p>
+        </article>
+        <article class="timeline-card timeline-card--cyan">
+          <span class="time-value">Running</span><h3>Model validation</h3>
+          <p>Official CHARMM additive/Drude parameters and published Li/Na acetate and amide targets are being tested.</p>
         </article>
         <article class="timeline-card timeline-card--slate">
-          <span class="time-value">16 reps</span>
-          <h3>Clustering</h3>
-          <p>Li representatives are diagnostic; seven affected Na representatives cannot support claims and require rebuild.</p>
-        </article>
-        <article class="timeline-card timeline-card--cyan">
-          <span class="time-value">Stopped</span>
-          <h3>Umbrella sampling</h3>
-          <p>Diagnostic data are preserved. Correct the Na topology and prove a same-site coordinate/restraint design before rebuilding the pilot.</p>
+          <span class="time-value">Next</span><h3>Peptide ensembles</h3>
+          <p>Mixed-ion, multi-basin independent replicas will define candidate bound states and slow variables.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
-          <span class="time-value">No ETA</span>
-          <h3>Full ΔΔG table</h3>
-          <p>Scale-up waits for a documented estimand, physical states, correlation/overlap evidence, sensitivity analysis, and independent-replica design.</p>
+          <span class="time-value">0 / 8</span><h3>Free-energy table</h3>
+          <p>Rows appear only with explicit estimands, uncertainty, model sensitivity, and reproducible provenance.</p>
         </article>
       </div>
     </section>
   </main>
 
   <script src="js/solution-field.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>

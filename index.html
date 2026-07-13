@@ -3,94 +3,257 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LiSPER evidence-first Li/Na peptide free-energy status.">
+  <script>
+    (function () {
+      var path = location.pathname;
+      if (!path.endsWith("/")) {
+        var last = path.split("/").pop() || "";
+        path = last.indexOf(".") >= 0 ? path.slice(0, path.lastIndexOf("/") + 1) : path + "/";
+      }
+      var base = document.createElement("base");
+      base.href = path;
+      document.head.appendChild(base);
+    })();
+  </script>
+  <meta name="description" content="LiSPER public progress monitor for lithium-selective peptide discovery.">
   <title>LiSPER Dashboard</title>
   <link rel="icon" type="image/png" href="assets/logo-dark.png">
+  <link rel="apple-touch-icon" href="assets/logo-dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="solution-layer" aria-hidden="true"><canvas id="solution-canvas"></canvas></div>
+  <div class="solution-layer" aria-hidden="true">
+    <canvas id="solution-canvas"></canvas>
+  </div>
   <div class="surface-glow" aria-hidden="true"></div>
 
   <header class="topbar">
-    <a class="brand" href="#status" aria-label="LiSPER dashboard home">
-      <img src="assets/logo-dark-full.png" alt="LiSPER" class="brand-logo">
+    <a class="brand" href="#process" aria-label="LiSPER dashboard home">
+      <img src="assets/logo-dark-full.png" alt="LiSPER" class="brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+      <span class="brand-fallback">LiSPER</span>
     </a>
-    <div class="topbar-meta"><span>Evidence-first report</span></div>
+
+    <nav class="page-tabs" aria-label="Dashboard pages">
+      <button class="tab-button is-active" type="button" data-target="process">Process metrics</button>
+      <button class="tab-button" type="button" data-target="proteins">Protein metrics</button>
+      <button class="tab-button" type="button" data-target="time">Time horizon</button>
+    </nav>
+
+    <div class="topbar-meta">
+      <span id="page-count">1 / 3</span>
+      <span>Static report</span>
+    </div>
   </header>
 
-  <main class="dashboard-main" id="status">
-    <section class="dashboard-page is-active">
+  <main class="dashboard-main">
+    <section class="dashboard-page is-active" id="process" aria-labelledby="process-title">
       <div class="page-header">
-        <p class="eyebrow">Paired umbrella production</p>
-        <h1>Li/Na binding and selectivity</h1>
-        <p>Snapshot: 2026-07-13 22:58 CST. Eight paired Li/Na campaigns are running.</p>
+        <p class="eyebrow">Task-focused dashboard</p>
+        <h1 id="process-title">Process metrics</h1>
+        <p>Scientific steward snapshot: 2026-07-13 23:07 CST.</p>
       </div>
 
-      <div class="kpi-strip" aria-label="Current computational status">
+      <div class="kpi-strip" aria-label="Current computational snapshot">
         <article class="kpi-card">
-          <span class="kpi-label">Paired bound starts</span>
-          <strong>16 / 16</strong>
-          <small>Regenerated, minimized, and checked without suppressed GROMACS warnings</small>
+          <span class="kpi-label">Campaigns</span>
+          <strong>16 active</strong>
+          <small>8 candidates × paired LiCl / NaCl</small>
         </article>
         <article class="kpi-card kpi-card--cyan">
-          <span class="kpi-label">Active campaigns</span>
-          <strong>16 / 16</strong>
-          <small>All candidate × ion pull trajectories are advancing</small>
+          <span class="kpi-label">Real mdrun</span>
+          <strong>16 pull jobs</strong>
+          <small>Verified from executable, CWD, and thread count</small>
         </article>
         <article class="kpi-card kpi-card--green">
-          <span class="kpi-label">Real compute</span>
+          <span class="kpi-label">CPU use</span>
           <strong>112 / 124</strong>
-          <small>16 pulls × 7 threads; one-thread windows backfill next</small>
+          <small>Seven threads per independent pull</small>
         </article>
         <article class="kpi-card kpi-card--amber">
-          <span class="kpi-label">Analysis policy</span>
-          <strong>No arbitrary PASS</strong>
-          <small>Overlap, time sensitivity, and uncertainty remain visible diagnostics</small>
+          <span class="kpi-label">Next transition</span>
+          <strong>Pull → windows</strong>
+          <small>Each completed pull backfills one-thread windows</small>
         </article>
       </div>
 
       <div class="dashboard-card">
         <div class="card-heading">
-          <div><p class="eyebrow">Declared estimands</p><h2>What the final table will mean</h2></div>
-          <span class="status-pill status-pill--active">Method active</span>
+          <div>
+            <p class="eyebrow">Integrated milestone matrix</p>
+            <h2>Computational discovery workflow</h2>
+          </div>
+          <span class="status-pill status-pill--active">Phase I active</span>
         </div>
+
         <div class="table-wrap">
-          <table class="metric-table">
-            <thead><tr><th>Question</th><th>Estimator</th><th>Current state</th></tr></thead>
+          <table class="metric-table process-table">
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Milestone</th>
+                <th>Progress</th>
+                <th>Status</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><th>Li binding strength</th><td>Radially corrected, endpoint-referenced PMF binding difference</td><td>Umbrella sampling running</td></tr>
-              <tr><th>Li over Na selectivity</th><td>ΔΔG = ΔG(Li) − ΔG(Na); negative means Li preference</td><td>Eight paired rows queued</td></tr>
-              <tr><th>Capture/release speed</th><td>Independent kinetic analysis</td><td>Outside the equilibrium table</td></tr>
+              <tr>
+                <th>Compute</th>
+                <td>Worker slots in use</td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:90%"></span></span><b>16 real mdrun · 112 / 124 compute threads</b></td>
+                <td><span class="status-pill status-pill--active">16 running</span></td>
+              </tr>
+              <tr>
+                <th rowspan="2">LiCl</th>
+                <td>20 ns production MD</td>
+                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>8/8 complete</b></td>
+                <td><span class="status-pill status-pill--complete">8 done</span></td>
+              </tr>
+              <tr>
+                <td>Structural clustering</td>
+                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>8/8 reps</b></td>
+                <td><span class="status-pill status-pill--complete">8 clustered</span></td>
+              </tr>
+              <tr>
+                <th rowspan="2">NaCl</th>
+                <td>20 ns production MD</td>
+                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>8/8 complete</b></td>
+                <td><span class="status-pill status-pill--complete">8 done</span></td>
+              </tr>
+              <tr>
+                <td>Structural clustering</td>
+                <td><span class="progress-bar progress-bar--complete"><span style="--value:100%"></span></span><b>8/8 reps</b></td>
+                <td><span class="status-pill status-pill--complete">8 clustered</span></td>
+              </tr>
+              <tr>
+                <th rowspan="2">Free energy</th>
+                <td>Pull trajectories</td>
+                <td><span class="progress-bar progress-bar--active"><span style="--value:15%"></span></span><b>16/16 active · observed range 8.8–29.1%</b></td>
+                <td><span class="status-pill status-pill--active">Paired production</span></td>
+              </tr>
+              <tr>
+                <td>Windows → equilibration → production → WHAM / PMF</td>
+                <td><span class="progress-bar"><span style="--value:0%"></span></span><b>Pending completion of each pull; no PMF result claimed yet</b></td>
+                <td><span class="status-pill status-pill--queued">Dependency pending</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
+    </section>
+
+    <section class="dashboard-page" id="proteins" aria-labelledby="proteins-title">
+      <div class="page-header">
+        <p class="eyebrow">Candidate-focused dashboard</p>
+        <h1 id="proteins-title">Protein-focused metrics</h1>
+        <p>Candidate names are public here; peptide sequences are intentionally not shown.</p>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">Final 8-candidate library</p>
+            <h2>Candidate progress matrix</h2>
+            <p class="card-note">Setup, 20 ns MD, and representative clustering are complete. All 16 paired umbrella pulls are now running.</p>
+          </div>
+          <div class="legend" aria-label="Dashboard color legend">
+            <div class="legend-group">
+              <span class="legend-label">Status</span>
+              <span><i class="dot dot--complete"></i>Complete</span>
+              <span><i class="dot dot--active"></i>Running</span>
+              <span><i class="dot dot--queued"></i>Queued</span>
+              <span><i class="dot dot--qc"></i>QC Review</span>
+              <span><i class="dot dot--warning"></i>Warning</span>
+              <span><i class="dot dot--planned"></i>Planned</span>
+            </div>
+            <div class="legend-group">
+              <span class="legend-label">Ion</span>
+              <span><i class="dot dot--licl"></i>LiCl accent</span>
+              <span><i class="dot dot--nacl"></i>NaCl accent</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="metric-table protein-table">
+            <thead>
+              <tr>
+                <th>Protein</th>
+                <th>LiCl production / representative</th>
+                <th>NaCl production / representative</th>
+                <th>Umbrella sampling</th>
+                <th>WHAM / PMF / Delta G</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th>LiD3-Core</th><td><span class="mini-state complete">Rep 12.69%</span></td><td><span class="mini-state complete">Rep 10.34%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 13.5%</span><span class="ion-chip ion-chip--nacl">NaCl pull 13.3%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiD3-Flex</th><td><span class="mini-state complete">Rep 4.40%</span></td><td><span class="mini-state complete">Rep 3.80%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 9.0%</span><span class="ion-chip ion-chip--nacl">NaCl pull 9.0%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiND-Hybrid</th><td><span class="mini-state complete">Rep 12.89%</span></td><td><span class="mini-state complete">Rep ready</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 8.8%</span><span class="ion-chip ion-chip--nacl">NaCl pull 9.0%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiLC-1</th><td><span class="mini-state complete">Rep 4.15%</span></td><td><span class="mini-state complete">Rep 1.95%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 13.3%</span><span class="ion-chip ion-chip--nacl">NaCl pull 13.6%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiDS-1</th><td><span class="mini-state complete">Rep 15.69%</span></td><td><span class="mini-state complete">Rep 14.59%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 19.9%</span><span class="ion-chip ion-chip--nacl">NaCl pull 19.8%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiDA-1</th><td><span class="mini-state complete">Rep 17.64%</span></td><td><span class="mini-state complete">Rep 17.94%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 29.1%</span><span class="ion-chip ion-chip--nacl">NaCl pull 24.4%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiN3-Core</th><td><span class="mini-state complete">Rep 4.65%</span></td><td><span class="mini-state complete">Rep 11.44%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 13.6%</span><span class="ion-chip ion-chip--nacl">NaCl pull 13.2%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+              <tr><th>LiA3-Ref</th><td><span class="mini-state complete">Rep 5.05%</span></td><td><span class="mini-state complete">Rep 7.35%</span></td><td><div class="umbrella-cell"><span class="ion-chip ion-chip--licl">LiCl pull 12.7%</span><span class="ion-chip ion-chip--nacl">NaCl pull 12.9%</span></div></td><td><span class="status-pill status-pill--queued">Pending windows</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-page" id="time" aria-labelledby="time-title">
+      <div class="page-header">
+        <p class="eyebrow">Planning dashboard</p>
+        <h1 id="time-title">Remaining-time horizon</h1>
+        <p>Planning view from the live 2026-07-13 23:07 CST process audit; estimates update only from measured stage throughput.</p>
+      </div>
+
+      <div class="time-hero">
+        <div class="time-hero-copy">
+          <p class="eyebrow">Current stage</p>
+          <h2>Path to the paired PMF-derived Delta Delta G table</h2>
+          <p>All 16 LiCl/NaCl pull trajectories are active. Each completed pull generates its candidate-specific windows, followed by 0.5 ns equilibration, 2 ns production, WHAM, and paired PMF analysis.</p>
+          <p class="time-hero-rate">Current measured occupancy: 16 real mdrun processes using 112/124 compute threads. The scheduler will backfill completed pulls with independent one-thread windows. A reliable table ETA will be calculated from the actual generated window counts and first-window throughput.</p>
+        </div>
+        <div class="time-hero-eta">
+          <span class="time-hero-eta-label">Table ETA</span>
+          <strong>Measuring</strong>
+          <span class="time-hero-eta-sub">await real window count + rate</span>
+        </div>
+      </div>
 
       <div class="timeline-grid">
-        <article class="timeline-card timeline-card--green">
-          <span class="time-value">16 / 16</span><h3>Paired starts</h3>
-          <p>Each Li/Na pair uses the same named peptide site and shared umbrella protocol.</p>
-        </article>
         <article class="timeline-card timeline-card--cyan">
-          <span class="time-value">Running</span><h3>Pull trajectories</h3>
-          <p>Sixteen real GROMACS pull simulations are advancing without current fatal, SETTLE, or LINCS errors.</p>
+          <span class="time-value">Complete</span>
+          <h3>Setup QC</h3>
+          <p>LiCl and NaCl setup closed. Gate moved to production/clustering.</p>
+        </article>
+        <article class="timeline-card timeline-card--green">
+          <span class="time-value">Complete</span>
+          <h3>20 ns production</h3>
+          <p>All eight candidates finished LiCl and NaCl production.</p>
         </article>
         <article class="timeline-card timeline-card--slate">
-          <span class="time-value">Next</span><h3>Umbrella windows</h3>
-          <p>0.5 ns equilibration and 2.0 ns production windows automatically fill the 124-thread pool.</p>
+          <span class="time-value">16 reps</span>
+          <h3>Clustering</h3>
+          <p>All LiCl/NaCl representatives ready for locked-site umbrella.</p>
+        </article>
+        <article class="timeline-card timeline-card--cyan">
+          <span class="time-value">16 active</span>
+          <h3>Pull trajectories</h3>
+          <p>Eight paired LiCl/NaCl candidates are progressing; observed pull progress spans 8.8–29.1%.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
-          <span class="time-value">0 / 8</span><h3>Free-energy table</h3>
-          <p>WHAM estimates will include histogram, endpoint, time-sensitivity, burn-in, and bootstrap diagnostics.</p>
+          <span class="time-value">Next</span>
+          <h3>Windows → PMF table</h3>
+          <p>Generate windows, equilibrate, produce, then run WHAM and report uncertainty and convergence diagnostics without an invented universal PASS threshold.</p>
         </article>
       </div>
     </section>
   </main>
 
   <script src="js/solution-field.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -51,39 +51,39 @@
   <main class="dashboard-main">
     <section class="dashboard-page is-active" id="process" aria-labelledby="process-title">
       <div class="page-header">
-        <p class="eyebrow">Task-focused dashboard</p>
-        <h1 id="process-title">Process metrics</h1>
-        <p>Scientific steward snapshot: 2026-07-14 00:37 CST.</p>
+        <p class="eyebrow">Live compute</p>
+        <h1 id="process-title">Process</h1>
+        <p>Snapshot · Jul 14, 00:37 CST</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational snapshot">
         <article class="kpi-card">
           <span class="kpi-label">Campaigns</span>
-          <strong>16 active</strong>
-          <small>8 candidates × paired LiCl / NaCl</small>
+          <strong>16</strong>
+          <small>8 × Li/Na</small>
         </article>
         <article class="kpi-card kpi-card--cyan">
           <span class="kpi-label">Real mdrun</span>
-          <strong>52 mdrun jobs</strong>
-          <small>Verified from executable, CWD, and thread count</small>
+          <strong>52</strong>
+          <small>live processes</small>
         </article>
         <article class="kpi-card kpi-card--green">
           <span class="kpi-label">CPU use</span>
           <strong>124 / 124</strong>
-          <small>12 pulls plus 40 one-thread window jobs</small>
+          <small>4-thread reserve</small>
         </article>
         <article class="kpi-card kpi-card--amber">
-          <span class="kpi-label">Next transition</span>
-          <strong>Windows active</strong>
-          <small>LiDA-1 and LiDS-1 paired pulls complete</small>
+          <span class="kpi-label">Stage</span>
+          <strong>Window EQ</strong>
+          <small>12 pulls · 40 EQ</small>
         </article>
       </div>
 
       <div class="dashboard-card">
         <div class="card-heading">
           <div>
-            <p class="eyebrow">Integrated milestone matrix</p>
-            <h2>Computational discovery workflow</h2>
+            <p class="eyebrow">Pipeline</p>
+            <h2>Discovery workflow</h2>
           </div>
           <span class="status-pill status-pill--active">Phase I active</span>
         </div>
@@ -134,7 +134,7 @@
                 <td><span class="status-pill status-pill--active">12 running</span></td>
               </tr>
               <tr>
-                <td>Windows → equilibration → production → WHAM / PMF</td>
+                <td>Windows → production → PMF</td>
                 <td><span class="progress-bar progress-bar--active"><span style="--value:33%"></span></span><b>40/120 LiDA-1/LiDS-1 window equilibrations active</b></td>
                 <td><span class="status-pill status-pill--active">Equilibrating</span></td>
               </tr>
@@ -146,34 +146,18 @@
 
     <section class="dashboard-page" id="proteins" aria-labelledby="proteins-title">
       <div class="page-header">
-        <p class="eyebrow">Candidate-focused dashboard</p>
-        <h1 id="proteins-title">Protein-focused metrics</h1>
-        <p>Candidate names are public here; peptide sequences are intentionally not shown.</p>
+        <p class="eyebrow">Eight pairs</p>
+        <h1 id="proteins-title">Candidates</h1>
+        <p>LiCl / NaCl progress</p>
       </div>
 
       <div class="dashboard-card">
         <div class="card-heading">
           <div>
-            <p class="eyebrow">Final 8-candidate library</p>
-            <h2>Candidate progress matrix</h2>
-            <p class="card-note">Setup, 20 ns MD, and representative clustering are complete. All 16 paired umbrella pulls are now running.</p>
+            <p class="eyebrow">Current state</p>
+            <h2>Candidate progress</h2>
           </div>
-          <div class="legend" aria-label="Dashboard color legend">
-            <div class="legend-group">
-              <span class="legend-label">Status</span>
-              <span><i class="dot dot--complete"></i>Complete</span>
-              <span><i class="dot dot--active"></i>Running</span>
-              <span><i class="dot dot--queued"></i>Queued</span>
-              <span><i class="dot dot--qc"></i>QC Review</span>
-              <span><i class="dot dot--warning"></i>Warning</span>
-              <span><i class="dot dot--planned"></i>Planned</span>
-            </div>
-            <div class="legend-group">
-              <span class="legend-label">Ion</span>
-              <span><i class="dot dot--licl"></i>LiCl accent</span>
-              <span><i class="dot dot--nacl"></i>NaCl accent</span>
-            </div>
-          </div>
+          <span class="status-pill status-pill--active">8 pairs</span>
         </div>
 
         <div class="table-wrap">
@@ -181,10 +165,10 @@
             <thead>
               <tr>
                 <th>Protein</th>
-                <th>LiCl production / representative</th>
-                <th>NaCl production / representative</th>
-                <th>Umbrella sampling</th>
-                <th>WHAM / PMF / Delta G</th>
+                <th>LiCl rep</th>
+                <th>NaCl rep</th>
+                <th>Umbrella</th>
+                <th>PMF</th>
               </tr>
             </thead>
             <tbody>
@@ -204,19 +188,17 @@
 
     <section class="dashboard-page" id="time" aria-labelledby="time-title">
       <div class="page-header">
-        <p class="eyebrow">Planning dashboard</p>
-        <h1 id="time-title">Remaining-time horizon</h1>
-        <p>Planning view from the live 2026-07-14 00:37 CST process audit; estimates use current full-load throughput.</p>
+        <p class="eyebrow">Measured forecast</p>
+        <h1 id="time-title">Time horizon</h1>
+        <p>Snapshot · Jul 14, 00:37 CST</p>
       </div>
 
       <div class="time-hero">
         <div class="time-hero-copy">
-          <p class="eyebrow">Current stage</p>
-          <h2>Path to the paired PMF-derived Delta Delta G table</h2>
-          <p>LiDA-1 and LiDS-1 completed both pulls and generated 30 windows per ion. Twelve pulls remain active while 40 generated windows equilibrate; the slowest pull is projected to finish around 02:20 CST.</p>
-          <p class="time-hero-rate">Current measured occupancy: 52 real mdrun processes using 124/124 compute threads. Twelve seven-thread pulls plus 40 one-thread windows fill the safe ceiling; queued distinct windows backfill as slots open.</p>
-          <p class="time-hero-rate">Measured window throughput scales at 77,189 atom·ns/day, or 1.13–3.87 ns/day per one-thread window across the eight system sizes. A 10,000-order simulation of the shared 124-slot queue gives 7.14 days median for remaining window MD; the 90% queue-order interval is 6.88–7.24 days.</p>
-          <p class="time-hero-rate">The estimate uses live equilibration speed as the production-speed proxy and will be recalibrated after the first production windows finish.</p>
+          <p class="eyebrow">Eight-row table</p>
+          <h2>ΔΔG delivery</h2>
+          <p>12 pulls · 40 equilibrations · 124/124 threads</p>
+          <p class="time-hero-rate">1.13–3.87 ns/day/window · 7.14 d median · recalibrate after first production</p>
         </div>
         <div class="time-hero-eta">
           <span class="time-hero-eta-label">Table ETA</span>
@@ -229,32 +211,32 @@
         <article class="timeline-card timeline-card--cyan">
           <span class="time-value">Complete</span>
           <h3>Setup QC</h3>
-          <p>LiCl and NaCl setup closed. Gate moved to production/clustering.</p>
+          <p>Li/Na ready</p>
         </article>
         <article class="timeline-card timeline-card--green">
           <span class="time-value">Complete</span>
           <h3>20 ns production</h3>
-          <p>All eight candidates finished LiCl and NaCl production.</p>
+          <p>8/8 pairs</p>
         </article>
         <article class="timeline-card timeline-card--slate">
           <span class="time-value">16 reps</span>
           <h3>Clustering</h3>
-          <p>All LiCl/NaCl representatives ready for locked-site umbrella.</p>
+          <p>Ready</p>
         </article>
         <article class="timeline-card timeline-card--cyan">
           <span class="time-value">~1.7 h</span>
           <h3>Pull trajectories</h3>
-          <p>Six paired LiCl/NaCl candidates remain in pull; observed active progress spans 52.3–79.7%.</p>
+          <p>12 active · 52–80%</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~7.14 d</span>
           <h3>Window MD</h3>
-          <p>480 one-thread windows each require 0.5 ns equilibration plus 2.0 ns production; 40 are already underway.</p>
+          <p>480 × 2.5 ns · 40 active</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">~4 h</span>
-          <h3>WHAM → visible table</h3>
-          <p>Run paired WHAM, diagnostics, table generation, commit, deployment, and rendered-page verification after the final windows.</p>
+          <h3>WHAM + publish</h3>
+          <p>Analysis · table · deploy</p>
         </article>
       </div>
     </section>

@@ -25,31 +25,31 @@
   <main class="dashboard-main" id="status">
     <section class="dashboard-page is-active">
       <div class="page-header">
-        <p class="eyebrow">Scientific reset</p>
+        <p class="eyebrow">Paired umbrella production</p>
         <h1>Li/Na binding and selectivity</h1>
-        <p>Snapshot: 2026-07-13 22:06 CST. Only current, reproducible evidence is shown.</p>
+        <p>Snapshot: 2026-07-13 22:58 CST. Eight paired Li/Na campaigns are running.</p>
       </div>
 
       <div class="kpi-strip" aria-label="Current computational status">
         <article class="kpi-card">
-          <span class="kpi-label">Complete source exports</span>
-          <strong>8 / 16</strong>
-          <small>All 8 LiCl complete; all 8 NaCl CHARMM-GUI exports need restoration</small>
+          <span class="kpi-label">Paired bound starts</span>
+          <strong>16 / 16</strong>
+          <small>Regenerated, minimized, and checked without suppressed GROMACS warnings</small>
         </article>
         <article class="kpi-card kpi-card--cyan">
-          <span class="kpi-label">Accepted affinity rows</span>
-          <strong>0 / 8</strong>
-          <small>Standard-state double-decoupling calculations not started</small>
+          <span class="kpi-label">Active campaigns</span>
+          <strong>16 / 16</strong>
+          <small>All candidate × ion pull trajectories are advancing</small>
         </article>
         <article class="kpi-card kpi-card--green">
-          <span class="kpi-label">Accepted selectivity rows</span>
-          <strong>0 / 8</strong>
-          <small>Matched bulk/site Li-to-Na cycles not started</small>
+          <span class="kpi-label">Real compute</span>
+          <strong>112 / 124</strong>
+          <small>16 pulls × 7 threads; one-thread windows backfill next</small>
         </article>
         <article class="kpi-card kpi-card--amber">
-          <span class="kpi-label">Active gate</span>
-          <strong>Force-field validation</strong>
-          <small>Li/Na hydration and acetate/amide interaction sensitivity</small>
+          <span class="kpi-label">Analysis policy</span>
+          <strong>No arbitrary PASS</strong>
+          <small>Overlap, time sensitivity, and uncertainty remain visible diagnostics</small>
         </article>
       </div>
 
@@ -62,8 +62,8 @@
           <table class="metric-table">
             <thead><tr><th>Question</th><th>Estimator</th><th>Current state</th></tr></thead>
             <tbody>
-              <tr><th>Li binding strength</th><td>Standard 1 M binding free energy</td><td>Not calculated</td></tr>
-              <tr><th>Li over Na selectivity</th><td>Matched bulk/site Li-to-Na thermodynamic cycle</td><td>Not calculated</td></tr>
+              <tr><th>Li binding strength</th><td>Radially corrected, endpoint-referenced PMF binding difference</td><td>Umbrella sampling running</td></tr>
+              <tr><th>Li over Na selectivity</th><td>ΔΔG = ΔG(Li) − ΔG(Na); negative means Li preference</td><td>Eight paired rows queued</td></tr>
               <tr><th>Capture/release speed</th><td>Independent kinetic analysis</td><td>Outside the equilibrium table</td></tr>
             </tbody>
           </table>
@@ -72,20 +72,20 @@
 
       <div class="timeline-grid">
         <article class="timeline-card timeline-card--green">
-          <span class="time-value">Audited</span><h3>System provenance</h3>
-          <p>Eight LiCl source exports are complete; NaCl fragments establish metadata only and are not production inputs.</p>
+          <span class="time-value">16 / 16</span><h3>Paired starts</h3>
+          <p>Each Li/Na pair uses the same named peptide site and shared umbrella protocol.</p>
         </article>
         <article class="timeline-card timeline-card--cyan">
-          <span class="time-value">Running</span><h3>Model validation</h3>
-          <p>Official CHARMM additive/Drude parameters and published Li/Na acetate and amide targets are being tested.</p>
+          <span class="time-value">Running</span><h3>Pull trajectories</h3>
+          <p>Sixteen real GROMACS pull simulations are advancing without current fatal, SETTLE, or LINCS errors.</p>
         </article>
         <article class="timeline-card timeline-card--slate">
-          <span class="time-value">Next</span><h3>Peptide ensembles</h3>
-          <p>Mixed-ion, multi-basin independent replicas will define candidate bound states and slow variables.</p>
+          <span class="time-value">Next</span><h3>Umbrella windows</h3>
+          <p>0.5 ns equilibration and 2.0 ns production windows automatically fill the 124-thread pool.</p>
         </article>
         <article class="timeline-card timeline-card--violet">
           <span class="time-value">0 / 8</span><h3>Free-energy table</h3>
-          <p>Rows appear only with explicit estimands, uncertainty, model sensitivity, and reproducible provenance.</p>
+          <p>WHAM estimates will include histogram, endpoint, time-sensitivity, burn-in, and bootstrap diagnostics.</p>
         </article>
       </div>
     </section>

@@ -408,7 +408,11 @@ h3 {
 }
 
 .protein-table {
-  min-width: 1120px;
+  min-width: 1260px;
+}
+
+.protein-card {
+  max-width: 1460px;
 }
 
 .protein-table th:first-child,
@@ -417,123 +421,39 @@ h3 {
 }
 
 .protein-table th:nth-child(4),
-.protein-table td:nth-child(4) {
-  min-width: 332px;
-}
-
+.protein-table td:nth-child(4),
 .protein-table th:nth-child(5),
 .protein-table td:nth-child(5) {
+  min-width: 230px;
+}
+
+.protein-table th:nth-child(6),
+.protein-table td:nth-child(6) {
   min-width: 172px;
 }
 
-.umbrella-cell {
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 7px;
-}
-
-.umbrella-pair {
-  display: inline-flex;
-  align-items: center;
+.window-cell {
+  display: grid;
   gap: 8px;
-  white-space: nowrap;
 }
 
-.ion-chip {
-  min-width: 112px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid var(--panel-border);
-  border-left: 3px solid var(--ion-color);
-  border-radius: var(--radius);
-  padding: 5px 9px 5px 8px;
+.window-cell > span {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.window-cell b {
   color: var(--text-main);
-  background: rgba(15, 23, 42, 0.92);
-  font-size: 0.78rem;
-  font-weight: 800;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
 }
 
-.ion-chip::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: var(--ion-color);
-  box-shadow: 0 0 12px rgba(148, 163, 184, 0.28);
-}
-
-.ion-chip--licl {
-  --ion-color: var(--ion-licl);
-}
-
-.ion-chip--nacl {
-  --ion-color: var(--ion-nacl);
-}
-
-.stage-dots {
-  display: inline-grid;
-  grid-template-columns: repeat(5, 13px);
-  gap: 6px;
-  align-items: center;
-}
-
-.stage-dot {
-  width: 11px;
-  height: 11px;
-  display: inline-block;
-  border: 1px solid rgba(226, 232, 240, 0.18);
-  border-radius: 999px;
-  background: var(--dot-color, var(--status-not-started));
-  box-shadow: 0 0 0 2px rgba(2, 6, 23, 0.6);
-}
-
-.stage-dot--complete {
-  --dot-color: var(--status-complete);
-}
-
-.stage-dot--planned {
-  --dot-color: var(--status-planned);
-}
-
-.stage-dot--queued {
-  --dot-color: var(--status-queued);
-}
-
-.stage-dot--running {
-  --dot-color: var(--status-running);
-}
-
-.stage-dot--qc {
-  --dot-color: var(--status-qc);
-}
-
-.stage-dot--warning {
-  --dot-color: var(--status-warning);
-}
-
-.stage-dot--failed {
-  --dot-color: var(--status-failed);
-}
-
-.stage-dot--qc-stage {
-  border-radius: 2px;
-  transform: rotate(45deg);
-}
-
-.stage-dot--warning-shape {
-  width: 0;
-  height: 0;
-  border: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 12px solid var(--dot-color, var(--status-warning));
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+.window-cell small {
+  color: var(--muted);
+  font-size: 0.76rem;
+  white-space: nowrap;
 }
 
 .progress-bar {
